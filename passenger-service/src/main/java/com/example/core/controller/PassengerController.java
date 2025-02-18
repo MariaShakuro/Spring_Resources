@@ -22,14 +22,11 @@ public class PassengerController {
 
     @PostMapping
     public ResponseEntity<PassengerDto> registerPassenger(@RequestBody PassengerDto passengerDto) {
-        try {
+
             log.info("Received passenger DTO: {}", passengerDto);
             PassengerDto registeredPassenger = passengerService.registerPassenger(passengerDto);
             return ResponseEntity.ok(registeredPassenger);
-        } catch (Exception e) {
-            log.error("Error registering passenger", e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-        }
+
     }
 
     @GetMapping("/{email}")
