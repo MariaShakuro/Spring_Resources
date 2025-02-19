@@ -6,6 +6,8 @@ import com.example.core.entity.Driver;
 import com.example.core.exception.ResourceNotFoundException;
 import com.example.core.repository.DriverRepository;
 import jakarta.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

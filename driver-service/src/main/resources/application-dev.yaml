@@ -1,0 +1,17 @@
+spring:
+  profiles: dev
+  datasource:
+   url: jdbc:postgresql://localhost:5432/driver_db?createDatabaseIfNotExist=true
+   username: postgres
+   password: dsova2207_12
+   driver-class-name: org.postgresql.Driver
+
+  jpa:
+    show:
+      sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
