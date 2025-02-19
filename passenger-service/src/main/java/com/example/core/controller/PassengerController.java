@@ -6,7 +6,6 @@ import com.example.core.service.PassengerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +30,7 @@ public class PassengerController {
 
     @GetMapping("/{email}")
     public ResponseEntity<Passenger> getPassengerByEmail(@PathVariable String email) {
+        log.info("Received request to get passenger by email: {}", email);
         Optional<Passenger> passenger = passengerService.findPassengerByEmail(email);
         return passenger.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -38,12 +38,14 @@ public class PassengerController {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Passenger> updatePassenger(@RequestBody Passenger passenger) {
+        log.info("Received request to update passenger: {}", passenger);
         Passenger updatedPassenger = passengerService.updatePassenger(passenger);
         return ResponseEntity.ok(updatedPassenger);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deletePassenger(@PathVariable Long id) {
+        log.info("Received request to delete passenger with id: {}", id);
         passengerService.deletePassenger(id);
         return ResponseEntity.noContent().build();
     }
