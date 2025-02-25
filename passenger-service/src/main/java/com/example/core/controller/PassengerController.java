@@ -2,6 +2,7 @@ package com.example.core.controller;
 
 import com.example.core.dto.PassengerDto;
 import com.example.core.entity.Passenger;
+import com.example.core.service.PassengerEventProducer;
 import com.example.core.service.PassengerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,13 +19,18 @@ public class PassengerController {
     private static final Logger log = LoggerFactory.getLogger(PassengerController.class);
     @Autowired
     private PassengerService passengerService;
+    @Autowired
+    private PassengerEventProducer passengerEventProducer;
 
-    @PostMapping
-    public ResponseEntity<PassengerDto> registerPassenger(@RequestBody PassengerDto passengerDto) {
+    @PostMapping("/register-and-send-event")
+    public ResponseEntity<PassengerDto> registerAndSendPassengerEvent(@RequestBody PassengerDto passengerDto) {
 
-            log.info("Received passenger DTO: {}", passengerDto);
-            PassengerDto registeredPassenger = passengerService.registerPassenger(passengerDto);
-            return ResponseEntity.ok(registeredPassenger);
+        log.info("Received passenger DTO: {}", passengerDto);
+        PassengerDto registeredPassenger = passengerService.registerPassenger(passengerDto);
+        passengerService.registerPassenger(passengerDto);
+
+        passengerEventProducer.sendPassengerEvent(registeredPassenger.getId().toString());
+        return ResponseEntity.ok(registeredPassenger);
 
     }
 
@@ -37,9 +43,10 @@ public class PassengerController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Passenger> updatePassenger(@RequestBody Passenger passenger) {
-        log.info("Received request to update passenger: {}", passenger);
-        Passenger updatedPassenger = passengerService.updatePassenger(passenger);
+    public ResponseEntity<PassengerDto> updatePassenger(@PathVariable Long id, @RequestBody PassengerDto passengerDto) {
+        passengerDto.setId(id);
+        log.info("Received request to update passenger: {}", passengerDto);
+        PassengerDto updatedPassenger = passengerService.updatePassenger(passengerDto);
         return ResponseEntity.ok(updatedPassenger);
     }
 
@@ -49,4 +56,5 @@ public class PassengerController {
         passengerService.deletePassenger(id);
         return ResponseEntity.noContent().build();
     }
+
 }

@@ -3,6 +3,7 @@ package com.example.core.service;
 import com.example.core.dto.PassengerDto;
 import com.example.core.dto.PassengerMapper;
 import com.example.core.entity.Passenger;
+import com.example.core.exception.ResourceNotFoundException;
 import com.example.core.repository.PassengerRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -37,8 +38,12 @@ public class PassengerService {
     }
 
     @Transactional
-    public Passenger updatePassenger(Passenger passenger) {
-        return passengerRepository.save(passenger);
+    public PassengerDto updatePassenger(PassengerDto passengerDto) {
+        Passenger passenger = passengerRepository.findById(passengerDto.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Passenger not found"));
+        passengerMapper.updatePassengerFromDto(passengerDto, passenger);
+        Passenger updatedPassenger = passengerRepository.save(passenger);
+        return passengerMapper.toDto(updatedPassenger);
     }
 
     @Transactional

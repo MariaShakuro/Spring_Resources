@@ -1,3 +1,8 @@
 spring:
  application:
    name: passenger-service
+ profiles:
+   active: dev
+
+server:
+  port: 8082
