@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 @Slf4j
@@ -19,6 +20,8 @@ public class RideService {
     private RideRepository rideRepository;
     @Autowired
     private RideMapper rideMapper;
+    @Autowired
+    private WebClient.Builder webClientBuilder;
 
     private String currentPassengerId;
     private String currentDriverId;
@@ -71,5 +74,22 @@ public class RideService {
         log.info("Getting ride history for driver: {}", driverId);
         List<Ride> rides = rideRepository.findByDriverId(String.valueOf(driverId));
         return rideMapper.toDtoList(rides);
+    }
+    public RideDto applyPromocodeDiscount(RideDto rideDto, Long passengerId) {
+        String passengerServiceUrl = "http://localhost:8082/api/passenger/promocode/" + passengerId;
+        String promocode = webClientBuilder.build()
+                .get()
+                .uri(passengerServiceUrl)
+                .retrieve()
+                .bodyToMono(String.class)
+                .block();
+
+        if (promocode != null && !promocode.isEmpty()) {
+            double originalPrice = rideDto.getFare();
+            double discount = originalPrice * 0.1; // 10% скидка
+            double newPrice = originalPrice - discount;
+            rideDto.setFare(newPrice);
+        }
+        return rideDto;
     }
 }

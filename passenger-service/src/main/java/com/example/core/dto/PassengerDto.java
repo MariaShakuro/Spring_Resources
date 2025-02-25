@@ -18,6 +18,7 @@ public class PassengerDto {
     private String email;
     private String password;
     private String phoneNumber;
+    private String promocode;
 
 }
 
