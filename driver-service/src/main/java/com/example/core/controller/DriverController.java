@@ -2,6 +2,7 @@ package com.example.core.controller;
 
 import com.example.core.dto.DriverDto;
 import com.example.core.entity.Driver;
+import com.example.core.service.DriverEventProducer;
 import com.example.core.service.DriverService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,11 +18,15 @@ public class DriverController {
 
     @Autowired
     private DriverService driverService;
+    @Autowired
+    private DriverEventProducer driverEventProducer;
 
-    @PostMapping("/register")
-    public ResponseEntity<DriverDto> registerDriver(@RequestBody DriverDto driverDto) {
+    @PostMapping("/register-and-send-event")
+    public ResponseEntity<DriverDto> registerAndSendDriverEvent(@RequestBody DriverDto driverDto) {
         log.info("Registering new driver:{}", driverDto);
         DriverDto savedDriver = driverService.register(driverDto);
+
+        driverEventProducer.sendDriverEvent(savedDriver.getId().toString());
         return ResponseEntity.ok(savedDriver);
     }
 
@@ -52,5 +57,6 @@ public class DriverController {
         driverService.deleteDriver(id);
         return ResponseEntity.noContent().build();
     }
+
 
 }

@@ -1,4 +1,8 @@
 spring:
   application:
     name: driver-service
+  profiles:
+    active: dev
 
+server:
+  port: 8081
