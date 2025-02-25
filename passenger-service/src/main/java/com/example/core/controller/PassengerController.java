@@ -57,4 +57,17 @@ public class PassengerController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/apply-promocode/{passengerId}")
+    public ResponseEntity<String> applyPromocode(@PathVariable Long passengerId, @RequestParam String promocode) {
+        log.info("Applying promocode {} for passenger {}", promocode, passengerId);
+        passengerService.applyPromocode(passengerId, promocode);
+        return ResponseEntity.ok("Promocode applied successfully.");
+    }
+
+    @GetMapping("/promocode/{passengerId}")
+    public ResponseEntity<String> getPromocode(@PathVariable Long passengerId) {
+        String promocode = passengerService.getPromocode(passengerId);
+        return ResponseEntity.ok(promocode);
+    }
+
 }

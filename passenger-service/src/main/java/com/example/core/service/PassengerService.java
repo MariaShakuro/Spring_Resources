@@ -23,6 +23,7 @@ public class PassengerService {
     @Autowired
     private PassengerMapper passengerMapper;
 
+
     @Transactional
     public PassengerDto registerPassenger(PassengerDto passengerDto) {
         log.info("Registering passenger: {}", passengerDto);
@@ -49,5 +50,18 @@ public class PassengerService {
     @Transactional
     public void deletePassenger(Long id) {
         passengerRepository.deleteById(id);
+    }
+
+    public void applyPromocode(Long passengerId, String promocode) {
+        Passenger passenger = passengerRepository.findById(passengerId)
+                .orElseThrow(() -> new RuntimeException("Passenger not found"));
+        passenger.setPromocode(promocode);
+        passengerRepository.save(passenger);
+    }
+
+    public String getPromocode(Long passengerId) {
+        Passenger passenger = passengerRepository.findById(passengerId)
+                .orElseThrow(() -> new RuntimeException("Passenger not found"));
+        return passenger.getPromocode();
     }
 }

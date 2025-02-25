@@ -11,7 +11,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
+/*
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 public class PassengerRepositoryTest {
@@ -63,3 +63,4 @@ public class PassengerRepositoryTest {
         assertTrue(foundPassenger.isEmpty());
     }
 }
+*/

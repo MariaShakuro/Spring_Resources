@@ -16,5 +16,6 @@ public class RideDto {
     private String status;
     private double fare;
     private long timestamp;
+    private String promocode;
 
 }

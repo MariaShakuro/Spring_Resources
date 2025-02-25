@@ -20,6 +20,7 @@ public class Ride {
     private String status;
     private double fare;
     private long timestamp;
+    private String promocode;
 
 }
 

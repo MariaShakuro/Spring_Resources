@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-alpine
+FROM openjdk:17-slim
 WORKDIR /app
 COPY target/ride-service-0.0.1.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]

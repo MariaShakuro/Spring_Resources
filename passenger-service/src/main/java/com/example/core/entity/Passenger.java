@@ -23,6 +23,8 @@ public class Passenger {
     private String password;
     @Column(name = "phone_number")
     private String phoneNumber;
+    @Column(name = "promocode")
+    private String promocode;
 
 }
 
