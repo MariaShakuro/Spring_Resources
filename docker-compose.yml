@@ -1,0 +1,112 @@
+
+services:
+  postgres:
+    image: postgres:17.4
+    environment:
+      POSTGRES_USER: ${SPRING_DATASOURCE_USERNAME}
+      POSTGRES_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+    ports:
+        - "5432:5432"
+    volumes:
+        - postgres_data:/var/lib/postgresql/data_1
+        - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - spring_resources_app-network
+
+  mongodb:
+    image: mongo:4.4
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - spring_resources_app-network
+
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+    networks:
+      - spring_resources_app-network
+
+
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    networks:
+      - spring_resources_app-network
+
+
+
+  driver-service:
+    build:
+      context: ./driver-service
+    image: driver-service
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/driver_db"
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+    depends_on:
+      - postgres
+      - kafka
+    networks:
+      - spring_resources_app-network
+
+  passenger-service:
+    build:
+      context: ./passenger-service
+    image: passenger-service
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/passenger_db"
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+    depends_on:
+      - postgres
+      - kafka
+    networks:
+      - spring_resources_app-network
+
+  ride-service:
+    build:
+      context: ./ride-service
+    image: ride-service
+    ports:
+      - "8080:8080"
+    environment:
+        SPRING_DATA_MONGODB_URI: "mongodb://mongodb:27017/ride_db"
+        SPRING_DATA_MONGODB_DATABASE: ride_db
+        SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+    depends_on:
+      - mongodb
+      - kafka
+    networks:
+      - spring_resources_app-network
+volumes:
+  postgres_data:
+  mongodb_data:
+
+networks:
+  spring_resources_app-network:
+    driver: bridge
