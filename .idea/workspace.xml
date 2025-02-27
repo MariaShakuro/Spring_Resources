@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b210d6ef-08e2-484c-bb3c-4eccc0c91b29" name="Changes" comment="" />
+    <list default="true" id="b210d6ef-08e2-484c-bb3c-4eccc0c91b29" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/passenger-service/src/test/java/com/example/core/controller/PassengerControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/src/test/java/com/example/core/controller/PassengerControllerIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/src/test/java/com/example/core/service/PassengerServiceIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/src/test/java/com/example/core/service/PassengerServiceIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/src/test/java/com/example/core/service/PassengerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/src/test/java/com/example/core/service/PassengerServiceTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -115,7 +119,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="develop" />
+                        <option value="HEAD" />
                       </list>
                     </value>
                   </entry>

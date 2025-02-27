@@ -14,8 +14,7 @@ import org.mockito.MockitoAnnotations;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 /*
@@ -65,18 +64,55 @@ public class PassengerServiceTest {
         assertEquals(Optional.of(passenger), result);
     }
 
-   /* @Test
+    @Test
     void testUpdatePassenger() {
         Passenger passenger = new Passenger();
+        passenger.setId(1L);
+        passenger.setEmail("testupdate@example.com");
+        passenger.setName("Old Name");
+        passenger.setPassword("password");
+        passenger.setPhoneNumber("1234567890");
+
+
+        PassengerDto passengerDto = new PassengerDto();
+        passengerDto.setId(1L);
+        passengerDto.setName("Updated Name");
+
+
         Passenger updatedPassenger = new Passenger();
+        updatedPassenger.setId(1L);
+        updatedPassenger.setEmail("testupdate@example.com");
+        updatedPassenger.setName("Updated Name");
+        updatedPassenger.setPassword("password");
+        updatedPassenger.setPhoneNumber("1234567890");
+
+
+        PassengerDto updatedPassengerDto = new PassengerDto();
+        updatedPassengerDto.setId(1L);
+        updatedPassengerDto.setEmail("testupdate@example.com");
+        updatedPassengerDto.setName("Updated Name");
+        updatedPassengerDto.setPassword("password");
+        updatedPassengerDto.setPhoneNumber("1234567890");
+
+
+        when(passengerRepository.findById(anyLong())).thenReturn(Optional.of(passenger));
         when(passengerRepository.save(any(Passenger.class))).thenReturn(updatedPassenger);
+        when(passengerMapper.toDto(any(Passenger.class))).thenReturn(updatedPassengerDto);
 
-        Passenger result = passengerService.updatePassenger(passenger);
 
+        PassengerDto result = passengerService.updatePassenger(passengerDto);
+
+
+        verify(passengerRepository).findById(1L);
         verify(passengerRepository).save(passenger);
-        assertEquals(updatedPassenger, result);
-    }*/
-/*
+        verify(passengerMapper).toDto(updatedPassenger);
+
+
+        assertEquals("Updated Name", result.getName());
+    }
+
+
+
     @Test
     void testDeletePassenger() {
         Long passengerId = 1L;
