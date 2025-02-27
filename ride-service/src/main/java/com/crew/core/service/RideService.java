@@ -11,7 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @Slf4j
 @Service
 public class RideService {
@@ -22,6 +25,7 @@ public class RideService {
 
     private String currentPassengerId;
     private String currentDriverId;
+    private Map<String, String> passengerPromoCodes = new HashMap<>();
 
     public void setCurrentPassengerId(String passengerId) {
         this.currentPassengerId = passengerId;
@@ -37,6 +41,12 @@ public class RideService {
         Ride ride = rideMapper.toEntity(rideDto);
         ride.setPassengerId(currentPassengerId);
         ride.setDriverId(currentDriverId);
+
+        String promoCode = passengerPromoCodes.get(currentPassengerId);
+        if (promoCode != null) {
+            double discountedFare = ride.getFare() * 0.9;
+            ride.setFare(discountedFare);
+        }
 
         Ride savedRide = rideRepository.save(ride);
         return rideMapper.toDto(savedRide);
@@ -71,5 +81,8 @@ public class RideService {
         log.info("Getting ride history for driver: {}", driverId);
         List<Ride> rides = rideRepository.findByDriverId(String.valueOf(driverId));
         return rideMapper.toDtoList(rides);
+    }
+    public void applyPromoCode(String passengerId, String promoCode) {
+        passengerPromoCodes.put(passengerId, promoCode);
     }
 }

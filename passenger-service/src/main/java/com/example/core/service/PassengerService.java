@@ -50,4 +50,6 @@ public class PassengerService {
     public void deletePassenger(Long id) {
         passengerRepository.deleteById(id);
     }
+
+
 }

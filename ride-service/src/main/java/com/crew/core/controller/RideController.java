@@ -55,5 +55,12 @@ public class RideController {
         }
         return ResponseEntity.ok(rideHistory);
     }
+
+    @PostMapping("/applyPromoCode")
+    public ResponseEntity<Void> applyPromoCode(@RequestParam String passengerId, @RequestParam String promoCode) {
+        log.info("Applying promo code for passenger: {}", passengerId);
+        rideService.applyPromoCode(passengerId, promoCode);
+        return ResponseEntity.ok().build();
+    }
 }
 
