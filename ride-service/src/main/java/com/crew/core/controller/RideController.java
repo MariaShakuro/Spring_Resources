@@ -21,8 +21,6 @@ public class RideController {
     @PostMapping("/reserve")
     public ResponseEntity<RideDto> reserveRide(@RequestBody RideDto rideDto) {
         log.info("Request to reserve ride for passenger: {}, driver: {}", rideDto.getPassengerId(), rideDto.getDriverId());
-        if (rideDto.getPassengerId() != null) rideDto = rideService.applyPromocodeDiscount(rideDto, Long.valueOf(rideDto.getPassengerId()));
-
         RideDto reservedRide = rideService.reserveRide(rideDto);
         return ResponseEntity.ok(reservedRide);
     }
@@ -58,6 +56,11 @@ public class RideController {
         return ResponseEntity.ok(rideHistory);
     }
 
-
+    @PostMapping("/applyPromoCode")
+    public ResponseEntity<Void> applyPromoCode(@RequestParam String passengerId, @RequestParam String promoCode) {
+        log.info("Applying promo code for passenger: {}", passengerId);
+        rideService.applyPromoCode(passengerId, promoCode);
+        return ResponseEntity.ok().build();
+    }
 }
 

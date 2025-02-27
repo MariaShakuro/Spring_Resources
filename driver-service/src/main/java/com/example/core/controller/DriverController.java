@@ -1,7 +1,6 @@
 package com.example.core.controller;
 
 import com.example.core.dto.DriverDto;
-import com.example.core.entity.Driver;
 import com.example.core.service.DriverEventProducer;
 import com.example.core.service.DriverService;
 import org.slf4j.Logger;
@@ -57,6 +56,7 @@ public class DriverController {
         driverService.deleteDriver(id);
         return ResponseEntity.noContent().build();
     }
+
 
 
 }

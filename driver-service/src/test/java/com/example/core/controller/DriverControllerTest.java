@@ -41,8 +41,8 @@ public class DriverControllerTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(savedDriverDto, response.getBody());
     }
-*//*
-    @Test
+*/
+   /* @Test
     void testEditProfile() {
         DriverDto driverDto = new DriverDto();
         DriverDto updatedDriverDto = new DriverDto();

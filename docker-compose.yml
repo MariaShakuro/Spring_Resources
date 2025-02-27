@@ -88,6 +88,16 @@ services:
     networks:
       - spring_resources_app-network
 
+  payment-service:
+    build:
+      context: ./payment-service
+    image: payment-service
+    ports:
+      - "8083:8083"
+    networks:
+      - spring_resources_app-network
+
+
   ride-service:
     build:
       context: ./ride-service

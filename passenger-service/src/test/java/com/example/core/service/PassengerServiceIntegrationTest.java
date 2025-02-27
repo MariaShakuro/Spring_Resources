@@ -71,10 +71,8 @@ public class PassengerServiceIntegrationTest {
         passenger.setPhoneNumber("1234567890");
         Passenger savedPassenger = passengerRepository.save(passenger);
 
-        PassengerDto passengerDto=new PassengerDto();
-        passengerDto.setId(savedPassenger.getId());
-        passengerDto.setName("Updated Name");
-        PassengerDto updatedPassenger = passengerService.updatePassenger(passengerDto);
+        savedPassenger.setName("Updated Name");
+        Passenger updatedPassenger = passengerService.updatePassenger(savedPassenger);
 
         Optional<Passenger> foundPassenger = passengerRepository.findById(updatedPassenger.getId());
         assertTrue(foundPassenger.isPresent());
@@ -96,4 +94,5 @@ public class PassengerServiceIntegrationTest {
         assertTrue(foundPassenger.isEmpty());
     }
 }
+
 */
