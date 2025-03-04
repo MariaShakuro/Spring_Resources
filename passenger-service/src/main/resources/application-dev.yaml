@@ -2,18 +2,13 @@ spring:
   config:
     activate:
       on-profile: dev
+    import: classpath:kafka-config.yml
   datasource:
     url: jdbc:postgresql://postgres:5432/passenger_db?createDatabaseIfNotExist=true
-    username: postgres
-    password: dsova2207_12
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
-  kafka:
-    bootstrap-servers: kafka:9092
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
-      acks: all
 
   jpa:
     show-sql: true
@@ -22,22 +17,3 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-
-
-kafka:
-  advertised:
-    listeners: PLAINTEXT://kafka:9092,PLAINTEXT_INTERNAL://localhost:9093
-  listeners: PLAINTEXT://kafka:9092,PLAINTEXT_INTERNAL://localhost:9093
-  auto:
-    create:
-      topics:
-        enable: true
-  listener:
-    security:
-      protocol:
-        map: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
-  log:
-    retention:
-      hours: 168
-  zookeeper:
-    connect: zookeeper:2181

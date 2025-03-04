@@ -1,32 +1,9 @@
 spring:
-  profiles: dev
+  config:
+    activate:
+      on-profile: dev
+    import: classpath:kafka-config.yml
   data:
     mongodb:
       uri: mongodb://localhost:27017/ride_db
       database: ride_db
-
-  kafka:
-    bootstrap-servers: kafka:9092
-    consumer:
-      group-id: ride-group
-      auto-offset-reset: earliest
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-
-kafka:
-  advertised:
-    listeners: PLAINTEXT://kafka:9092,PLAINTEXT_INTERNAL://localhost:9093
-  listeners: PLAINTEXT://kafka:9092,PLAINTEXT_INTERNAL://localhost:9093
-  auto:
-    create:
-      topics:
-        enable: true
-  listener:
-    security:
-      protocol:
-        map: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
-  log:
-    retention:
-      hours: 168
-  zookeeper:
-    connect: zookeeper:2181
