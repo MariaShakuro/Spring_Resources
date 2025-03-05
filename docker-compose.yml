@@ -133,6 +133,46 @@ services:
       - kafka
     networks:
       - spring_resources_app-network
+
+  liquibase-postgres-passenger_db:
+    image: liquibase/liquibase:latest
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/passenger_db
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+    volumes:
+      - ./src/main/resources/db/changelog:/liquibase/changelog
+    depends_on:
+      - postgres
+    networks:
+      - spring_resources_app-network
+
+  liquibase-postgres-driver_db:
+    image: liquibase/liquibase:latest
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/driver_db
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+    volumes:
+      - ./src/main/resources/db/changelog:/liquibase/changelog
+    depends_on:
+      - postgres
+    networks:
+      - spring_resources_app-network
+
+  liquibase-mongodb:
+    image: liquibase/liquibase:latest
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/ride_db
+      - SPRING_DATA_MONGODB_DATABASE=ride_db
+    volumes:
+      - ./src/main/resources/db/changelog:/liquibase/changelog
+    depends_on:
+      - mongodb
+    networks:
+      - spring_resources_app-network
+
+
 volumes:
   postgres_data:
   mongodb_data:
