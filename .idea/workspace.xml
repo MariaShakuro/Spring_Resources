@@ -5,20 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b210d6ef-08e2-484c-bb3c-4eccc0c91b29" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/driver-service/src/main/java/com/example/core/config/KafkaProducerConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/passenger-service/src/main/java/com/example/core/config/KafkaProducerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driver-service/src/main/java/com/example/core/config/SwaggerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/passenger-service/src/main/java/com/example/core/config/SwaggerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/payment-service/src/main/java/com/example/core/config/SwaggerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ride-service/src/main/java/com/crew/core/config/SwaggerConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/driver-service/src/main/resources/application-dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/main/resources/application-dev.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/driver-service/src/main/resources/kafka-config.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/passenger-service/src/main/resources/application-dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/src/main/resources/application-dev.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/passenger-service/src/main/resources/kafka-config.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/target/payment-service-0.0.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/target/payment-service-0.0.1.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/target/payment-service-0.0.1.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/target/payment-service-0.0.1.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ride-service/logs/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/logs/application.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ride-service/src/main/resources/application-dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/main/resources/application-dev.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ride-service/src/main/resources/kafka-config.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/RideApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/RideApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/src/main/java/com/example/core/controller/DriverController.java" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/main/java/com/example/core/controller/DriverController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/src/main/java/com/example/core/controller/PassengerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/src/main/java/com/example/core/controller/PassengerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-service/src/main/java/com/example/core/controller/PaymentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/src/main/java/com/example/core/controller/PaymentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ride-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ride-service/src/main/java/com/crew/core/controller/RideController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/main/java/com/crew/core/controller/RideController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,19 +60,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.All in passenger-service.executor": "Run",
-    "JUnit.java in ride-service.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "#9 on develop",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Modsen/Spring_Resources/Spring_Resources/Spring_Resources"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.All in passenger-service.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.java in ride-service.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;addition-feature&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Modsen/LibrarySpring&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
