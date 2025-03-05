@@ -2,7 +2,6 @@ spring:
   config:
     activate:
       on-profile: dev
-    import: classpath:kafka-config.yml
   datasource:
    url: jdbc:postgresql://postgres:5432/driver_db?createDatabaseIfNotExist=true
    username: ${SPRING_DATASOURCE_USERNAME}
@@ -17,3 +16,8 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  kafka:
+    bootstrap-servers: kafka:9092
+
+
