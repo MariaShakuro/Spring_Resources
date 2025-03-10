@@ -24,6 +24,7 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
 
+<<<<<<< Updated upstream
 kafka:
   advertised:
     listeners: PLAINTEXT://kafka:9092,PLAINTEXT_INTERNAL://localhost:9093
@@ -41,3 +42,14 @@ kafka:
       hours: 168
   zookeeper:
     connect: zookeeper:2181
+=======
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+
+>>>>>>> Stashed changes

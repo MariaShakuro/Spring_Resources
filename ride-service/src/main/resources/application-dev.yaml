@@ -13,6 +13,7 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
+<<<<<<< Updated upstream
 kafka:
   advertised:
     listeners: PLAINTEXT://kafka:9092,PLAINTEXT_INTERNAL://localhost:9093
@@ -30,3 +31,16 @@ kafka:
       hours: 168
   zookeeper:
     connect: zookeeper:2181
+=======
+   liquibase:
+     change-log: classpath:db/changelog/db.changelog-master.json
+     data:
+       mongodb:
+         uri: mongodb://localhost:27017/ride_db
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+>>>>>>> Stashed changes

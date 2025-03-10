@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 2025-02-25 00:45:40 INFO  c.c.core.controller.RideController - Request to end ride for passenger: 1
 2025-02-25 00:45:40 INFO  c.c.core.controller.RideController - Request to start ride for passenger: 1
 2025-02-25 00:45:40 INFO  c.c.core.controller.RideController - Request to reserve ride for passenger: null, driver: null
@@ -726,3 +727,11 @@ This generated password is for development use only. Your security configuration
 2025-02-25 02:02:22 INFO  o.a.kafka.common.utils.AppInfoParser - App info kafka.consumer for consumer-ride-group-1 unregistered
 2025-02-25 02:02:22 INFO  o.s.k.l.KafkaMessageListenerContainer - ride-group: Consumer stopped
 2025-02-25 02:02:22 INFO  o.s.k.l.KafkaMessageListenerContainer - ride-group: Consumer stopped
+=======
+2025-03-10 21:49:10 INFO  c.c.core.controller.RideController - Request to end ride for passenger: 1
+2025-03-10 21:49:10 INFO  c.c.core.controller.RideController - Request to start ride for passenger: 1
+2025-03-10 21:49:10 INFO  c.c.core.controller.RideController - Request to reserve ride for passenger: null, driver: null
+2025-03-10 21:49:10 INFO  com.crew.core.service.RideService - Ending ride for passenger: 1
+2025-03-10 21:49:10 INFO  com.crew.core.service.RideService - Starting ride for passenger: 1
+2025-03-10 21:49:10 INFO  com.crew.core.service.RideService - Reserving ride for passenger: null
+>>>>>>> Stashed changes

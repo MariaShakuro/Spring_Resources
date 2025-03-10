@@ -42,3 +42,15 @@ kafka:
   zookeeper:
     connect: zookeeper:2181
 
+<<<<<<< Updated upstream
+=======
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+
+>>>>>>> Stashed changes

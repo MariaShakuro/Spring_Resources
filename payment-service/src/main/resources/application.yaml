@@ -1,0 +1,13 @@
+spring:
+  application:
+         name: payment-service
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+
+
+server:
+  port: 8083
