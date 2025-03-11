@@ -4,3 +4,4 @@ com\example\core\security\SecurityConfig.class
 com\example\core\service\PaymentService.class
 com\example\core\PaymentApplication.class
 com\example\core\entity\PaymentRequest.class
+com\example\core\config\SwaggerConfig.class

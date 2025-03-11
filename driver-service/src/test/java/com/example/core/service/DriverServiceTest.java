@@ -5,7 +5,6 @@ import com.example.core.dto.DriverDto;
 import com.example.core.dto.DriverMapper;
 import com.example.core.entity.Driver;
 import com.example.core.repository.DriverRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -13,12 +12,9 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-/*
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
 public class DriverServiceTest {
 
     @InjectMocks
@@ -30,86 +26,112 @@ public class DriverServiceTest {
     @Mock
     private DriverMapper driverMapper;
 
-    @BeforeEach
-    void setUp() {
+    public DriverServiceTest() {
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    void testRegister() {
-        DriverDto driverDto = new DriverDto();
-        Driver driver = new Driver();
-        Driver savedDriver = new Driver();
-        DriverDto savedDriverDto = new DriverDto();
+    public void testRegister() {
 
-        when(driverMapper.toEntity(any(DriverDto.class))).thenReturn(driver);
-        when(driverRepository.save(any(Driver.class))).thenReturn(savedDriver);
-        when(driverMapper.toDto(any(Driver.class))).thenReturn(savedDriverDto);
+        DriverDto driverDto = new DriverDto(null, "John Doe", "LICENSE123", 5);
+        Driver driver = new Driver(null, "John Doe", "LICENSE123", 5);
+        Driver savedDriver = new Driver(1L, "John Doe", "LICENSE123", 5);
+        DriverDto savedDriverDto = new DriverDto(1L, "John Doe", "LICENSE123", 5);
+
+        when(driverMapper.toEntity(driverDto)).thenReturn(driver);
+        when(driverRepository.save(driver)).thenReturn(savedDriver);
+        when(driverMapper.toDto(savedDriver)).thenReturn(savedDriverDto);
+
 
         DriverDto result = driverService.register(driverDto);
 
+
+        assertNotNull(result);
+        assertEquals(savedDriverDto, result);
         verify(driverMapper).toEntity(driverDto);
         verify(driverRepository).save(driver);
         verify(driverMapper).toDto(savedDriver);
-        assertEquals(savedDriverDto, result);
     }
 
     @Test
-    void testEditProfile() {
-        DriverDto driverDto = new DriverDto();
-        Driver existedDriver = new Driver();
-        Driver updatedDriver = new Driver();
-        DriverDto updatedDriverDto = new DriverDto();
+    public void testEditProfile() {
 
-        when(driverRepository.findById(anyLong())).thenReturn(Optional.of(existedDriver));
-        when(driverRepository.save(any(Driver.class))).thenReturn(updatedDriver);
-        when(driverMapper.toDto(any(Driver.class))).thenReturn(updatedDriverDto);
+        Long driverId = 1L;
+        DriverDto updateDto = new DriverDto(null, "Jane Doe", "LICENSE987", 5);
+        Driver existingDriver = new Driver(1L, "John Doe", "LICENSE123", 5);
+        Driver updatedDriver = new Driver(1L, "Jane Doe", "LICENSE987", 5);
+        DriverDto updatedDriverDto = new DriverDto(1L, "Jane Doe", "LICENSE987", 5);
 
-        DriverDto result = driverService.editProfile(1L, driverDto);
+        when(driverRepository.findById(driverId)).thenReturn(Optional.of(existingDriver));
+        doNothing().when(driverMapper).updateDriverFromDto(updateDto, existingDriver);
+        when(driverRepository.save(existingDriver)).thenReturn(updatedDriver);
+        when(driverMapper.toDto(updatedDriver)).thenReturn(updatedDriverDto);
 
-        verify(driverRepository).findById(1L);
-        verify(driverMapper).updateDriverFromDto(driverDto, existedDriver);
-        verify(driverRepository).save(existedDriver);
-        verify(driverMapper).toDto(updatedDriver);
+
+        DriverDto result = driverService.editProfile(driverId, updateDto);
+
+
+        assertNotNull(result);
         assertEquals(updatedDriverDto, result);
+        verify(driverRepository).findById(driverId);
+        verify(driverMapper).updateDriverFromDto(updateDto, existingDriver);
+        verify(driverRepository).save(existingDriver);
+        verify(driverMapper).toDto(updatedDriver);
     }
 
     @Test
-    void testGetDriverProfile() {
-        Driver driver = new Driver();
-        DriverDto driverDto = new DriverDto();
+    public void testGetDriverProfile() {
 
-        when(driverRepository.findById(anyLong())).thenReturn(Optional.of(driver));
-        when(driverMapper.toDto(any(Driver.class))).thenReturn(driverDto);
+        Long driverId = 1L;
+        Driver driver = new Driver(driverId, "John Doe", "LICENSE123", 5);
+        DriverDto driverDto = new DriverDto(driverId, "John Doe", "LICENSE123", 5);
 
-        DriverDto result = driverService.getDriverProfile(1L);
+        when(driverRepository.findById(driverId)).thenReturn(Optional.of(driver));
+        when(driverMapper.toDto(driver)).thenReturn(driverDto);
 
-        verify(driverRepository).findById(1L);
-        verify(driverMapper).toDto(driver);
+
+        DriverDto result = driverService.getDriverProfile(driverId);
+
+
+        assertNotNull(result);
         assertEquals(driverDto, result);
+        verify(driverRepository).findById(driverId);
+        verify(driverMapper).toDto(driver);
     }
 
     @Test
-    void testRateDriver() {
-        Driver driver = new Driver();
+    public void testRateDriver() {
 
-        when(driverRepository.findById(anyLong())).thenReturn(Optional.of(driver));
+        Long driverId = 1L;
+        int rating = 4;
+        Driver driver = new Driver(driverId, "John Doe", "LICENSE123", 5);
 
-        driverService.rateDriver(1L, 5);
+        when(driverRepository.findById(driverId)).thenReturn(Optional.of(driver));
+        when(driverRepository.save(driver)).thenReturn(driver);
 
-        verify(driverRepository).findById(1L);
-        driver.setRating(5);
+
+        driverService.rateDriver(driverId, rating);
+
+
+        assertEquals(rating, driver.getRating());
+        verify(driverRepository).findById(driverId);
         verify(driverRepository).save(driver);
     }
 
     @Test
-    void testDeleteDriver() {
-        when(driverRepository.existsById(anyLong())).thenReturn(true);
+    public void testDeleteDriver() {
 
-        driverService.deleteDriver(1L);
+        Long driverId = 1L;
 
-        verify(driverRepository).existsById(1L);
-        verify(driverRepository).deleteById(1L);
+        when(driverRepository.existsById(driverId)).thenReturn(true);
+        doNothing().when(driverRepository).deleteById(driverId);
+
+
+        driverService.deleteDriver(driverId);
+
+
+        verify(driverRepository).existsById(driverId);
+        verify(driverRepository).deleteById(driverId);
     }
+
 }
-*/
