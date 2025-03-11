@@ -1,0 +1,31 @@
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+      url: jdbc:postgresql://postgres:5432/testdb
+      username: postgres
+      password: dsova2207_12
+      driver-class-name: org.postgresql.Driver
+  jpa:
+      hibernate:
+        ddl-auto: create-drop
+      show-sql: true
+  liquibase:
+      enabled: false
+
+  kafka:
+    consumer:
+      group-id: test-group
+      auto-offset-reset: earliest
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+server:
+  port: 8081
+logging:
+  level:
+    root: INFO
+    org.springframework: DEBUG
+    org.hibernate.SQL: DEBUG
+
