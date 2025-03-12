@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Spring_Resources.iml" filepath="$PROJECT_DIR$/.idea/Spring_Resources.iml" />
-      <module fileurl="file://$PROJECT_DIR$/driver-service/driver-service.iml" filepath="$PROJECT_DIR$/driver-service/driver-service.iml" />
     </modules>
   </component>
 </project>
