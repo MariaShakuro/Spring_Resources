@@ -5,38 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b210d6ef-08e2-484c-bb3c-4eccc0c91b29" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/contract/RideControllerContractTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/integration/RideControllerIntegrationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/unit/repository/RideRepositoryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/unit/service/DriverEventListenerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/unit/service/PassengerEventListenerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ride-service/src/test/resources/contracts/ride_controller_contract.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ride-service/src/test/resources/contracts/ride_event_contract.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/payment-service/src/test/java/com/example/core/controller/PaymentControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/payment-service/src/test/java/com/example/core/service/PaymentServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/driver-service/logs/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/logs/application.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/driver-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/DriverApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/DriverApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/component/DriverManagementSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/component/DriverManagementSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/component/DriverRatingSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/component/DriverRatingSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/contract/DriverEventContractTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/contract/DriverEventContractTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/contract/DriverProfileContractTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/contract/DriverProfileContractTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/contract/MockConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/contract/MockConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/cucumber/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/cucumber/BaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/cucumber/CucumberSpringConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/cucumber/CucumberSpringConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/cucumber/CucumberTestRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/cucumber/CucumberTestRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/cucumber/DriverApiSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/cucumber/DriverApiSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/integration/DriverControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/integration/DriverControllerIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/unit/controller/DriverControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/unit/controller/DriverControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/driver-service/src/test/resources/application-test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/test/resources/application-test.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ride-service/logs/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/logs/application.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ride-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ride-service/src/main/java/com/crew/core/dto/RideDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/main/java/com/crew/core/dto/RideDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ride-service/src/main/java/com/crew/core/entity/Ride.java" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/main/java/com/crew/core/entity/Ride.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ride-service/src/main/resources/application-test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/test/resources/application-test.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/RideApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/RideApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/unit/RideControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/unit/controller/RideControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/unit/RideServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/unit/service/RideServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-service/src/test/java/com/example/core/PromocodeApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/src/test/java/com/example/core/PromocodeApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -90,11 +64,12 @@
     "JUnit.cucumber in driver-service.executor": "Run",
     "JUnit.java in driver-service.executor": "Run",
     "JUnit.java in passenger-service.executor": "Run",
+    "JUnit.java in payment-service.executor": "Run",
     "JUnit.java in ride-service.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "test-feature-passenger-addition",
+    "git-widget-placeholder": "test-feature-ride-addition",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "C:/Modsen/Spring_Resources/Spring_Resources/Spring_Resources/driver-service/src/test/java/com/example/core/service",
@@ -119,13 +94,14 @@
       <recent name="com.example.core" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.example.core.service" />
+      <recent name="com.example.core.controller" />
       <recent name="com.crew.core.service" />
       <recent name="com.crew.core.repository" />
-      <recent name="com.example.core.service" />
       <recent name="com.crew.core.controller" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.java in ride-service">
+  <component name="RunManager" selected="JUnit.java in payment-service">
     <configuration name="DriverEventContractTest.testSendDriverEvent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="driver-service" />
       <extension name="coverage">
@@ -150,18 +126,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="java in driver-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="driver-service" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/driver-service/src/test/java" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="java in passenger-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="passenger-service" />
       <option name="TEST_OBJECT" value="directory" />
       <dir value="$PROJECT_DIR$/passenger-service/src/test/java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="java in payment-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="payment-service" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/payment-service/src/test/java" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -176,11 +152,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.java in payment-service" />
         <item itemvalue="JUnit.java in ride-service" />
         <item itemvalue="JUnit.java in passenger-service" />
         <item itemvalue="JUnit.core in passenger-service" />
         <item itemvalue="JUnit.DriverEventContractTest.testSendDriverEvent" />
-        <item itemvalue="JUnit.java in driver-service" />
       </list>
     </recent_temporary>
   </component>
