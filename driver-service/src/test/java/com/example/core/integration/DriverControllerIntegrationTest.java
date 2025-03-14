@@ -1,23 +1,17 @@
 package com.example.core.integration;
 
-import com.example.core.DriverApplication;
-import com.example.core.config.KafkaProducerConfig;
-import com.example.core.dto.DriverDto;
 
+import com.example.core.dto.DriverDto;
 import com.example.core.entity.Driver;
 import com.example.core.repository.DriverRepository;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
@@ -48,12 +42,10 @@ public class DriverControllerIntegrationTest {
 
     @DynamicPropertySource
     static void configureProperties(DynamicPropertyRegistry registry) {
-        // PostgreSQL properties
         registry.add("spring.datasource.url", postgresContainer::getJdbcUrl);
         registry.add("spring.datasource.username", postgresContainer::getUsername);
         registry.add("spring.datasource.password", postgresContainer::getPassword);
 
-        // Kafka properties
         registry.add("spring.kafka.bootstrap-servers", kafkaContainer::getBootstrapServers);
     }
 
@@ -66,10 +58,11 @@ public class DriverControllerIntegrationTest {
     @BeforeEach
     public void setup() {
         RestAssured.baseURI = "http://localhost";
-        RestAssured.port = port; // Используем порт от Spring Boot
+        RestAssured.port = port;
 
         driverRepository.save(new Driver(null, "John Doe", "LICENSE123", 5));
     }
+
     @Test
     public void testRegisterDriver() {
 

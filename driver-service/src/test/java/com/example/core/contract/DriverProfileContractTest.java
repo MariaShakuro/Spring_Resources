@@ -1,18 +1,14 @@
 package com.example.core.contract;
 
 import com.example.core.DriverApplication;
-import com.example.core.dto.DriverDto;
 import com.example.core.entity.Driver;
 import com.example.core.repository.DriverRepository;
 import io.restassured.RestAssured;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
@@ -22,6 +18,8 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
+
+
 @Testcontainers
 @SpringBootTest(classes = DriverApplication.class,
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)

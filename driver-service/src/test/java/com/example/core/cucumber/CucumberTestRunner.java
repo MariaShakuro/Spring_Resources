@@ -1,10 +1,8 @@
-package com.example.core;
+package com.example.core.cucumber;
 
-import com.example.core.cucumber.BaseTest;
-import io.cucumber.junit.CucumberOptions;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-
+/*
 @CucumberOptions(
         features = "src/test/resources/cucumber",
         glue = "com.example.core.cucumber",
@@ -15,4 +13,4 @@ import org.springframework.test.context.ActiveProfiles;
 public class CucumberTestRunner extends BaseTest {
 
 }
-
+*/

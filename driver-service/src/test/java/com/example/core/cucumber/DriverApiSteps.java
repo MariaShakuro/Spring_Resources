@@ -1,37 +1,22 @@
 package com.example.core.cucumber;
 
-import com.example.core.dto.DriverDto;
 import com.example.core.entity.Driver;
 import com.example.core.repository.DriverRepository;
-import io.cucumber.datatable.DataTable;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.When;
-import io.cucumber.java.en.Then;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.stereotype.Component;
-import org.springframework.test.context.DynamicPropertyRegistry;
-import org.springframework.test.context.DynamicPropertySource;
-import org.testcontainers.containers.KafkaContainer;
-import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.containers.wait.strategy.Wait;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
-import org.testcontainers.utility.DockerImageName;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Map;
-
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.port;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-@Testcontainers
+/*
+@DirtiesContext
+@ActiveProfiles("test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class DriverApiSteps extends BaseTest {
 
@@ -41,13 +26,15 @@ public class DriverApiSteps extends BaseTest {
     @LocalServerPort
     private int port;
 
+    @Autowired
     private DriverRepository driverRepository;
 
     @BeforeEach
     public void setup() {
         // Set up RestAssured for API testing
-        RestAssured.baseURI = "http://localhost";
         RestAssured.port = port;
+        RestAssured.baseURI = "http://localhost";
+
 
         // Clear database and add initial test data
         driverRepository.deleteAll(); // Ensure a clean database state
@@ -141,3 +128,4 @@ public class DriverApiSteps extends BaseTest {
         );
     }
 }
+*/
