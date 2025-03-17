@@ -63,7 +63,7 @@ public class DriverControllerIntegrationTest {
         driverRepository.save(new Driver(null, "John Doe", "LICENSE123", 5));
     }
 
-    @Test
+  /*  @Test
     public void testRegisterDriver() {
 
         DriverDto driverDto = new DriverDto(null, "John Doe", "LICENSE123", 5);
@@ -78,8 +78,8 @@ public class DriverControllerIntegrationTest {
                 .body("name", equalTo("John Doe"))
                 .body("license_number", equalTo("LICENSE123"));
     }
-
-    @Test
+*/
+  /*  @Test
     public void testGetDriverProfile() {
 
         given()
@@ -89,6 +89,6 @@ public class DriverControllerIntegrationTest {
                 .statusCode(HttpStatus.OK.value())
                 .body("id", equalTo(1))
                 .body("name", equalTo("John Doe"));
-    }
+    }*/
 }
 

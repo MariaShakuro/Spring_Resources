@@ -141,7 +141,13 @@ services:
       - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
     volumes:
-      - ./src/main/resources/db/changelog:/liquibase/changelog
+      - ./passenger-service/src/main/resources/db.changelog:/liquibase/changelog
+    command:
+      - --changeLogFile=/liquibase/changelog/db.changelog-master.xml
+      - --url=jdbc:postgresql://postgres:5432/passenger_db
+      - --username=postgres
+      - --password=dsova2207_12
+      - update
     depends_on:
       - postgres
     networks:
@@ -154,7 +160,13 @@ services:
       - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
     volumes:
-      - ./src/main/resources/db/changelog:/liquibase/changelog
+      - ./driver-service/src/main/resources/db.changelog:/liquibase/changelog
+    command:
+      - --changeLogFile=/liquibase/changelog/db.changelog-master.json
+      - --url=jdbc:postgresql://postgres:5432/driver_db
+      - --username=postgres
+      - --password=dsova2207_12
+      - update
     depends_on:
       - postgres
     networks:
@@ -166,7 +178,11 @@ services:
       - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/ride_db
       - SPRING_DATA_MONGODB_DATABASE=ride_db
     volumes:
-      - ./src/main/resources/db/changelog:/liquibase/changelog
+      - ./ride-service/src/main/resources/db.changelog:/liquibase/changelog
+    command:
+      - --changeLogFile=/liquibase/changelog/db.changelog-master.json
+      - --uri=mongodb://localhost:27017/ride_db
+      - update
     depends_on:
       - mongodb
     networks:

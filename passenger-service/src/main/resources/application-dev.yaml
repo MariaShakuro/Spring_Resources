@@ -21,4 +21,4 @@ spring:
     bootstrap-servers: kafka:9092
 
   liquibase:
-    change-log: classpath:db/changelog/db.changelog-master.xml
+    enabled: false
