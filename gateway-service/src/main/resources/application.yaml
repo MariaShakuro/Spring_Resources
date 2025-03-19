@@ -7,6 +7,19 @@ spring:
 
   cloud:
     gateway:
+      routes:
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/users/**
+          filters:
+            - TokenRelay
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/orders/**
+          filters:
+            - TokenRelay
       discovery:
         locator:
           enabled: true
@@ -26,3 +39,19 @@ eureka:
     port: 6379
   session:
     store-type: redis
+
+
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: gateway-client
+            client-secret: <???_??????_???????>
+            scope: openid
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8085/login/oauth2/code/keycloak
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8085/realms/my-realm
+
