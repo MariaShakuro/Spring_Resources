@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b210d6ef-08e2-484c-bb3c-4eccc0c91b29" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/eureka-service/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway-service/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/example/gateway/config/CustomErrorHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/example/gateway/config/GlobalFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/example/gateway/config/RouteConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/example/gateway/controller/FallbackController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -48,32 +53,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Cucumber Java.All Features in: test.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.All in passenger-service.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CucumberTestRunner.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DriverEventContractTest.testSendDriverEvent.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.core in driver-service.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.core in passenger-service.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.cucumber in driver-service.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.java in driver-service.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.java in passenger-service.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.java in payment-service.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.java in ride-service.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;#17 on feature-eureka&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Modsen/Spring_Resources/Spring_Resources/Spring_Resources/driver-service/src/test/java/com/example/core/service&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Modsen/LibrarySpring&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Cucumber Java.All Features in: test.executor": "Run",
+    "JUnit.All in passenger-service.executor": "Run",
+    "JUnit.CucumberTestRunner.executor": "Run",
+    "JUnit.DriverEventContractTest.testSendDriverEvent.executor": "Run",
+    "JUnit.core in driver-service.executor": "Run",
+    "JUnit.core in passenger-service.executor": "Run",
+    "JUnit.cucumber in driver-service.executor": "Run",
+    "JUnit.java in driver-service.executor": "Run",
+    "JUnit.java in passenger-service.executor": "Run",
+    "JUnit.java in payment-service.executor": "Run",
+    "JUnit.java in ride-service.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "feature-gateway",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "C:/Modsen/Spring_Resources/Spring_Resources/Spring_Resources/driver-service/src/test/java/com/example/core/service",
+    "last_opened_file_path": "C:/Modsen/LibrarySpring",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />

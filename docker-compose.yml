@@ -73,6 +73,15 @@ services:
     ports:
       - "8761:8761"
 
+  api-gateway:
+    image: apigateway:latest
+    container_name: api-gateway
+    build:
+        context: ./api-gateway
+    environment:
+        - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    ports:
+        - "8080:8080"
 
 
   driver-service:
