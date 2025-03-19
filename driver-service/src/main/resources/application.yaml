@@ -4,5 +4,9 @@ spring:
   profiles:
     active: dev
 
-server:
-  port: 8081
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-server-host:8761/eureka/
+  instance:
+    preferIpAddress: true

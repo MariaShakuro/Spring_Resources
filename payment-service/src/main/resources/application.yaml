@@ -2,5 +2,15 @@ spring:
   application:
          name: payment-service
 
-server:
-  port: 8083
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-server-host:8761/eureka/
+  instance:
+    preferIpAddress: true

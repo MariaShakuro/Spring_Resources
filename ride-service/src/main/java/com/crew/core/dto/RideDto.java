@@ -1,10 +1,9 @@
 package com.crew.core.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class RideDto {
@@ -15,7 +14,7 @@ public class RideDto {
     private String endLocation;
     private String status;
     private double fare;
-    private long timestamp;
+    private Long timestamp;
     private String promocode;
 
 }
