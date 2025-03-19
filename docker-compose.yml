@@ -65,6 +65,13 @@ services:
     networks:
       - spring_resources_app-network
 
+  eureka-server:
+    image: eurekaserver:latest
+    container_name: eureka-server
+    build:
+      context: ./eureka-server
+    ports:
+      - "8761:8761"
 
 
 
