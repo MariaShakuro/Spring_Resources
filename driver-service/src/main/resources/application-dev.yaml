@@ -22,3 +22,11 @@ spring:
 
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.xml
+
+
+  redis:
+    host: redis
+    port: 6379
+  session:
+    store-type: redis
+

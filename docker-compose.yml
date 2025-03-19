@@ -73,7 +73,25 @@ services:
     ports:
       - "8761:8761"
 
+  api-gateway:
+    image: apigateway:latest
+    container_name: api-gateway
+    build:
+        context: ./api-gateway
+    environment:
+        - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    ports:
+        - "8080:8080"
 
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    restart: always
+    volumes:
+      - redis-data:/data
+    command: [ "redis-server", "--appendonly", "yes" ]
 
   driver-service:
     build:
@@ -199,6 +217,7 @@ services:
 volumes:
   postgres_data:
   mongodb_data:
+  redis-data:
 
 networks:
   spring_resources_app-network:
