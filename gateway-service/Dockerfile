@@ -1,5 +1,11 @@
+FROM maven:3.8.4-openjdk-17 AS build
+WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
+
 FROM openjdk:17-jdk-slim
-VOLUME /tmp
-COPY target/api-gateway.jar app.jar
-ENTRYPOINT ["java", "-jar", "/app.jar"]
-EXPOSE 8080
+WORKDIR /app
+COPY --from=build /app/target/gateway-service-0.0.1.jar app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]
+LABEL maintainer="msh479859@gmail.com"
+LABEL name="gateway-service"

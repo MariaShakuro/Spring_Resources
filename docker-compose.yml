@@ -2,6 +2,7 @@
 services:
   postgres:
     image: postgres:17.4
+    container_name: postgres
     environment:
       POSTGRES_USER: ${SPRING_DATASOURCE_USERNAME}
       POSTGRES_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
@@ -22,6 +23,7 @@ services:
 
   mongodb:
     image: mongo:4.4
+    container_name: mongodb
     ports:
       - "27017:27017"
     volumes:
@@ -37,6 +39,7 @@ services:
 
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
@@ -50,6 +53,7 @@ services:
 
   kafka:
     image: confluentinc/cp-kafka:latest
+    container_name: kafka
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
@@ -65,23 +69,25 @@ services:
     networks:
       - spring_resources_app-network
 
-  eureka-server:
+  eureka-service:
     image: eurekaserver:latest
-    container_name: eureka-server
+    container_name: eureka-service
     build:
-      context: ./eureka-server
+      context: ./eureka-service
+      dockerfile: Dockerfile
     ports:
       - "8761:8761"
 
-  api-gateway:
+  gateway-service:
     image: apigateway:latest
-    container_name: api-gateway
+    container_name: gateway-service
     build:
-        context: ./api-gateway
+        context: ./gateway-service
+        dockerfile: Dockerfile
     environment:
         - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
     ports:
-        - "8080:8080"
+        - "8086:8086"
 
   redis:
     image: redis:latest
@@ -97,17 +103,22 @@ services:
     image: quay.io/keycloak/keycloak:latest
     container_name: keycloak
     environment:
-      DB_VENDOR: h2
+      DB_VENDOR: postgres
+      DB_ADDR: postgres
+      DB_DATABASE: keycloak_db
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: admin
     ports:
       - "8085:8085"
+    depends_on:
+      - postgres
 
   driver-service:
     build:
       context: ./driver-service
       dockerfile: Dockerfile
     image: driver-service
+    container_name: driver-service
     ports:
       - "8081:8081"
     environment:
@@ -127,6 +138,7 @@ services:
       context: ./passenger-service
       dockerfile: Dockerfile
     image: passenger-service
+    container_name: passenger-service
     ports:
       - "8082:8082"
     environment:
@@ -146,6 +158,7 @@ services:
       context: ./payment-service
       dockerfile: Dockerfile
     image: payment-service
+    container_name: payment-service
     ports:
       - "8083:8083"
     networks:
@@ -157,6 +170,7 @@ services:
       context: ./ride-service
       dockerfile: Dockerfile
     image: ride-service
+    container_name: ride-service
     ports:
       - "8080:8080"
     environment:
@@ -171,6 +185,7 @@ services:
 
   liquibase-postgres-passenger_db:
     image: liquibase/liquibase:latest
+    container_name: liquibase-postgres-passenger_db
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/passenger_db
       - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
@@ -190,6 +205,7 @@ services:
 
   liquibase-postgres-driver_db:
     image: liquibase/liquibase:latest
+    container_name: liquibase-postgres-driver_db
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/driver_db
       - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
@@ -209,6 +225,7 @@ services:
 
   liquibase-mongodb:
     image: liquibase/liquibase:latest
+    container_name: liquibase-mongodb
     environment:
       - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/ride_db
       - SPRING_DATA_MONGODB_DATABASE=ride_db

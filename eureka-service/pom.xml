@@ -10,8 +10,8 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>eureka-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>eureka</name>
+	<version>0.0.1</version>
+	<name>eureka-service</name>
 	<description></description>
 	<url/>
 	<licenses>
