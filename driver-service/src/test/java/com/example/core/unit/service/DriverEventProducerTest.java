@@ -8,10 +8,12 @@ import org.mockito.Mock;
 
 import org.mockito.MockitoAnnotations;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.test.context.ActiveProfiles;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
+@ActiveProfiles("test")
 public class DriverEventProducerTest {
 
     private DriverEventProducer driverEventProducer;

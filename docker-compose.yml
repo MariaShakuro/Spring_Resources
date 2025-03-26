@@ -1,5 +1,32 @@
 
 services:
+  liquibase:
+    image: liquibase/liquibase:latest
+    container_name: liquibase
+    environment:
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - SPRING_DATA_MONGODB_DATABASE=ride_db
+    volumes:
+      - ./driver-service/src/main/resources/db.changelog/db.changelog-master.json:/liquibase/driver-changelog/db.changelog-master.json
+      - ./passenger-service/src/main/resources/db.changelog/db.changelog-master.json:/liquibase/passenger-changelog/db.changelog-master.json
+      - ./ride-service/src/main/resources/db.changelog/db.changelog-master.json:/liquibase/ride-changelog/db.changelog-master.json
+    command: >
+        sh -c "
+        liquibase --changeLogFile=/liquibase/driver-changelog/db.changelog-master.json \
+        --url=jdbc:postgresql://postgres:5432/driver_db --username=postgres --password=dsova2207_12 update && \
+        liquibase --changeLogFile=/liquibase/passenger-changelog/db.changelog-master.json \
+        --url=jdbc:postgresql://postgres:5432/passenger_db --username=postgres --password=dsova2207_12 update && \
+        liquibase --changeLogFile=/liquibase/ride-changelog/db.changelog-master.json \
+        --uri=mongodb://mongodb:27017/ride_db update
+        "> /liquibase/logs/liquibase.log 2>&1
+    depends_on:
+      - postgres
+      - mongodb
+    networks:
+      - spring_resources_app-network
+
+
   postgres:
     image: postgres:17.4
     container_name: postgres
@@ -36,7 +63,6 @@ services:
       timeout: 5s
       retries: 3
 
-
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     container_name: zookeeper
@@ -47,9 +73,6 @@ services:
       - "2181:2181"
     networks:
       - spring_resources_app-network
-
-
-
 
   kafka:
     image: confluentinc/cp-kafka:latest
@@ -69,14 +92,47 @@ services:
     networks:
       - spring_resources_app-network
 
-  eureka-service:
-    image: eurekaserver:latest
-    container_name: eureka-service
+  eureka-server:
+    image: eureka-server:latest
+    container_name: eureka-server
     build:
-      context: ./eureka-service
+      context: ./eureka-server
       dockerfile: Dockerfile
     ports:
       - "8761:8761"
+    networks:
+      - spring_resources_app-network
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    restart: always
+    volumes:
+      - redis-data:/data
+    command: [ "redis-server", "--appendonly", "yes" ]
+    networks:
+      - spring_resources_app-network
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: keycloak
+    environment:
+      DB_VENDOR: postgres
+      DB_ADDR: postgres
+      DB_DATABASE: keycloak_db
+      KEYCLOAK_USER: ${SPRING_DATASOURCE_USERNAME}
+      KEYCLOAK_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+    command: >
+      start-dev --http-relative-path /auth
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - spring_resources_app-network
+
 
   gateway-service:
     image: apigateway:latest
@@ -88,30 +144,11 @@ services:
         - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
     ports:
         - "8086:8086"
-
-  redis:
-    image: redis:latest
-    container_name: redis
-    ports:
-      - "6379:6379"
-    restart: always
-    volumes:
-      - redis-data:/data
-    command: [ "redis-server", "--appendonly", "yes" ]
-
-  keycloak:
-    image: quay.io/keycloak/keycloak:latest
-    container_name: keycloak
-    environment:
-      DB_VENDOR: postgres
-      DB_ADDR: postgres
-      DB_DATABASE: keycloak_db
-      KEYCLOAK_USER: admin
-      KEYCLOAK_PASSWORD: admin
-    ports:
-      - "8085:8085"
     depends_on:
-      - postgres
+      - redis
+      - eureka-server
+    networks:
+      - spring_resources_app-network
 
   driver-service:
     build:
@@ -172,7 +209,7 @@ services:
     image: ride-service
     container_name: ride-service
     ports:
-      - "8080:8080"
+      - "8085:8085"
     environment:
         SPRING_DATA_MONGODB_URI: "mongodb://mongodb:27017/ride_db"
         SPRING_DATA_MONGODB_DATABASE: ride_db
@@ -180,63 +217,6 @@ services:
     depends_on:
       - mongodb
       - kafka
-    networks:
-      - spring_resources_app-network
-
-  liquibase-postgres-passenger_db:
-    image: liquibase/liquibase:latest
-    container_name: liquibase-postgres-passenger_db
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/passenger_db
-      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
-      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
-    volumes:
-      - ./passenger-service/src/main/resources/db.changelog:/liquibase/changelog
-    command:
-      - --changeLogFile=/liquibase/changelog/db.changelog-master.xml
-      - --url=jdbc:postgresql://postgres:5432/passenger_db
-      - --username=postgres
-      - --password=dsova2207_12
-      - update
-    depends_on:
-      - postgres
-    networks:
-      - spring_resources_app-network
-
-  liquibase-postgres-driver_db:
-    image: liquibase/liquibase:latest
-    container_name: liquibase-postgres-driver_db
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/driver_db
-      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
-      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
-    volumes:
-      - ./driver-service/src/main/resources/db.changelog:/liquibase/changelog
-    command:
-      - --changeLogFile=/liquibase/changelog/db.changelog-master.json
-      - --url=jdbc:postgresql://postgres:5432/driver_db
-      - --username=postgres
-      - --password=dsova2207_12
-      - update
-    depends_on:
-      - postgres
-    networks:
-      - spring_resources_app-network
-
-  liquibase-mongodb:
-    image: liquibase/liquibase:latest
-    container_name: liquibase-mongodb
-    environment:
-      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/ride_db
-      - SPRING_DATA_MONGODB_DATABASE=ride_db
-    volumes:
-      - ./ride-service/src/main/resources/db.changelog:/liquibase/changelog
-    command:
-      - --changeLogFile=/liquibase/changelog/db.changelog-master.json
-      - --uri=mongodb://localhost:27017/ride_db
-      - update
-    depends_on:
-      - mongodb
     networks:
       - spring_resources_app-network
 

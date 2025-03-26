@@ -11,11 +11,16 @@ public class RouteConfig {
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route("user-service", r -> r.path("/users/**")
-                        .uri("lb://USER-SERVICE"))
-                .route("order-service", r -> r.path("/orders/**")
-                        .uri("lb://ORDER-SERVICE"))
+                .route("driver-service", r -> r.path("/drivers/**")
+                        .uri("lb://DRIVER-SERVICE"))
+                .route("passenger-service", r -> r.path("/passenger/**")
+                        .uri("lb://PASSENGER-SERVICE"))
+                .route("payment-service", r -> r.path("/payments/**")
+                        .uri("lb://PAYMENT-SERVICE"))
+                .route("ride-service", r -> r.path("/rides/**")
+                        .uri("lb://RIDE-SERVICE"))
                 .build();
     }
 }
+
 

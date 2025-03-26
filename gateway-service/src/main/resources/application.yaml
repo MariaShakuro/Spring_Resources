@@ -1,10 +1,8 @@
-server:
-  port: 8086
-
 spring:
   application:
     name: gateway-service
-
+  main:
+    web-application-type: reactive
 
   session:
     store-type: redis
@@ -12,41 +10,47 @@ spring:
     host: redis
     port: 6379
 
-
-  cloud:
-    gateway:
-      routes:
-        - id: user-service
-          uri: lb://USER-SERVICE
-          predicates:
-            - Path=/users/**
-          filters:
-            - TokenRelay
-            - Retry=5
-        - id: order-service
-          uri: lb://ORDER-SERVICE
-          predicates:
-            - Path=/orders/**
-          filters:
-            - TokenRelay
-            - Retry=3
-      discovery:
-        locator:
-          enabled: true
-      default-filters:
-        - name: CircuitBreaker
-          args:
-            name: myCircuitBreaker
-            fallbackUri: forward:/fallback
+  spring:
+    cloud:
+      gateway:
+        discovery:
+          locator:
+            enabled: true
+        routes:
+          - id: driver-service
+            uri: lb://DRIVER-SERVICE
+            predicates:
+              - Path=/drivers/**
+            filters:
+              - TokenRelay
+              - Retry=3
+          - id: passenger-service
+            uri: lb://PASSENGER-SERVICE
+            predicates:
+              - Path=/passengers/**
+            filters:
+              - TokenRelay
+               - Retry=3
+          - id: payment-service
+            uri: lb://PAYMENT-SERVICE
+            predicates:
+               - Path=/payments/**
+            filters:
+               - Retry=3
+          - id: ride-service
+            uri: lb://RIDE-SERVICE
+            predicates:
+              - Path=/rides/**
+            filters:
+               - Retry=3
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
-    healthcheck:
-      enabled: true
-    registry-fetch-interval-seconds: 5
-    instance-info-replication-interval-seconds: 5
+      defaultZone: http://eureka-server:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
 
 
   security:
@@ -54,12 +58,15 @@ eureka:
       client:
         registration:
           keycloak:
-            client-id: gateway-client
-            client-secret: <???_??????_???????>
-            scope: openid
-            authorization-grant-type: authorization_code
-            redirect-uri: http://localhost:8085/login/oauth2/code/keycloak
+            client-id: ${KEYCLOAK_CLIENT_ID}
+            client-secret: ${KEYCLOAK_CLIENT_SECRET}
         provider:
           keycloak:
-            issuer-uri: http://localhost:8085/realms/my-realm
+            issuer-uri: ${KEYCLOAK_ISSUER_URI}
 
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.cloud.circuitbreaker: DEBUG
+server:
+  port: 8086
