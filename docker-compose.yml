@@ -5,6 +5,8 @@ services:
     environment:
       POSTGRES_USER: ${SPRING_DATASOURCE_USERNAME}
       POSTGRES_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+    env_file:
+      - .env
     ports:
         - "5432:5432"
     volumes:
@@ -12,6 +14,11 @@ services:
         - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - spring_resources_app-network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${SPRING_DATASOURCE_USERNAME}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
   mongodb:
     image: mongo:4.4
@@ -21,6 +28,11 @@ services:
       - mongodb_data:/data/db
     networks:
       - spring_resources_app-network
+    healthcheck:
+      test: [ "CMD", "mongo", "--eval", "db.adminCommand('ping')" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
 
   zookeeper:
@@ -35,14 +47,17 @@ services:
 
 
 
+
   kafka:
     image: confluentinc/cp-kafka:latest
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_INTERNAL://kafka:9093
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_LOG_RETENTION_HOURS: 168
     ports:
       - "9092:9092"
     depends_on:
@@ -52,9 +67,11 @@ services:
 
 
 
+
   driver-service:
     build:
       context: ./driver-service
+      dockerfile: Dockerfile
     image: driver-service
     ports:
       - "8081:8081"
@@ -73,6 +90,7 @@ services:
   passenger-service:
     build:
       context: ./passenger-service
+      dockerfile: Dockerfile
     image: passenger-service
     ports:
       - "8082:8082"
@@ -91,6 +109,7 @@ services:
   payment-service:
     build:
       context: ./payment-service
+      dockerfile: Dockerfile
     image: payment-service
     ports:
       - "8083:8083"
@@ -101,6 +120,7 @@ services:
   ride-service:
     build:
       context: ./ride-service
+      dockerfile: Dockerfile
     image: ride-service
     ports:
       - "8080:8080"
@@ -113,6 +133,46 @@ services:
       - kafka
     networks:
       - spring_resources_app-network
+
+  liquibase-postgres-passenger_db:
+    image: liquibase/liquibase:latest
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/passenger_db
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+    volumes:
+      - ./src/main/resources/db/changelog:/liquibase/changelog
+    depends_on:
+      - postgres
+    networks:
+      - spring_resources_app-network
+
+  liquibase-postgres-driver_db:
+    image: liquibase/liquibase:latest
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/driver_db
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+    volumes:
+      - ./src/main/resources/db/changelog:/liquibase/changelog
+    depends_on:
+      - postgres
+    networks:
+      - spring_resources_app-network
+
+  liquibase-mongodb:
+    image: liquibase/liquibase:latest
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/ride_db
+      - SPRING_DATA_MONGODB_DATABASE=ride_db
+    volumes:
+      - ./src/main/resources/db/changelog:/liquibase/changelog
+    depends_on:
+      - mongodb
+    networks:
+      - spring_resources_app-network
+
+
 volumes:
   postgres_data:
   mongodb_data:
@@ -120,3 +180,4 @@ volumes:
 networks:
   spring_resources_app-network:
     driver: bridge
+

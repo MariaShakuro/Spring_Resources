@@ -5,21 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b210d6ef-08e2-484c-bb3c-4eccc0c91b29" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/payment-service/src/test/java/com/example/core/controller/PaymentControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/payment-service/src/test/java/com/example/core/service/PaymentServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/target/classes/com/example/core/PaymentApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/target/classes/com/example/core/controller/PaymentController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/target/classes/com/example/core/entity/DriverAssignmentRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/target/classes/com/example/core/entity/PaymentRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/target/classes/com/example/core/security/SecurityConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/target/classes/com/example/core/service/PaymentService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/target/payment-service-0.0.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/target/payment-service-0.0.1.jar.original" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-service/src/test/java/com/example/core/PromocodeApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/src/test/java/com/example/core/PromocodeApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -62,34 +53,91 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JUnit.All in passenger-service.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.java in ride-service.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Modsen/Spring_Resources/Spring_Resources/Spring_Resources&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Cucumber Java.All Features in: test.executor": "Run",
+    "JUnit.All in passenger-service.executor": "Run",
+    "JUnit.CucumberTestRunner.executor": "Run",
+    "JUnit.DriverEventContractTest.testSendDriverEvent.executor": "Run",
+    "JUnit.core in driver-service.executor": "Run",
+    "JUnit.core in passenger-service.executor": "Run",
+    "JUnit.cucumber in driver-service.executor": "Run",
+    "JUnit.java in driver-service.executor": "Run",
+    "JUnit.java in passenger-service.executor": "Run",
+    "JUnit.java in payment-service.executor": "Run",
+    "JUnit.java in ride-service.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "test-feature-ride-addition",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "C:/Modsen/Spring_Resources/Spring_Resources/Spring_Resources/driver-service/src/test/java/com/example/core/service",
+    "last_opened_file_path": "C:/Modsen/LibrarySpring",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\ride-service\src\test\resources" />
+      <recent name="C:\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\passenger-service\src\test\java\com\example\core\unit\repository" />
+      <recent name="C:\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\passenger-service\src\test\java\com\example\core\unit\controller" />
+      <recent name="C:\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\passenger-service\src\test\java\com\example\core\unit\service" />
+      <recent name="C:\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\passenger-service\src\test\resources" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.core" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.example.core.service" />
+      <recent name="com.example.core.controller" />
       <recent name="com.crew.core.service" />
       <recent name="com.crew.core.repository" />
       <recent name="com.crew.core.controller" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.java in ride-service">
-    <configuration name="All in passenger-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.java in payment-service">
+    <configuration name="DriverEventContractTest.testSendDriverEvent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="driver-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.core.contract.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.core.contract" />
+      <option name="MAIN_CLASS_NAME" value="com.example.core.contract.DriverEventContractTest" />
+      <option name="METHOD_NAME" value="testSendDriverEvent" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="core in passenger-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="passenger-service" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/passenger-service/src/test/java/com/example/core" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="java in passenger-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="passenger-service" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/passenger-service/src/test/java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="java in payment-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="payment-service" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/payment-service/src/test/java" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -104,8 +152,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.java in payment-service" />
         <item itemvalue="JUnit.java in ride-service" />
-        <item itemvalue="JUnit.All in passenger-service" />
+        <item itemvalue="JUnit.java in passenger-service" />
+        <item itemvalue="JUnit.core in passenger-service" />
+        <item itemvalue="JUnit.DriverEventContractTest.testSendDriverEvent" />
       </list>
     </recent_temporary>
   </component>
