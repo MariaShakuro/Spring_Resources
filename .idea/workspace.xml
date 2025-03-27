@@ -9,10 +9,46 @@
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/logs/application-2025-02-24.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/driver-service/logs/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/logs/application.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/driver-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/src/main/java/com/example/core/DriverApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/main/java/com/example/core/DriverApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/src/main/java/com/example/core/config/SwaggerConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/src/main/java/com/example/core/dto/DriverDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/main/java/com/example/core/dto/DriverDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka-server/src/main/java/com/example/eureka/EurekaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/src/main/java/com/example/eureka/EurekaApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka-server/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/example/gateway/GatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/example/gateway/GatewayApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/example/gateway/config/CustomErrorHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/example/gateway/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/example/gateway/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/logs/application-2025-02-24.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/passenger-service/logs/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/logs/application.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/passenger-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/src/main/java/com/example/core/PassengerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/src/main/java/com/example/core/PassengerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/src/main/java/com/example/core/config/SwaggerConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/src/main/java/com/example/core/dto/PassengerDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/src/main/java/com/example/core/dto/PassengerDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-service/src/main/java/com/example/core/PaymentApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/src/main/java/com/example/core/PaymentApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-service/src/main/java/com/example/core/config/SwaggerConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-service/target/classes/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/target/classes/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-service/target/classes/com/example/core/PaymentApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/target/classes/com/example/core/PaymentApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-service/target/classes/com/example/core/config/SwaggerConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-service/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-service/target/payment-service-0.0.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/target/payment-service-0.0.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-service/target/payment-service-0.0.1.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/target/payment-service-0.0.1.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ride-service/logs/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/logs/application.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ride-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ride-service/src/main/java/com/crew/core/RideApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/main/java/com/crew/core/RideApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ride-service/src/main/java/com/crew/core/config/SwaggerConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ride-service/src/main/java/com/crew/core/dto/RideDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/main/java/com/crew/core/dto/RideDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ride-service/src/main/java/com/crew/core/exception/ResourceNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/main/java/com/crew/core/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ride-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/main/resources/application.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,32 +91,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Cucumber Java.All Features in: test.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.All in passenger-service.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CucumberTestRunner.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DriverEventContractTest.testSendDriverEvent.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.core in driver-service.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.core in passenger-service.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.cucumber in driver-service.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.java in driver-service.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.java in passenger-service.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.java in payment-service.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.java in ride-service.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;#20 on feature-keycloak&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Modsen/Spring_Resources/Spring_Resources/Spring_Resources/driver-service/src/test/java/com/example/core/service&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Modsen/LibrarySpring&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DriverApplication.executor": "Run",
+    "Application.EurekaApplication.executor": "Run",
+    "Application.PaymentApplication.executor": "Run",
+    "Cucumber Java.All Features in: test.executor": "Run",
+    "JUnit.All in passenger-service.executor": "Run",
+    "JUnit.CucumberTestRunner.executor": "Run",
+    "JUnit.DriverEventContractTest.testSendDriverEvent.executor": "Run",
+    "JUnit.core in driver-service.executor": "Run",
+    "JUnit.core in passenger-service.executor": "Run",
+    "JUnit.cucumber in driver-service.executor": "Run",
+    "JUnit.java in driver-service.executor": "Run",
+    "JUnit.java in passenger-service.executor": "Run",
+    "JUnit.java in payment-service.executor": "Run",
+    "JUnit.java in ride-service.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "fixes-tests",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "C:/Modsen/Spring_Resources/Spring_Resources/Spring_Resources/driver-service/src/test/java/com/example/core/service",
+    "last_opened_file_path": "C:/Modsen/LibrarySpring",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -103,11 +142,42 @@
       <recent name="com.crew.core.controller" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.java in driver-service">
-    <configuration name="core in passenger-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="passenger-service" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/passenger-service/src/test/java/com/example/core" />
+  <component name="RunManager" selected="Application.PaymentApplication">
+    <configuration name="DriverApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.core.DriverApplication" />
+      <module name="driver-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.core.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.eureka.EurekaApplication" />
+      <module name="eureka-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.eureka.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PaymentApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.core.PaymentApplication" />
+      <module name="payment-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.core.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -128,29 +198,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="java in payment-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="payment-service" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/payment-service/src/test/java" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="java in ride-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ride-service" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/ride-service/src/test/java" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.java in driver-service" />
+        <item itemvalue="Application.PaymentApplication" />
+        <item itemvalue="Application.DriverApplication" />
+        <item itemvalue="Application.EurekaApplication" />
         <item itemvalue="JUnit.java in passenger-service" />
-        <item itemvalue="JUnit.java in ride-service" />
-        <item itemvalue="JUnit.java in payment-service" />
-        <item itemvalue="JUnit.core in passenger-service" />
+        <item itemvalue="JUnit.java in driver-service" />
       </list>
     </recent_temporary>
   </component>

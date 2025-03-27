@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.reactive.EnableWebFlux
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
+import org.springframework.security.web.server.util.matcher.PathPatternParserServerWebExchangeMatcher;
 import reactor.core.publisher.Mono;
 
 @Configuration
@@ -17,23 +18,9 @@ public class SecurityConfig {
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
         return http
-                .authorizeExchange(exchange -> exchange
-                        .pathMatchers("/users/**", "/orders/**").authenticated()
-                        .anyExchange().permitAll()
-                )
-                .authenticationManager(authenticationManager())
+                .securityMatcher(new PathPatternParserServerWebExchangeMatcher("/actuator/**"))
                 .build();
     }
 
-    @Bean
-    public ReactiveAuthenticationManager authenticationManager() {
-        return new ReactiveAuthenticationManager() {
-            @Override
-            public Mono<Authentication> authenticate(Authentication authentication) {
-                // Реализ своей логики аутентификации
-                return Mono.just(authentication);
-            }
-        };
-    }
 }
 

@@ -4,65 +4,73 @@ spring:
   main:
     web-application-type: reactive
 
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: driver-service
+          uri: lb://DRIVER-SERVICE
+          predicates:
+            - Path=/drivers/**
+          filters:
+             - TokenRelay
+             - Retry=3
+        - id: passenger-service
+          uri: lb://PASSENGER-SERVICE
+          predicates:
+             - Path=/passenger/**
+          filters:
+             - TokenRelay
+             - Retry=3
+        - id: payment-service
+          uri: lb://PAYMENT-SERVICE
+          predicates:
+              - Path=/payments/**
+          filters:
+               - Retry=3
+        - id: ride-service
+          uri: lb://RIDE-SERVICE
+          predicates:
+             - Path=/rides/**
+          filters:
+             - Retry=3
+
+forward-headers-strategy: framework
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.17.0.1:8761/eureka/
+      register-with-eureka: false
+      registryFetchIntervalSeconds: 1
+  instance:
+   leaseRenewalIntervalInSeconds: 1
+   leaseExpirationDurationInSeconds: 1
+
+
   session:
     store-type: redis
   redis:
     host: redis
     port: 6379
 
-  spring:
-    cloud:
-      gateway:
-        discovery:
-          locator:
-            enabled: true
-        routes:
-          - id: driver-service
-            uri: lb://DRIVER-SERVICE
-            predicates:
-              - Path=/drivers/**
-            filters:
-              - TokenRelay
-              - Retry=3
-          - id: passenger-service
-            uri: lb://PASSENGER-SERVICE
-            predicates:
-              - Path=/passengers/**
-            filters:
-              - TokenRelay
-               - Retry=3
-          - id: payment-service
-            uri: lb://PAYMENT-SERVICE
-            predicates:
-               - Path=/payments/**
-            filters:
-               - Retry=3
-          - id: ride-service
-            uri: lb://RIDE-SERVICE
-            predicates:
-              - Path=/rides/**
-            filters:
-               - Retry=3
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://eureka-server:8761/eureka/
-  instance:
-    prefer-ip-address: true
-
-
-
   security:
     oauth2:
       client:
-        registration:
-          keycloak:
-            client-id: ${KEYCLOAK_CLIENT_ID}
-            client-secret: ${KEYCLOAK_CLIENT_SECRET}
         provider:
           keycloak:
             issuer-uri: ${KEYCLOAK_ISSUER_URI}
+        registration:
+          discovery:
+            provider: keycloak
+            client-id: ${KEYCLOAK_CLIENT_ID}
+            client-secret: ${KEYCLOAK_CLIENT_SECRET}
+            authorization-grant-type: client_credentials
+            scope:
+              - discovery
+
 
 logging:
   level:

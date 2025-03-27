@@ -78,6 +78,7 @@ services:
     networks:
       - spring_resources_app-network
 
+
   redis:
     image: redis:latest
     container_name: redis
@@ -118,9 +119,7 @@ services:
         context: ./gateway-service
         dockerfile: Dockerfile
     environment:
-        - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
-    ports:
-        - "8086:8086"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://host.docker.internal:8761/eureka/
     depends_on:
       - redis
       - eureka-server
@@ -133,15 +132,15 @@ services:
       dockerfile: Dockerfile
     image: driver-service
     container_name: driver-service
-    ports:
-      - "8081:8081"
     environment:
       SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/driver_db"
       SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
       SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
       SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
       SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://host.docker.internal:8761/eureka/
     depends_on:
+      - eureka-server
       - postgres
       - kafka
     networks:
@@ -153,15 +152,15 @@ services:
       dockerfile: Dockerfile
     image: passenger-service
     container_name: passenger-service
-    ports:
-      - "8082:8082"
     environment:
       SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/passenger_db"
       SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
       SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
       SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
       SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://host.docker.internal:8761/eureka/
     depends_on:
+      - eureka-server
       - postgres
       - kafka
     networks:
@@ -173,8 +172,10 @@ services:
       dockerfile: Dockerfile
     image: payment-service
     container_name: payment-service
-    ports:
-      - "8083:8083"
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://host.docker.internal:8761/eureka/
+    depends_on:
+      - eureka-server
     networks:
       - spring_resources_app-network
 
@@ -185,13 +186,13 @@ services:
       dockerfile: Dockerfile
     image: ride-service
     container_name: ride-service
-    ports:
-      - "8085:8085"
     environment:
         SPRING_DATA_MONGODB_URI: "mongodb://mongodb:27017/ride_db"
         SPRING_DATA_MONGODB_DATABASE: ride_db
         SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+        EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://host.docker.internal:8761/eureka/
     depends_on:
+      - eureka-server
       - mongodb
       - kafka
     networks:
