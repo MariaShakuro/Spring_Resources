@@ -1,0 +1,150 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "v1-1",
+        "author": "Shakuro Maria",
+        "preConditions": {
+          "onFail": "MARK_RAN",
+          "not": {
+            "tableExists": {
+              "tableName": "passenger"
+            }
+          }
+        },
+        "changes": [
+          {
+            "createTable": {
+              "tableName": "passenger",
+              "columns": [
+                {
+                  "column": {
+                    "name": "id",
+                    "type": "bigint",
+                    "autoIncrement": true,
+                    "constraints": {
+                      "primaryKey": true
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "name",
+                    "type": "varchar(50)",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "email",
+                    "type": "varchar(50)",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "password",
+                    "type": "varchar(255)",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "phone_number",
+                    "type": "varchar(50)"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "promocode",
+                    "type": "varchar(50)"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "passenger",
+              "columns": [
+                {
+                  "column": {
+                    "name": "name",
+                    "value": "John Doe"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "email",
+                    "value": "john.doe@example.com"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "password",
+                    "value": "securepassword123"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "phone_number",
+                    "value": "555-1234"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "promocode",
+                    "value": "WELCOME10"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "passenger",
+              "columns": [
+                {
+                  "column": {
+                    "name": "name",
+                    "value": "Jane Smith"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "email",
+                    "value": "jane.smith@example.com"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "password",
+                    "value": "mypassword456"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "phone_number",
+                    "value": "555-5678"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "promocode",
+                    "value": "DISCOUNT20"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

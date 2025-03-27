@@ -1,0 +1,54 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "v3-1",
+        "author": "Shakuro Maria",
+        "preConditions": {
+          "onFail": "MARK_RAN",
+          "not": {
+            "collectionExists": {
+              "collectionName": "rides"
+            }
+          }
+        },
+        "changes": [
+          {
+            "createCollection": {
+              "collectionName": "rides"
+            }
+          },
+          {
+            "insert": {
+              "collectionName": "rides",
+              "documents": [
+                {
+                  "id": "1",
+                  "passengerId": "123",
+                  "driverId": "456",
+                  "startLocation": "Start Point",
+                  "endLocation": "End Point",
+                  "status": "completed",
+                  "fare": 15.75,
+                  "timestamp": 1678905600,
+                  "promocode": "DISCOUNT10"
+                },
+                {
+                  "id": "2",
+                  "passengerId": "124",
+                  "driverId": "457",
+                  "startLocation": "Start Location A",
+                  "endLocation": "End Location B",
+                  "status": "pending",
+                  "fare": 20.00,
+                  "timestamp": 1678909200,
+                  "promocode": "NEWUSER"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

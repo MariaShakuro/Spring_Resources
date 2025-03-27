@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b210d6ef-08e2-484c-bb3c-4eccc0c91b29" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/logs/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/logs/application.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/logs/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/logs/application.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +22,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -64,7 +71,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;#17 on feature-eureka&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#20 on feature-keycloak&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_directory_selection&quot;: &quot;C:/Modsen/Spring_Resources/Spring_Resources/Spring_Resources/driver-service/src/test/java/com/example/core/service&quot;,
@@ -79,11 +86,11 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\passenger-service\src\main\resources\db\changelog\changelog" />
-      <recent name="C:\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\ride-service\src\test\resources" />
-      <recent name="C:\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\passenger-service\src\test\java\com\example\core\unit\repository" />
-      <recent name="C:\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\passenger-service\src\test\java\com\example\core\unit\controller" />
-      <recent name="C:\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\passenger-service\src\test\java\com\example\core\unit\service" />
+      <recent name="C:\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\driver-service\src\main\resources\db.changelog" />
+      <recent name="C:\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\liquibase" />
+      <recent name="C:\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\ride-service\src\main\resources" />
+      <recent name="C:\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\passenger-service\src\main\resources" />
+      <recent name="C:\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\driver-service\src\main\resources" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.example.core" />
@@ -96,7 +103,7 @@
       <recent name="com.crew.core.controller" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.java in payment-service">
+  <component name="RunManager" selected="JUnit.java in driver-service">
     <configuration name="core in passenger-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="passenger-service" />
       <option name="TEST_OBJECT" value="directory" />
@@ -139,9 +146,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.java in driver-service" />
         <item itemvalue="JUnit.java in passenger-service" />
         <item itemvalue="JUnit.java in ride-service" />
-        <item itemvalue="JUnit.java in driver-service" />
         <item itemvalue="JUnit.java in payment-service" />
         <item itemvalue="JUnit.core in passenger-service" />
       </list>
