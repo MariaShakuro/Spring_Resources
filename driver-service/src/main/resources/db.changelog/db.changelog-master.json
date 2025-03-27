@@ -1,0 +1,9 @@
+{
+  "databaseChangeLog": [
+    {
+      "include": {
+        "file": "create-drive_table.json"
+      }
+    }
+  ]
+}
