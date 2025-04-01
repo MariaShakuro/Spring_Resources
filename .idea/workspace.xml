@@ -5,50 +5,77 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b210d6ef-08e2-484c-bb3c-4eccc0c91b29" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/component/DriverControllerComponentTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/integration/JpaConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/example/gateway/config/CorsConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/passenger-service/src/test/java/com/example/core/component/KafkaProducerConfigComponentTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/passenger-service/src/test/java/com/example/core/component/PassengerControllerComponentTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/passenger-service/src/test/java/com/example/core/config/TestContainersConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/component/RideControllerComponentTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/config/TestContainersConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/driver-service/logs/application-2025-02-24.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/logs/application-2025-02-26.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/driver-service/logs/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/logs/application.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/driver-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/driver-service/src/main/java/com/example/core/DriverApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/main/java/com/example/core/DriverApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/driver-service/src/main/java/com/example/core/config/SwaggerConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/driver-service/src/main/java/com/example/core/dto/DriverDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/main/java/com/example/core/dto/DriverDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/src/main/resources/application-dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/main/resources/application-dev.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/src/main/resources/application-test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/main/resources/application-test.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/driver-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/src/main/java/com/example/eureka/EurekaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/src/main/java/com/example/eureka/EurekaApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/component/DriverManagementSteps.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/component/DriverRatingSteps.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/contract/DriverEventContractTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/contract/DriverEventContractTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/contract/DriverProfileContractTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/contract/DriverProfileContractTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/cucumber/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/config/TestContainersConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/cucumber/CucumberSpringConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/cucumber/CucumberTestRunner.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/cucumber/DriverApiSteps.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/integration/DriverControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/integration/DriverControllerIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/unit/controller/DriverControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/unit/controller/DriverControllerUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/unit/service/DriverEventProducerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/unit/service/DriverEventProducerUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/unit/service/DriverServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/test/java/com/example/core/unit/service/DriverServiceUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/src/test/resources/cucumber/DriverApi.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/src/test/resources/cucumber/driver_management.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/src/test/resources/cucumber/driver_rating.feature" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/eureka-server/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/src/main/resources/application.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/example/gateway/GatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/example/gateway/GatewayApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/example/gateway/config/CustomErrorHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/example/gateway/config/GlobalFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/example/gateway/config/JwtConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/example/gateway/config/RouteConfig.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/example/gateway/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/example/gateway/config/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/passenger-service/logs/application-2025-02-24.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/application.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/passenger-service/logs/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/logs/application.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/passenger-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/passenger-service/src/main/java/com/example/core/PassengerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/src/main/java/com/example/core/PassengerApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/passenger-service/src/main/java/com/example/core/config/SwaggerConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/src/main/java/com/example/core/controller/PassengerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/src/main/java/com/example/core/controller/PassengerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/passenger-service/src/main/java/com/example/core/dto/PassengerDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/src/main/java/com/example/core/dto/PassengerDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/src/main/java/com/example/core/entity/Passenger.java" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/src/main/java/com/example/core/entity/Passenger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/src/main/java/com/example/core/service/PassengerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/src/main/java/com/example/core/service/PassengerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/src/main/resources/application-test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/src/test/resources/application-test.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/passenger-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/src/main/java/com/example/core/PaymentApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/src/main/java/com/example/core/PaymentApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/src/main/java/com/example/core/config/SwaggerConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/src/test/java/com/example/core/contract/PassengerEventContractTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/src/test/java/com/example/core/contract/PassengerEventContractTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/src/test/java/com/example/core/contract/PassengerProfileContractTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/src/test/java/com/example/core/contract/PassengerProfileContractTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/src/test/java/com/example/core/integration/PassengerControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/src/test/java/com/example/core/integration/PassengerControllerIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/src/test/java/com/example/core/unit/controller/PassengerControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/src/test/java/com/example/core/unit/controller/PassengerControllerUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/src/test/java/com/example/core/unit/repository/PassengerRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/src/test/java/com/example/core/unit/repository/PassengerRepositoryUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/src/test/java/com/example/core/unit/service/PassengerEventProducerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/src/test/java/com/example/core/unit/service/PassengerEventProducerUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/src/test/java/com/example/core/unit/service/PassengerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/src/test/java/com/example/core/unit/service/PassengerServiceUnitTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/payment-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/src/main/resources/application.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/payment-service/target/classes/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/target/classes/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/target/classes/com/example/core/PaymentApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/target/classes/com/example/core/PaymentApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/target/classes/com/example/core/config/SwaggerConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/payment-service/target/payment-service-0.0.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/target/payment-service-0.0.1.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/payment-service/target/payment-service-0.0.1.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/target/payment-service-0.0.1.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ride-service/logs/application-2025-02-27.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ride-service/logs/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/logs/application.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ride-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ride-service/src/main/java/com/crew/core/RideApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/main/java/com/crew/core/RideApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ride-service/src/main/java/com/crew/core/config/SwaggerConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ride-service/src/main/java/com/crew/core/dto/RideDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/main/java/com/crew/core/dto/RideDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ride-service/src/main/java/com/crew/core/exception/ResourceNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/main/java/com/crew/core/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ride-service/src/main/resources/application-dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/main/resources/application-dev.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ride-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/contract/RideControllerContractTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/contract/RideControllerContractTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/integration/RideControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/integration/RideControllerIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/unit/controller/RideControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/unit/controller/RideControllerUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/unit/repository/RideRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/unit/repository/RideRepositoryUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/unit/service/DriverEventListenerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/unit/service/DriverEventListenerUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/unit/service/PassengerEventListenerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/unit/service/PassengerEventListenerUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/unit/service/RideServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/test/java/com/crew/core/unit/service/RideServiceUnitTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,14 +122,20 @@
   "keyToString": {
     "Application.DriverApplication.executor": "Run",
     "Application.EurekaApplication.executor": "Run",
+    "Application.GatewayApplication.executor": "Run",
     "Application.PaymentApplication.executor": "Run",
     "Cucumber Java.All Features in: test.executor": "Run",
     "JUnit.All in passenger-service.executor": "Run",
     "JUnit.CucumberTestRunner.executor": "Run",
+    "JUnit.DriverControllerIntegrationTest.executor": "Run",
+    "JUnit.DriverControllerTest.executor": "Run",
     "JUnit.DriverEventContractTest.testSendDriverEvent.executor": "Run",
+    "JUnit.DriverEventProducerTest.executor": "Run",
+    "JUnit.DriverServiceTest.executor": "Run",
     "JUnit.core in driver-service.executor": "Run",
     "JUnit.core in passenger-service.executor": "Run",
     "JUnit.cucumber in driver-service.executor": "Run",
+    "JUnit.integration in driver-service.executor": "Run",
     "JUnit.java in driver-service.executor": "Run",
     "JUnit.java in passenger-service.executor": "Run",
     "JUnit.java in payment-service.executor": "Run",
@@ -125,13 +158,14 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\passenger-service\src\test\resources" />
       <recent name="C:\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\driver-service\src\main\resources\db.changelog" />
       <recent name="C:\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\liquibase" />
       <recent name="C:\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\ride-service\src\main\resources" />
       <recent name="C:\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\passenger-service\src\main\resources" />
-      <recent name="C:\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\driver-service\src\main\resources" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.core.config" />
       <recent name="com.example.core" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
@@ -142,20 +176,7 @@
       <recent name="com.crew.core.controller" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.PaymentApplication">
-    <configuration name="DriverApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.core.DriverApplication" />
-      <module name="driver-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.core.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.java in passenger-service">
     <configuration name="EurekaApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.eureka.EurekaApplication" />
       <module name="eureka-server" />
@@ -169,12 +190,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PaymentApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.core.PaymentApplication" />
-      <module name="payment-service" />
+    <configuration name="GatewayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.gateway.GatewayApplication" />
+      <module name="gateway-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.core.*" />
+          <option name="PATTERN" value="com.example.gateway.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -182,10 +203,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="java in driver-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="driver-service" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/driver-service/src/test/java" />
+    <configuration name="PaymentApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.core.PaymentApplication" />
+      <module name="payment-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.core.config.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -198,13 +224,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="java in ride-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ride-service" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/ride-service/src/test/java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.PaymentApplication" />
-        <item itemvalue="Application.DriverApplication" />
-        <item itemvalue="Application.EurekaApplication" />
         <item itemvalue="JUnit.java in passenger-service" />
-        <item itemvalue="JUnit.java in driver-service" />
+        <item itemvalue="Application.GatewayApplication" />
+        <item itemvalue="Application.PaymentApplication" />
+        <item itemvalue="Application.EurekaApplication" />
+        <item itemvalue="JUnit.java in ride-service" />
       </list>
     </recent_temporary>
   </component>

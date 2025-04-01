@@ -16,9 +16,3 @@ spring:
      value-deserializer: ${KAFKA_CONSUMER_VALUE_DESERIALIZER:org.apache.kafka.common.serialization.StringDeserializer}
      group-id: ride-group
      auto-offset-reset: earliest
-
-  redis:
-    host: redis
-    port: 6379
-  session:
-    store-type: redis

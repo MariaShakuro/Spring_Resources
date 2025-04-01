@@ -1,6 +1,7 @@
 package com.example.core.contract;
 
 import com.example.core.PassengerApplication;
+import com.example.core.config.TestContainersConfig;
 import com.example.core.repository.PassengerRepository;
 import com.example.core.service.PassengerEventProducer;
 import com.example.core.service.PassengerService;
@@ -33,25 +34,11 @@ import static org.mockito.Mockito.verify;
 @SpringBootTest(classes = PassengerApplication.class,
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
-@TestPropertySource(properties = {
-        "spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration," +
-                "org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration"
-})
-
+@TestPropertySource("classpath:application-test.yaml")
 @AutoConfigureMessageVerifier
-@Import(MockConfig.class)
+@Import({MockConfig.class, TestContainersConfig.class})
 @ActiveProfiles("test")
 public class PassengerEventContractTest {
-
-    @Container
-    public static KafkaContainer kafkaContainer = new KafkaContainer(
-            DockerImageName.parse("confluentinc/cp-kafka:latest")
-    );
-
-    @DynamicPropertySource
-    static void configureKafkaProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.kafka.bootstrap-servers", kafkaContainer::getBootstrapServers);
-    }
 
     private PassengerEventProducer passengerEventProducer;
 

@@ -22,8 +22,12 @@ import java.util.Optional;
 @Tag(name = "Passenger Management", description = "Operations related to passenger")
 public class PassengerController {
     private static final Logger log = LoggerFactory.getLogger(PassengerController.class);
+
+    private final PassengerService passengerService;
     @Autowired
-    private PassengerService passengerService;
+    public PassengerController(PassengerService passengerService) {
+        this.passengerService = passengerService;
+    }
     @Autowired
     private PassengerEventProducer passengerEventProducer;
 
@@ -39,8 +43,10 @@ public class PassengerController {
         log.info("Received passenger DTO: {}", passengerDto);
         PassengerDto registeredPassenger = passengerService.registerPassenger(passengerDto);
         passengerService.registerPassenger(passengerDto);
+        if (registeredPassenger.getId() != null) {
+            passengerEventProducer.sendPassengerEvent(registeredPassenger.getId().toString());
+        }
 
-        passengerEventProducer.sendPassengerEvent(registeredPassenger.getId().toString());
         return ResponseEntity.ok(registeredPassenger);
 
     }
@@ -52,12 +58,18 @@ public class PassengerController {
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @GetMapping("/{email}")
-    public ResponseEntity<Passenger> getPassengerByEmail(@PathVariable String email) {
+    public ResponseEntity<PassengerDto> getPassengerByEmail(@PathVariable String email) {
         log.info("Received request to get passenger by email: {}", email);
-        Optional<Passenger> passenger = passengerService.findPassengerByEmail(email);
-        return passenger.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+
+        Optional<PassengerDto> passengerDto = passengerService.findPassengerByEmail(email);
+
+        if (passengerDto.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(passengerDto.get());
     }
+
 
     @Operation(summary = "Update Passenger", description = "Updates an existing passenger")
     @ApiResponses(value = {

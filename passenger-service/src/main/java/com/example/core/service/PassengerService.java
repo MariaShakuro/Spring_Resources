@@ -33,8 +33,9 @@ public class PassengerService {
         return passengerMapper.toDto(savedPassenger);
     }
 
-    public Optional<Passenger> findPassengerByEmail(String email) {
-        return passengerRepository.findByEmail(email);
+    public Optional<PassengerDto> findPassengerByEmail(String email) {
+        Optional<Passenger> passenger = passengerRepository.findByEmail(email);
+        return passenger.map(passengerMapper::toDto);
     }
 
     @Transactional

@@ -10,6 +10,7 @@ spring:
   jpa:
       hibernate:
         ddl-auto: create-drop
+        dialect: org.hibernate.dialect.PostgreSQLDialect
       show-sql: true
   liquibase:
       enabled: false
@@ -29,4 +30,14 @@ logging:
     root: INFO
     org.springframework: DEBUG
     org.hibernate.SQL: DEBUG
+
+  junit:
+   jupiter:
+    execution:
+      parallel:
+       enabled: true
+       mode:
+        default : concurrent
+        classes:
+         default: concurrent
 

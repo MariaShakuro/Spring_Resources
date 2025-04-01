@@ -1,5 +1,6 @@
 package com.crew.core.integration;
 
+import com.crew.core.config.TestContainersConfig;
 import com.crew.core.dto.RideDto;
 import com.crew.core.entity.Ride;
 import com.crew.core.repository.RideRepository;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
@@ -26,28 +28,15 @@ import static org.hamcrest.Matchers.equalTo;
 @Testcontainers
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
+@Import(TestContainersConfig.class)
 public class RideControllerIntegrationTest {
-
-    @Container
-    public static MongoDBContainer mongoDBContainer = new MongoDBContainer("mongo:latest");
-
-    @Container
-    public static KafkaContainer kafkaContainer = new KafkaContainer(
-            DockerImageName.parse("confluentinc/cp-kafka:latest")
-    );
-
-    @DynamicPropertySource
-    static void configureProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.data.mongodb.uri", mongoDBContainer::getReplicaSetUrl);
-        registry.add("spring.kafka.bootstrap-servers", kafkaContainer::getBootstrapServers);
-    }
 
     @LocalServerPort
     private int port;
 
     @Autowired
     private RideRepository rideRepository;
-
+    private static final String BASE_URL="/api/rides";
     @BeforeEach
     public void setup() {
         RestAssured.baseURI = "http://localhost";
@@ -61,7 +50,7 @@ public class RideControllerIntegrationTest {
                 .queryParam("passengerId", "passenger123")
                 .queryParam("promoCode", "PROMO20")
                 .when()
-                .post("/api/rides/applyPromoCode")
+                .post(BASE_URL+"/applyPromoCode")
                 .then()
                 .statusCode(HttpStatus.OK.value());
     }
