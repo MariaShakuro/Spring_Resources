@@ -21,7 +21,7 @@ public class DriverApplicationTests {
     public static PostgreSQLContainer<?> postgresContainer = new PostgreSQLContainer<>("postgres:latest")
             .withDatabaseName("testdb")
             .withUsername("postgres")
-            .withPassword("dsova2207_12");
+            .withPassword("password");
     @Container
     public static KafkaContainer kafkaContainer = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:latest"));
 

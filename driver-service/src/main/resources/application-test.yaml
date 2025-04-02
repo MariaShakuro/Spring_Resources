@@ -16,7 +16,7 @@ spring:
       enabled: false
 
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
     consumer:
       group-id: test-group
       auto-offset-reset: earliest
@@ -32,12 +32,12 @@ logging:
     org.hibernate.SQL: DEBUG
 
   junit:
-   jupiter:
-    execution:
-      parallel:
-       enabled: true
-       mode:
-        default : concurrent
-        classes:
-         default: concurrent
+    jupiter:
+      execution:
+        parallel:
+          enabled: true
+          mode:
+            default: concurrent
+            classes:
+              default: concurrent
 

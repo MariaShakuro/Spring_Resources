@@ -1,9 +1,9 @@
 package com.example.core.contract;
 
 import com.example.core.DriverApplication;
-import com.example.core.config.TestContainersConfig;
 import com.example.core.service.DriverEventProducer;
 import io.restassured.RestAssured;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,6 +24,7 @@ import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.TestPropertySource;
 import org.testcontainers.containers.KafkaContainer;
+import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
@@ -34,9 +35,36 @@ import org.testcontainers.utility.DockerImageName;
 )
 @TestPropertySource("classpath:application-test.yaml")
 @AutoConfigureMessageVerifier
-@Import({MockConfig.class, TestContainersConfig.class})
+@Import(MockConfig.class)
 @ActiveProfiles("test")
 public class DriverEventContractTest {
+    @Container
+    static final PostgreSQLContainer<?> postgresContainer = new PostgreSQLContainer<>("postgres:latest")
+            .withDatabaseName("testdb")
+            .withUsername("postgres")
+            .withPassword("password");
+
+
+    @Container
+    static final KafkaContainer kafkaContainer = new KafkaContainer(
+            DockerImageName.parse("confluentinc/cp-kafka:latest")
+    ).withExposedPorts(9093);
+
+    @DynamicPropertySource
+    static void configureProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.datasource.url", postgresContainer::getJdbcUrl);
+        registry.add("spring.datasource.username", postgresContainer::getUsername);
+        registry.add("spring.datasource.password", postgresContainer::getPassword);
+        registry.add("spring.jpa.hibernate.dialect", () -> "org.hibernate.dialect.PostgreSQLDialect");
+        registry.add("spring.kafka.bootstrap-servers", () -> String.format("%s:%d",
+                kafkaContainer.getHost(), kafkaContainer.getMappedPort(KafkaContainer.KAFKA_PORT)));
+    }
+
+    @AfterAll
+    static void tearDown() {
+        kafkaContainer.stop();
+        postgresContainer.stop();
+    }
     private DriverEventProducer driverEventProducer;
 
     @Mock

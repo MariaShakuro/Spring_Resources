@@ -1,10 +1,10 @@
 package com.crew.core.contract;
 
-import com.crew.core.config.TestContainersConfig;
 import com.crew.core.dto.RideDto;
 import com.crew.core.entity.Ride;
 import com.crew.core.repository.RideRepository;
 import io.restassured.RestAssured;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +28,25 @@ import static org.hamcrest.Matchers.equalTo;
 @Testcontainers
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
-@Import(TestContainersConfig.class)
 public class RideControllerContractTest {
+    @Container
+    public static final KafkaContainer kafkaContainer =
+            new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:latest"));
+
+    @Container
+    public static final MongoDBContainer mongoDBContainer = new MongoDBContainer("mongo:latest");
+
+    @DynamicPropertySource
+    static void configureProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.data.mongodb.uri", mongoDBContainer::getReplicaSetUrl);
+        registry.add("spring.kafka.bootstrap-servers", kafkaContainer::getBootstrapServers);
+    }
+
+    @AfterAll
+    static void tearDown(){
+        mongoDBContainer.stop();
+        kafkaContainer.stop();
+    }
 
     @LocalServerPort
     private int port;

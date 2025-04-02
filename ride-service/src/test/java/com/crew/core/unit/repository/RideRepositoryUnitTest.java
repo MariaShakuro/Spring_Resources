@@ -1,8 +1,8 @@
 package com.crew.core.unit.repository;
 
-import com.crew.core.config.TestContainersConfig;
 import com.crew.core.entity.Ride;
 import com.crew.core.repository.RideRepository;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +11,11 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
+import org.testcontainers.containers.KafkaContainer;
 import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.utility.DockerImageName;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,10 +25,26 @@ import static org.junit.jupiter.api.Assertions.*;
 @DataMongoTest
 @Testcontainers
 @ActiveProfiles("test")
-@Import(TestContainersConfig.class)
 public class RideRepositoryUnitTest {
 
+    @Container
+    public static final KafkaContainer kafkaContainer =
+            new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:latest"));
 
+    @Container
+    public static final MongoDBContainer mongoDBContainer = new MongoDBContainer("mongo:latest");
+
+    @DynamicPropertySource
+    static void configureProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.data.mongodb.uri", mongoDBContainer::getReplicaSetUrl);
+        registry.add("spring.kafka.bootstrap-servers", kafkaContainer::getBootstrapServers);
+    }
+
+    @AfterAll
+    static void tearDown(){
+        mongoDBContainer.stop();
+        kafkaContainer.stop();
+    }
     @Autowired
     private RideRepository rideRepository;
 

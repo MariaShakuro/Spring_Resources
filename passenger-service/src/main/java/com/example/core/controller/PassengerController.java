@@ -24,14 +24,16 @@ public class PassengerController {
     private static final Logger log = LoggerFactory.getLogger(PassengerController.class);
 
     private final PassengerService passengerService;
+    private final PassengerEventProducer passengerEventProducer;
     @Autowired
-    public PassengerController(PassengerService passengerService) {
+    public PassengerController(PassengerService passengerService, PassengerEventProducer passengerEventProducer) {
         this.passengerService = passengerService;
+        this.passengerEventProducer = passengerEventProducer;
     }
-    @Autowired
-    private PassengerEventProducer passengerEventProducer;
 
-    @Operation(summary = "Register and Send Passenger Event", description = "Registers a new passenger and sends an event")
+
+
+        @Operation(summary = "Register and Send Passenger Event", description = "Registers a new passenger and sends an event")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Passenger registered successfully"),
             @ApiResponse(responseCode = "400", description = "Invalid input data"),
@@ -42,10 +44,9 @@ public class PassengerController {
 
         log.info("Received passenger DTO: {}", passengerDto);
         PassengerDto registeredPassenger = passengerService.registerPassenger(passengerDto);
-        passengerService.registerPassenger(passengerDto);
-        if (registeredPassenger.getId() != null) {
-            passengerEventProducer.sendPassengerEvent(registeredPassenger.getId().toString());
-        }
+
+        passengerEventProducer.sendPassengerEvent(registeredPassenger.getId().toString());
+
 
         return ResponseEntity.ok(registeredPassenger);
 

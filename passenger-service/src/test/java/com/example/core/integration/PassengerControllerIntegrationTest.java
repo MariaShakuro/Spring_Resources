@@ -1,10 +1,12 @@
 package com.example.core.integration;
 
-import com.example.core.config.TestContainersConfig;
+
 import com.example.core.dto.PassengerDto;
 import com.example.core.entity.Passenger;
 import com.example.core.repository.PassengerRepository;
 import io.restassured.RestAssured;
+import jakarta.transaction.Transactional;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +31,35 @@ import static org.hamcrest.Matchers.equalTo;
 @Testcontainers
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
-@Import(TestContainersConfig.class)
+@Transactional
 public class PassengerControllerIntegrationTest {
+    @Container
+    static final PostgreSQLContainer<?> postgresContainer = new PostgreSQLContainer<>("postgres:latest")
+            .withDatabaseName("testdb")
+            .withUsername("postgres")
+            .withPassword("password");
 
+    @Container
+    static final KafkaContainer kafkaContainer = new KafkaContainer(
+            DockerImageName.parse("confluentinc/cp-kafka:latest")
+    ).withExposedPorts(9093);
+
+    @DynamicPropertySource
+    static void configureProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.datasource.url", postgresContainer::getJdbcUrl);
+        registry.add("spring.datasource.username", postgresContainer::getUsername);
+        registry.add("spring.datasource.password", postgresContainer::getPassword);
+        registry.add("spring.jpa.hibernate.dialect", () -> "org.hibernate.dialect.PostgreSQLDialect");
+        registry.add("spring.jpa.hibernate.ddl-auto", () -> "create-drop");
+        registry.add("spring.kafka.bootstrap-servers", () -> String.format("%s:%d",
+                kafkaContainer.getHost(), kafkaContainer.getMappedPort(KafkaContainer.KAFKA_PORT)));
+    }
+
+    @AfterAll
+    static void tearDown() {
+        kafkaContainer.stop();
+        postgresContainer.stop();
+    }
     @LocalServerPort
     private int port;
 
@@ -42,7 +70,7 @@ public class PassengerControllerIntegrationTest {
     public void setup() {
         RestAssured.baseURI = "http://localhost";
         RestAssured.port = port;
-
+        passengerRepository.deleteByEmail("alice@example.com");
         passengerRepository.save(new Passenger(null, "Alice", "alice@example.com", "password123", "1234567890", "PROMO123"));
     }
 

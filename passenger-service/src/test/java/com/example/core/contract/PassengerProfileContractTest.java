@@ -1,11 +1,11 @@
 package com.example.core.contract;
 
 import com.example.core.PassengerApplication;
-import com.example.core.config.TestContainersConfig;
 import com.example.core.dto.PassengerDto;
 import com.example.core.entity.Passenger;
 import com.example.core.repository.PassengerRepository;
 import io.restassured.RestAssured;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +18,11 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
+import org.testcontainers.containers.KafkaContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.utility.DockerImageName;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
@@ -29,9 +31,34 @@ import static org.hamcrest.Matchers.equalTo;
 @SpringBootTest(classes = PassengerApplication.class,
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
-@Import(TestContainersConfig.class)
 public class PassengerProfileContractTest {
+    @Container
+    static final PostgreSQLContainer<?> postgresContainer = new PostgreSQLContainer<>("postgres:latest")
+            .withDatabaseName("testdb")
+            .withUsername("postgres")
+            .withPassword("password");
 
+    @Container
+    static final KafkaContainer kafkaContainer = new KafkaContainer(
+            DockerImageName.parse("confluentinc/cp-kafka:latest")
+    ).withExposedPorts(9093);
+
+    @DynamicPropertySource
+    static void configureProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.datasource.url", postgresContainer::getJdbcUrl);
+        registry.add("spring.datasource.username", postgresContainer::getUsername);
+        registry.add("spring.datasource.password", postgresContainer::getPassword);
+        registry.add("spring.jpa.hibernate.dialect", () -> "org.hibernate.dialect.PostgreSQLDialect");
+        registry.add("spring.jpa.hibernate.ddl-auto", () -> "create-drop");
+        registry.add("spring.kafka.bootstrap-servers", () -> String.format("%s:%d",
+                kafkaContainer.getHost(), kafkaContainer.getMappedPort(KafkaContainer.KAFKA_PORT)));
+    }
+
+    @AfterAll
+    static void tearDown() {
+        kafkaContainer.stop();
+        postgresContainer.stop();
+    }
     @LocalServerPort
     private int port;
 
