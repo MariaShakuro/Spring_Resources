@@ -1,0 +1,9 @@
+{
+  "databaseChangeLog": [
+    {
+      "include": {
+        "file": "create-passenger_table.json"
+      }
+    }
+  ]
+}

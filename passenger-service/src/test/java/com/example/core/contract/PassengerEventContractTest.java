@@ -6,6 +6,7 @@ import com.example.core.service.PassengerEventProducer;
 import com.example.core.service.PassengerService;
 import io.restassured.RestAssured;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -21,6 +22,7 @@ import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.TestPropertySource;
 import org.testcontainers.containers.KafkaContainer;
+import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
@@ -33,26 +35,39 @@ import static org.mockito.Mockito.verify;
 @SpringBootTest(classes = PassengerApplication.class,
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
-@TestPropertySource(properties = {
-        "spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration," +
-                "org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration"
-})
-
+@TestPropertySource("classpath:application-test.yaml")
 @AutoConfigureMessageVerifier
 @Import(MockConfig.class)
 @ActiveProfiles("test")
 public class PassengerEventContractTest {
 
     @Container
-    public static KafkaContainer kafkaContainer = new KafkaContainer(
+    static final PostgreSQLContainer<?> postgresContainer = new PostgreSQLContainer<>("postgres:latest")
+            .withDatabaseName("testdb")
+            .withUsername("postgres")
+            .withPassword("password");
+
+    @Container
+    static final KafkaContainer kafkaContainer = new KafkaContainer(
             DockerImageName.parse("confluentinc/cp-kafka:latest")
-    );
+    ).withExposedPorts(9093);
 
     @DynamicPropertySource
-    static void configureKafkaProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.kafka.bootstrap-servers", kafkaContainer::getBootstrapServers);
+    static void configureProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.datasource.url", postgresContainer::getJdbcUrl);
+        registry.add("spring.datasource.username", postgresContainer::getUsername);
+        registry.add("spring.datasource.password", postgresContainer::getPassword);
+        registry.add("spring.jpa.hibernate.dialect", () -> "org.hibernate.dialect.PostgreSQLDialect");
+        registry.add("spring.jpa.hibernate.ddl-auto", () -> "create-drop");
+        registry.add("spring.kafka.bootstrap-servers", () -> String.format("%s:%d",
+                kafkaContainer.getHost(), kafkaContainer.getMappedPort(KafkaContainer.KAFKA_PORT)));
     }
 
+    @AfterAll
+    static void tearDown() {
+        kafkaContainer.stop();
+        postgresContainer.stop();
+    }
     private PassengerEventProducer passengerEventProducer;
 
     @Mock

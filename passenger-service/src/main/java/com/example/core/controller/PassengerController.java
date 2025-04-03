@@ -22,12 +22,18 @@ import java.util.Optional;
 @Tag(name = "Passenger Management", description = "Operations related to passenger")
 public class PassengerController {
     private static final Logger log = LoggerFactory.getLogger(PassengerController.class);
-    @Autowired
-    private PassengerService passengerService;
-    @Autowired
-    private PassengerEventProducer passengerEventProducer;
 
-    @Operation(summary = "Register and Send Passenger Event", description = "Registers a new passenger and sends an event")
+    private final PassengerService passengerService;
+    private final PassengerEventProducer passengerEventProducer;
+    @Autowired
+    public PassengerController(PassengerService passengerService, PassengerEventProducer passengerEventProducer) {
+        this.passengerService = passengerService;
+        this.passengerEventProducer = passengerEventProducer;
+    }
+
+
+
+        @Operation(summary = "Register and Send Passenger Event", description = "Registers a new passenger and sends an event")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Passenger registered successfully"),
             @ApiResponse(responseCode = "400", description = "Invalid input data"),
@@ -38,9 +44,10 @@ public class PassengerController {
 
         log.info("Received passenger DTO: {}", passengerDto);
         PassengerDto registeredPassenger = passengerService.registerPassenger(passengerDto);
-        passengerService.registerPassenger(passengerDto);
 
         passengerEventProducer.sendPassengerEvent(registeredPassenger.getId().toString());
+
+
         return ResponseEntity.ok(registeredPassenger);
 
     }
@@ -52,12 +59,18 @@ public class PassengerController {
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @GetMapping("/{email}")
-    public ResponseEntity<Passenger> getPassengerByEmail(@PathVariable String email) {
+    public ResponseEntity<PassengerDto> getPassengerByEmail(@PathVariable String email) {
         log.info("Received request to get passenger by email: {}", email);
-        Optional<Passenger> passenger = passengerService.findPassengerByEmail(email);
-        return passenger.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+
+        Optional<PassengerDto> passengerDto = passengerService.findPassengerByEmail(email);
+
+        if (passengerDto.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(passengerDto.get());
     }
+
 
     @Operation(summary = "Update Passenger", description = "Updates an existing passenger")
     @ApiResponses(value = {

@@ -2,5 +2,25 @@ spring:
   application:
    name: ride-service
 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+  redis:
+    host: redis
+    port: 6379
+  session:
+    store-type: redis
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+  api-docs:
+    enabled: true
+
+
 server:
-  port: 8080
+  port: 8084
