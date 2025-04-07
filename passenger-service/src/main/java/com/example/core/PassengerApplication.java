@@ -8,7 +8,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.example")
 @EnableDiscoveryClient
 @OpenAPIDefinition(info = @Info(
 		title = "Passenger Service API",

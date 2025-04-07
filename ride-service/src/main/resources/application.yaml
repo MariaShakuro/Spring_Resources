@@ -18,6 +18,8 @@ eureka:
 springdoc:
   swagger-ui:
     path: /swagger-ui
+    url: /ride-service/v3/api-docs
+    configUrl: /ride-service/v3/api-docs/swagger-config
   api-docs:
     enabled: true
 

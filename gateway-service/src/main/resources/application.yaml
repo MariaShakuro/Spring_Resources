@@ -10,31 +10,41 @@ spring:
         - id: payment-service
           uri: http://payment-service:8082
           predicates:
-            - Path=/**
+            - Path=/payment-service/**
           filters:
              - Retry=3
-             - RewritePath=/swagger-ui/(?<segment>.*), /swagger-ui/${segment}
-        - id: driver-service
-          uri: http://driver-service:8081
-          predicates:
-            - Path=/**
-          filters:
-            - Retry=3
-            - RewritePath=/swagger-ui/(?<segment>.*), /swagger-ui/${segment}
+             - RewritePath=/payment-service/v3/api-docs, /v3/api-docs
+             - RewritePath=/payment-service/swagger-ui/(.*), /swagger-ui/$1
         - id: passenger-service
           uri: http://passenger-service:8083
           predicates:
-            - Path=/**
+            - Path=/passenger-service/**
           filters:
             - Retry=3
-            - RewritePath=/swagger-ui/(?<segment>.*), /swagger-ui/${segment}
+            - RewritePath=/passenger-service/v3/api-docs, /v3/api-docs
+            - RewritePath=/passenger-service/swagger-ui/(.*), /swagger-ui/$1
+
+        - id: driver-service
+          uri: http://driver-service:8081
+          predicates:
+            - Path=/driver-service/**
+          filters:
+            - Retry=3
+
+            - RewritePath=/driver-service/v3/api-docs, /v3/api-docs
+            - RewritePath=/driver-service/swagger-ui/(.*), /swagger-ui/$1
+
         - id: ride-service
           uri: http://ride-service:8084
           predicates:
-            - Path=/**
+            - Path=/ride-service/**
           filters:
             - Retry=3
-            - RewritePath=/swagger-ui/(?<segment>.*), /swagger-ui/${segment}
+            - RewritePath=/ride-service/v3/api-docs, /v3/api-docs
+            - RewritePath=/ride-service/swagger-ui/(.*), /swagger-ui/$1
+            - RewritePath=/ride-service/v3/api-docs/swagger-config, /v3/api-docs/swagger-config
+            - RewritePath=/ride-service/swagger-ui/oauth2-redirect.html, /swagger-ui/oauth2-redirect.html
+
 
 
 
@@ -65,6 +75,15 @@ server:
 
 springdoc:
   swagger-ui:
+    urls:
+      - name: Passenger Service
+        url: /passenger-service/v3/api-docs
+      - name: Payment Service
+        url: /payment-service/v3/api-docs
+      - name: Driver Service
+        url: /driver-service/v3/api-docs
+      - name: Ride Service
+        url: /ride-service/v3/api-docs
     enabled: false
   api-docs:
     enabled: false

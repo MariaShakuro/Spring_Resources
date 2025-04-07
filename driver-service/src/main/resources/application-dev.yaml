@@ -30,3 +30,13 @@ spring:
     store-type: redis
 
 
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+  api-docs:
+    enabled: true
+
+
+server:
+  port: 8081

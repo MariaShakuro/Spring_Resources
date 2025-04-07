@@ -23,6 +23,7 @@ import java.util.Optional;
 public class PassengerController {
     private static final Logger log = LoggerFactory.getLogger(PassengerController.class);
 
+    @Autowired
     private final PassengerService passengerService;
     private final PassengerEventProducer passengerEventProducer;
     @Autowired
@@ -33,12 +34,7 @@ public class PassengerController {
 
 
 
-        @Operation(summary = "Register and Send Passenger Event", description = "Registers a new passenger and sends an event")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Passenger registered successfully"),
-            @ApiResponse(responseCode = "400", description = "Invalid input data"),
-            @ApiResponse(responseCode = "500", description = "Internal server error")
-    })
+    @Operation(summary = "Register and Send Passenger Event", description = "Registers a new passenger and sends an event")
     @PostMapping("/register-and-send-event")
     public ResponseEntity<PassengerDto> registerAndSendPassengerEvent(@RequestBody PassengerDto passengerDto) {
 
@@ -52,33 +48,19 @@ public class PassengerController {
 
     }
 
-    @Operation(summary = "Get Passenger By Email", description = "Gets an existing passenger by email")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Passenger retrieved successfully"),
-            @ApiResponse(responseCode = "404", description = "Passenger not found"),
-            @ApiResponse(responseCode = "500", description = "Internal server error")
-    })
+   /* @Operation(summary = "Get Passenger By Email", description = "Gets an existing passenger by email")
     @GetMapping("/{email}")
     public ResponseEntity<PassengerDto> getPassengerByEmail(@PathVariable String email) {
         log.info("Received request to get passenger by email: {}", email);
-
         Optional<PassengerDto> passengerDto = passengerService.findPassengerByEmail(email);
-
         if (passengerDto.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-
         return ResponseEntity.ok(passengerDto.get());
-    }
+    }*/
 
 
     @Operation(summary = "Update Passenger", description = "Updates an existing passenger")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Passenger updated successfully"),
-            @ApiResponse(responseCode = "404", description = "Passenger not found"),
-            @ApiResponse(responseCode = "400", description = "Invalid input data"),
-            @ApiResponse(responseCode = "500", description = "Internal server error")
-    })
     @PutMapping("/update/{id}")
     public ResponseEntity<PassengerDto> updatePassenger(@PathVariable Long id, @RequestBody PassengerDto passengerDto) {
         passengerDto.setId(id);
@@ -88,11 +70,6 @@ public class PassengerController {
     }
 
     @Operation(summary = "Delete Passenger", description = "Deletes an existing passenger")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "Passenger deleted successfully"),
-            @ApiResponse(responseCode = "404", description = "Passenger not found"),
-            @ApiResponse(responseCode = "500", description = "Internal server error")
-    })
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deletePassenger(@PathVariable Long id) {
         log.info("Received request to delete passenger with id: {}", id);

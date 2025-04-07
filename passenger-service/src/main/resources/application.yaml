@@ -18,13 +18,11 @@ eureka:
 springdoc:
   swagger-ui:
     path: /swagger-ui
-  api-docs:
-    enabled: true
-
-
-  security:
-    basic:
-      enabled: false
-
+logging:
+  level:
+    root: ERROR
+    org:
+     springframework: DEBUG
+     hibernate: DEBUG
 server:
   port: 8083
