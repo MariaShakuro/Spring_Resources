@@ -2,11 +2,16 @@ spring:
   application:
          name: payment-service
 eureka:
+  instance:
+    hostname: payment-service
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
   client:
+    register-with-eureka: true
+    fetch-registry: true
     service-url:
       defaultZone: http://eureka-server:8761/eureka/
-  instance:
-    prefer-ip-address: true
+
 
   redis:
     host: redis
@@ -17,6 +22,8 @@ eureka:
 springdoc:
   swagger-ui:
     path: /swagger-ui
+    url: /payment-service/v3/api-docs
+    configUrl: /payment-service/v3/api-docs/swagger-config
 
 server:
   port: 8082
