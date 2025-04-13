@@ -3,11 +3,12 @@ spring:
    name: ride-service
 
 eureka:
+  instance:
+    hostname: RIDE-SERVICE
   client:
     service-url:
       defaultZone: http://eureka-server:8761/eureka/
-  instance:
-    prefer-ip-address: true
+
 
   redis:
     host: redis
@@ -26,3 +27,4 @@ springdoc:
 
 server:
   port: 8084
+  forward-headers-strategy: framework

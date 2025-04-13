@@ -3,44 +3,33 @@ spring:
     name: gateway-service
   main:
     web-application-type: reactive
-
-eureka:
-  instance:
-    hostname: gateway-service
-    prefer-ip-address: true
-    instance-id: ${spring.application.name}:${server.port}
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://eureka-server:8761/eureka/
-
-
   cloud:
     gateway:
+      httpclient:
+        response-timeout: 1500ms
+      discovery:
+        locator:
+          enabled: false
+          lower-case-service-id: true
       routes:
         - id: payment-service
           uri: lb://payment-service
           predicates:
             - Path=/payment-service/**
           filters:
-             - Retry=3
-             - RewritePath=/payment-service/v3/api-docs, /v3/api-docs
-             - RewritePath=/payment-service/swagger-ui/(.*), /swagger-ui/$1
-             - RewritePath=/payment-service/v3/api-docs/swagger-config, /v3/api-docs/swagger-config
-             - RewritePath=/payment-service/swagger-ui/oauth2-redirect.html, /swagger-ui/oauth2-redirect.html
-             - name: CircuitBreaker
-               args:
-                 name: paymentServiceCircuitBreaker
-                 fallbackUri: forward:/fallback
+            - Retry=3
+            - RewritePath=/payment-service/(?<path>.*), /${path}
+            - name: CircuitBreaker
+              args:
+                name: paymentServiceCircuitBreaker
+                fallbackUri: forward:/fallback
         - id: passenger-service
           uri: lb://passenger-service
           predicates:
             - Path=/passenger-service/**
           filters:
             - Retry=3
-            - RewritePath=/passenger-service/v3/api-docs, /v3/api-docs
-            - RewritePath=/passenger-service/swagger-ui/(.*), /swagger-ui/$1
+            - RewritePath=/passenger-service/(?<path>.*), /${path}
             - name: CircuitBreaker
               args:
                 name: passengerServiceCircuitBreaker
@@ -51,8 +40,7 @@ eureka:
             - Path=/driver-service/**
           filters:
             - Retry=3
-            - RewritePath=/driver-service/v3/api-docs, /v3/api-docs
-            - RewritePath=/driver-service/swagger-ui/(.*), /swagger-ui/$1
+            - RewritePath=/driver-service/(?<path>.*), /$\{path}
             - name: CircuitBreaker
               args:
                 name: driverServiceCircuitBreaker
@@ -63,19 +51,31 @@ eureka:
             - Path=/ride-service/**
           filters:
             - Retry=3
-            - RewritePath=/ride-service/v3/api-docs, /v3/api-docs
-            - RewritePath=/ride-service/swagger-ui/(.*), /swagger-ui/$1
-            - RewritePath=/ride-service/v3/api-docs/swagger-config, /v3/api-docs/swagger-config
-            - RewritePath=/ride-service/swagger-ui/oauth2-redirect.html, /swagger-ui/oauth2-redirect.html
+            - RewritePath=/ride-service/(?<path>.*), /$\{path}
             - name: CircuitBreaker
               args:
                 name: rideServiceCircuitBreaker
                 fallbackUri: forward:/fallback
 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/
+    register-with-eureka: true
 
 
 
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+  health:
+    circuitbreakers:
+      enabled: true
 
 
   session:
@@ -90,36 +90,22 @@ logging:
   level:
     org.springframework.cloud.gateway: DEBUG
     org.springframework.cloud.circuitbreaker: DEBUG
-    org.springframework.cloud.loadbalancer: TRACE
+    org.springframework.cloud.loadbalancer: DEBUG
 
 server:
-  port: 8086
   forward-headers-strategy: framework
+  port: 8086
 
-springdoc:
-  swagger-ui:
-    urls:
-      - name: Passenger Service
-        url: /passenger-service/v3/api-docs
-      - name: Payment Service
-        url: /payment-service/v3/api-docs
-      - name: Driver Service
-        url: /driver-service/v3/api-docs
-      - name: Ride Service
-        url: /ride-service/v3/api-docs
-    enabled: false
-  api-docs:
-    enabled: false
 
 resilience4j:
   circuitbreaker:
     instances:
       paymentServiceCircuitBreaker:
-        failureRateThreshold: 50
+        failureRateThreshold: 70
         slowCallRateThreshold: 100
         slowCallDurationThreshold: 2s
         permittedNumberOfCallsInHalfOpenState: 3
-        maxWaitDurationInHalfOpenState: 10s
+        maxWaitDurationInHalfOpenState: 5s
         slidingWindowType: COUNT_BASED
         slidingWindowSize: 5
         minimumNumberOfCalls: 2

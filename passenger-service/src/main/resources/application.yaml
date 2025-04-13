@@ -6,8 +6,7 @@ eureka:
   client:
     service-url:
       defaultZone: http://eureka-server:8761/eureka/
-  instance:
-    prefer-ip-address: true
+
 
   redis:
     host: redis
@@ -16,6 +15,8 @@ eureka:
     store-type: redis
 
 springdoc:
+  api-docs:
+    path: /api-docs
   swagger-ui:
     path: /swagger-ui
 logging:
@@ -25,4 +26,5 @@ logging:
      springframework: DEBUG
      hibernate: DEBUG
 server:
-  port: 8083
+  port: 0
+  forward-headers-strategy: framework

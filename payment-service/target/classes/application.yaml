@@ -3,8 +3,8 @@ spring:
          name: payment-service
 eureka:
   instance:
-    hostname: payment-service
-    prefer-ip-address: true
+    hostname: PAYMENT-SERVICE
+    prefer-ip-address: false
     instance-id: ${spring.application.name}:${server.port}
   client:
     register-with-eureka: true
@@ -27,3 +27,4 @@ springdoc:
 
 server:
   port: 8082
+  forward-headers-strategy: framework
