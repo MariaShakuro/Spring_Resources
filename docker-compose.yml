@@ -1,7 +1,10 @@
 
 services:
+
+
   postgres:
     image: postgres:17.4
+    container_name: postgres
     environment:
       POSTGRES_USER: ${SPRING_DATASOURCE_USERNAME}
       POSTGRES_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
@@ -22,6 +25,7 @@ services:
 
   mongodb:
     image: mongo:4.4
+    container_name: mongodb
     ports:
       - "27017:27017"
     volumes:
@@ -34,9 +38,9 @@ services:
       timeout: 5s
       retries: 3
 
-
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
@@ -45,11 +49,9 @@ services:
     networks:
       - spring_resources_app-network
 
-
-
-
   kafka:
     image: confluentinc/cp-kafka:latest
+    container_name: kafka
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
@@ -66,20 +68,71 @@ services:
       - spring_resources_app-network
 
   eureka-server:
-    image: eurekaserver:latest
+    image: eureka-server:latest
     container_name: eureka-server
     build:
       context: ./eureka-server
+      dockerfile: Dockerfile
     ports:
       - "8761:8761"
+    networks:
+      - spring_resources_app-network
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    restart: always
+    volumes:
+      - redis-data:/data
+    command: [ "redis-server", "--appendonly", "yes" ]
+    networks:
+      - spring_resources_app-network
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: keycloak
+    environment:
+      DB_VENDOR: postgres
+      DB_ADDR: postgres
+      DB_DATABASE: keycloak_db
+      DB_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      DB_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      KEYCLOAK_USER: ${KEYCLOAK_USER}
+      KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD}
+    command: >
+      start-dev --http-relative-path /auth
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - spring_resources_app-network
 
 
+  gateway-service:
+    image: apigateway:latest
+    container_name: gateway-service
+    build:
+        context: ./gateway-service
+        dockerfile: Dockerfile
+    environment:
+        - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    ports:
+        - "8086:8086"
+    depends_on:
+      - redis
+      - eureka-server
+    networks:
+      - spring_resources_app-network
 
   driver-service:
     build:
       context: ./driver-service
       dockerfile: Dockerfile
     image: driver-service
+    container_name: driver-service
     ports:
       - "8081:8081"
     environment:
@@ -99,6 +152,7 @@ services:
       context: ./passenger-service
       dockerfile: Dockerfile
     image: passenger-service
+    container_name: passenger-service
     ports:
       - "8082:8082"
     environment:
@@ -118,6 +172,7 @@ services:
       context: ./payment-service
       dockerfile: Dockerfile
     image: payment-service
+    container_name: payment-service
     ports:
       - "8083:8083"
     networks:
@@ -129,8 +184,9 @@ services:
       context: ./ride-service
       dockerfile: Dockerfile
     image: ride-service
+    container_name: ride-service
     ports:
-      - "8080:8080"
+      - "8085:8085"
     environment:
         SPRING_DATA_MONGODB_URI: "mongodb://mongodb:27017/ride_db"
         SPRING_DATA_MONGODB_DATABASE: ride_db
@@ -141,64 +197,11 @@ services:
     networks:
       - spring_resources_app-network
 
-  liquibase-postgres-passenger_db:
-    image: liquibase/liquibase:latest
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/passenger_db
-      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
-      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
-    volumes:
-      - ./passenger-service/src/main/resources/db.changelog:/liquibase/changelog
-    command:
-      - --changeLogFile=/liquibase/changelog/db.changelog-master.xml
-      - --url=jdbc:postgresql://postgres:5432/passenger_db
-      - --username=postgres
-      - --password=dsova2207_12
-      - update
-    depends_on:
-      - postgres
-    networks:
-      - spring_resources_app-network
-
-  liquibase-postgres-driver_db:
-    image: liquibase/liquibase:latest
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/driver_db
-      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
-      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
-    volumes:
-      - ./driver-service/src/main/resources/db.changelog:/liquibase/changelog
-    command:
-      - --changeLogFile=/liquibase/changelog/db.changelog-master.json
-      - --url=jdbc:postgresql://postgres:5432/driver_db
-      - --username=postgres
-      - --password=dsova2207_12
-      - update
-    depends_on:
-      - postgres
-    networks:
-      - spring_resources_app-network
-
-  liquibase-mongodb:
-    image: liquibase/liquibase:latest
-    environment:
-      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/ride_db
-      - SPRING_DATA_MONGODB_DATABASE=ride_db
-    volumes:
-      - ./ride-service/src/main/resources/db.changelog:/liquibase/changelog
-    command:
-      - --changeLogFile=/liquibase/changelog/db.changelog-master.json
-      - --uri=mongodb://localhost:27017/ride_db
-      - update
-    depends_on:
-      - mongodb
-    networks:
-      - spring_resources_app-network
-
 
 volumes:
   postgres_data:
   mongodb_data:
+  redis-data:
 
 networks:
   spring_resources_app-network:

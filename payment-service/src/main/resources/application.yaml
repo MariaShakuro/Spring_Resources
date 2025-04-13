@@ -14,3 +14,9 @@ eureka:
       defaultZone: http://eureka-server-host:8761/eureka/
   instance:
     preferIpAddress: true
+
+  redis:
+    host: redis
+    port: 6379
+  session:
+    store-type: redis
