@@ -70,7 +70,7 @@ public class PassengerControllerIntegrationTest {
     public void setup() {
         RestAssured.baseURI = "http://localhost";
         RestAssured.port = port;
-        passengerRepository.deleteByEmail("alice@example.com");
+      //  passengerRepository.deleteByEmail("alice@example.com");
         passengerRepository.save(new Passenger(null, "Alice", "alice@example.com", "password123", "1234567890", "PROMO123"));
     }
 

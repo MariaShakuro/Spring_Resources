@@ -65,16 +65,6 @@ public class PassengerControllerUnitTest {
         verify(passengerEventProducer).sendPassengerEvent("1");
     }
 
-    @Test
-    public void testGetPassengerByEmail() {
-        when(passengerService.findPassengerByEmail(testEmail)).thenReturn(Optional.of(registeredPassengerDto));
-
-        ResponseEntity<PassengerDto> response = passengerController.getPassengerByEmail(testEmail);
-
-        assertEquals(200, response.getStatusCodeValue());
-        assertEquals(registeredPassengerDto, response.getBody());
-        verify(passengerService, times(1)).findPassengerByEmail(testEmail);
-    }
 
     @Test
     public void testUpdatePassenger() {

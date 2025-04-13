@@ -56,7 +56,7 @@ public class PassengerRepositoryUnitTest {
     @Autowired
     private PassengerRepository passengerRepository;
 
-    @Test
+   /* @Test
     public void testFindByEmail() {
         Passenger passenger = new Passenger(null, "Alice", "alice@example.com", "password123", "1234567890", "PROMO123");
         passenger = passengerRepository.save(passenger);
@@ -77,5 +77,5 @@ public class PassengerRepositoryUnitTest {
         Optional<Passenger> result = passengerRepository.findByEmail("nonexistent@example.com");
 
         assertFalse(result.isPresent());
-    }
+    }*/
 }

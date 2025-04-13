@@ -3,48 +3,81 @@ spring:
     name: gateway-service
   main:
     web-application-type: reactive
-
+    
   cloud:
     gateway:
+      httpclient:
+        response-timeout: 1500ms
+      discovery:
+        locator:
+          enabled: false
+          lower-case-service-id: true
       routes:
         - id: payment-service
-          uri: http://payment-service:8082
+          uri: lb://payment-service
           predicates:
-            - Path=/**
-          filters:
-             - Retry=3
-             - RewritePath=/swagger-ui/(?<segment>.*), /swagger-ui/${segment}
-        - id: driver-service
-          uri: http://driver-service:8081
-          predicates:
-            - Path=/**
+            - Path=/payment-service/**
           filters:
             - Retry=3
-            - RewritePath=/swagger-ui/(?<segment>.*), /swagger-ui/${segment}
+            - RewritePath=/payment-service/(?<path>.*), /${path}
+            - name: CircuitBreaker
+              args:
+                name: paymentServiceCircuitBreaker
+                fallbackUri: forward:/fallback
         - id: passenger-service
-          uri: http://passenger-service:8083
+          uri: lb://passenger-service
           predicates:
-            - Path=/**
+            - Path=/passenger-service/**
           filters:
             - Retry=3
-            - RewritePath=/swagger-ui/(?<segment>.*), /swagger-ui/${segment}
+            - RewritePath=/passenger-service/(?<path>.*), /${path}
+            - name: CircuitBreaker
+              args:
+                name: passengerServiceCircuitBreaker
+                fallbackUri: forward:/fallback
+        - id: driver-service
+          uri: lb://driver-service
+          predicates:
+            - Path=/driver-service/**
+          filters:
+            - Retry=3
+            - RewritePath=/driver-service/(?<path>.*), /$\{path}
+            - name: CircuitBreaker
+              args:
+                name: driverServiceCircuitBreaker
+                fallbackUri: forward:/fallback
         - id: ride-service
-          uri: http://ride-service:8084
+          uri: lb://ride-service
           predicates:
-            - Path=/**
+            - Path=/ride-service/**
           filters:
             - Retry=3
-            - RewritePath=/swagger-ui/(?<segment>.*), /swagger-ui/${segment}
-
-
-
+            - RewritePath=/ride-service/(?<path>.*), /$\{path}
+            - name: CircuitBreaker
+              args:
+                name: rideServiceCircuitBreaker
+                fallbackUri: forward:/fallback
 
 eureka:
   client:
     service-url:
       defaultZone: http://eureka-server:8761/eureka/
-  instance:
-    prefer-ip-address: true
+    register-with-eureka: true
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+  health:
+    circuitbreakers:
+      enabled: true
+
 
   session:
     store-type: redis
@@ -58,16 +91,26 @@ logging:
   level:
     org.springframework.cloud.gateway: DEBUG
     org.springframework.cloud.circuitbreaker: DEBUG
+    org.springframework.cloud.loadbalancer: DEBUG
 
 server:
-  port: 8086
   forward-headers-strategy: framework
+  port: 8086
 
-springdoc:
-  swagger-ui:
-    enabled: false
-  api-docs:
-    enabled: false
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      paymentServiceCircuitBreaker:
+        failureRateThreshold: 70
+        slowCallRateThreshold: 100
+        slowCallDurationThreshold: 2s
+        permittedNumberOfCallsInHalfOpenState: 3
+        maxWaitDurationInHalfOpenState: 5s
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 5
+        minimumNumberOfCalls: 2
+        waitDurationInOpenState: 10s
 
 
 

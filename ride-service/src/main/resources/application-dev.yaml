@@ -4,7 +4,7 @@ spring:
       on-profile: dev
   data:
     mongodb:
-      uri: mongodb://mongodb:27017/ride_db
+      uri: mongodb://mongo:27017/ride_db
       database: ride_db
   liquibase:
     enabled: false
@@ -16,3 +16,11 @@ spring:
      value-deserializer: ${KAFKA_CONSUMER_VALUE_DESERIALIZER:org.apache.kafka.common.serialization.StringDeserializer}
      group-id: ride-group
      auto-offset-reset: earliest
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+    url: /ride-service/v3/api-docs
+    configUrl: /ride-service/v3/api-docs/swagger-config
+  api-docs:
+    enabled: true
