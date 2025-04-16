@@ -3,11 +3,12 @@ spring:
    name: ride-service
 
 eureka:
+  instance:
+    hostname: RIDE-SERVICE
   client:
     service-url:
       defaultZone: http://eureka-server:8761/eureka/
-  instance:
-    prefer-ip-address: true
+
 
   redis:
     host: redis
@@ -15,12 +16,18 @@ eureka:
   session:
     store-type: redis
 
-springdoc:
-  swagger-ui:
-    path: /swagger-ui
-  api-docs:
-    enabled: true
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    export:
+      prometheus:
+        enabled: true
 
 server:
   port: 8084
+  forward-headers-strategy: framework
+  servlet:
+    context-path: /ride-service

@@ -53,7 +53,7 @@ public class RideControllerContractTest {
 
     @Autowired
     private RideRepository rideRepository;
-    private static final String BASE_URL="/api/rides";
+    private static final String BASE_URL="/ride-service/api/rides";
     @BeforeEach
     public void setup() {
         RestAssured.baseURI = "http://localhost";

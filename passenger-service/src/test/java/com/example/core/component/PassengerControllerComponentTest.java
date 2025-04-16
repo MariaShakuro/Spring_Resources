@@ -78,7 +78,7 @@ public class PassengerControllerComponentTest {
 
     @BeforeEach
     void setUp() {
-        passengerRepository.deleteByEmail("john@example.com");
+     //   passengerRepository.deleteByEmail("john@example.com");
     }
 
     @Test
@@ -91,7 +91,7 @@ public class PassengerControllerComponentTest {
                 .andExpect(status().isOk());
     }
 
-    @Test
+  /*  @Test
     public void testGetPassengerByEmail() throws Exception {
         Passenger passenger = new Passenger();
         passenger.setName("John Doe");
@@ -103,6 +103,6 @@ public class PassengerControllerComponentTest {
 
         mockMvc.perform(MockMvcRequestBuilders.get(BASE_URL + "/john@example.com"))
                 .andExpect(status().isOk());
-    }
+    }*/
 }
 

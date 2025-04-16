@@ -3,11 +3,12 @@ spring:
    name: passenger-service
 
 eureka:
+  instance:
+    hostname: PASSENGER-SERVICE
   client:
     service-url:
       defaultZone: http://eureka-server:8761/eureka/
-  instance:
-    prefer-ip-address: true
+
 
   redis:
     host: redis
@@ -15,16 +16,25 @@ eureka:
   session:
     store-type: redis
 
-springdoc:
-  swagger-ui:
-    path: /swagger-ui
-  api-docs:
-    enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    export:
+      prometheus:
+        enabled: true
 
-
-  security:
-    basic:
-      enabled: false
+logging:
+  level:
+    root: ERROR
+    org:
+     springframework: DEBUG
+     hibernate: DEBUG
 
 server:
   port: 8083
+  servlet:
+    context-path: /passenger-service
+  forward-headers-strategy: framework
