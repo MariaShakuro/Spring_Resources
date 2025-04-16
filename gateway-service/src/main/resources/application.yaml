@@ -64,19 +64,15 @@ eureka:
     service-url:
       defaultZone: http://eureka-server:8761/eureka/
 
-
 management:
   endpoints:
     web:
       exposure:
-        include: '*'
-  endpoint:
-    health:
-      show-details: always
-  health:
-    circuitbreakers:
-      enabled: true
-
+        include: "*"
+  metrics:
+    export:
+      prometheus:
+        enabled: true
 
   session:
     store-type: redis

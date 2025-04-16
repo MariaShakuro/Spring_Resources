@@ -15,6 +15,15 @@ eureka:
   session:
     store-type: redis
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    export:
+      prometheus:
+        enabled: true
 server:
   port: 8081
   servlet:

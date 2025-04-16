@@ -216,6 +216,21 @@ services:
     networks:
       - spring_resources_app-network
 
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - spring_resources_app-network
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - spring_resources_app-network
 
 volumes:
   postgres_data:
