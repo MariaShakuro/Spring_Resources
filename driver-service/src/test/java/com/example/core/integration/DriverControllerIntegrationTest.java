@@ -70,7 +70,7 @@ public class DriverControllerIntegrationTest {
     private static final String LICENSE = "LICENSE123";
     private static final int RATING = 5;
     private static final Long DRIVER_ID=1L;
-    private static final String BASE_URL="/drivers";
+    private static final String BASE_URL="/driver-service/drivers";
     @BeforeAll
     public static void initRestAssured(){
         RestAssured.baseURI="http://localhost";

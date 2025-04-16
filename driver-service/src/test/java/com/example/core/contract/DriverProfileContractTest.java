@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
@@ -67,6 +68,8 @@ public class DriverProfileContractTest {
     private static final String DRIVER_NAME="John Doe";
     private static final String LICENSE="LICENSE123";
     private static final int RATING =5;
+    private static final String BASE_URL = "/driver-service/drivers";
+
     @BeforeAll
     public static void initRestAssured(){
         RestAssured.baseURI="http://localhost";
@@ -74,7 +77,6 @@ public class DriverProfileContractTest {
     @BeforeEach
     public void setup(){
         RestAssured.port = port;
-
         Driver driver = new Driver(null, DRIVER_NAME, LICENSE, RATING);
         driverRepository.save(driver);
     }
@@ -82,9 +84,9 @@ public class DriverProfileContractTest {
     public void testGetDriverProfile() {
         given()
                 .when()
-                .get("/drivers/profile/1")
+                .get(BASE_URL+"/profile/1")
                 .then()
-                .statusCode(200)
+                .statusCode(HttpStatus.OK.value())
                 .body("id", equalTo(1))
                 .body("name", equalTo(DRIVER_NAME));
     }

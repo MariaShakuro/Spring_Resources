@@ -95,25 +95,25 @@ services:
     networks:
       - spring_resources_app-network
 
-  keycloak:
-    image: quay.io/keycloak/keycloak:latest
-    container_name: keycloak
-    environment:
-      DB_VENDOR: postgres
-      DB_ADDR: postgres
-      DB_DATABASE: keycloak_db
-      DB_USERNAME: ${SPRING_DATASOURCE_USERNAME}
-      DB_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
-      KEYCLOAK_USER: ${KEYCLOAK_USER}
-      KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD}
-    command: >
-      start-dev --http-relative-path /auth
-    ports:
-      - "8080:8080"
-    depends_on:
-      - postgres
-    networks:
-      - spring_resources_app-network
+#  keycloak:
+#    image: quay.io/keycloak/keycloak:latest
+#    container_name: keycloak
+#    environment:
+#      DB_VENDOR: postgres
+#      DB_ADDR: postgres
+#      DB_DATABASE: keycloak_db
+#      DB_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+#      DB_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+#      KEYCLOAK_USER: ${KEYCLOAK_USER}
+#      KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD}
+#    command: >
+#      start-dev --http-relative-path /auth
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - postgres
+#    networks:
+#      - spring_resources_app-network
 
 
   gateway-service:
@@ -124,11 +124,9 @@ services:
         dockerfile: Dockerfile
     environment:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
-      SPRING_PROFILES_ACTIVE: docker
     ports:
       - "8086:8086"
     depends_on:
-      - redis
       - eureka-server
     networks:
       - spring_resources_app-network
@@ -147,9 +145,11 @@ services:
       SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
       SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
-      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "8081:8081"
     depends_on:
       - eureka-server
+      - gateway-service
       - postgres
       - kafka
     networks:
@@ -168,9 +168,11 @@ services:
       SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
       SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
-      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "8083:8083"
     depends_on:
       - eureka-server
+      - gateway-service
       - postgres
       - kafka
     networks:
@@ -184,9 +186,11 @@ services:
     container_name: payment-service
     environment:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
-      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "8082:8082"
     depends_on:
       - eureka-server
+      - gateway-service
     networks:
       - spring_resources_app-network
 
@@ -202,9 +206,11 @@ services:
         SPRING_DATA_MONGODB_DATABASE: ride_db
         SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
         EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
-        SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "8084:8084"
     depends_on:
       - eureka-server
+      - gateway-service
       - mongodb
       - kafka
     networks:

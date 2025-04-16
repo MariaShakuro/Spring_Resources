@@ -64,7 +64,7 @@ public class PassengerProfileContractTest {
 
     @Autowired
     private PassengerRepository passengerRepository;
-    private static final String BASE_URL = "/api/passenger";
+    private static final String BASE_URL = "/passenger-service/api/passenger";
     private static final Passenger TEST_PASSENGER = new Passenger(
             null, "Alice", "alice@example.com", "password123", "1234567890", "PROMO123"
     );

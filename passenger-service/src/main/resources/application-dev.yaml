@@ -28,9 +28,8 @@ spring:
   session:
     store-type: redis
 
-springdoc:
-  swagger-ui:
-    path: /swagger-ui
-    enabled: true
 server:
   port: 8083
+  forward-headers-strategy: framework
+  servlet:
+    context-path: /passenger-service
