@@ -217,7 +217,8 @@ services:
       - spring_resources_app-network
 
   prometheus:
-    image: prom/prometheus
+    image: bitnami/prometheus
+    container_name: prometheus
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
@@ -227,15 +228,43 @@ services:
 
   grafana:
     image: grafana/grafana
+    container_name: grafana
     ports:
       - "3000:3000"
     networks:
       - spring_resources_app-network
 
+  elasticsearch:
+    image: elasticsearch:8.0.0
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+    volumes:
+       - esdata:/usr/share/elasticsearch/data
+
+  logstash:
+    image: logstash:8.0.0
+    container_name: logstash
+    ports:
+      - "5044:5044"
+    volumes:
+      - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+
+  kibana:
+    image: kibana:8.0.0
+    container_name: kibana
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+
 volumes:
   postgres_data:
   mongodb_data:
   redis-data:
+  esdata:
 
 networks:
   spring_resources_app-network:

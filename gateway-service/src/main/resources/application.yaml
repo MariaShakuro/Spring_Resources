@@ -19,10 +19,6 @@ spring:
             - Path=/payment-service/**
           filters:
             - Retry=6
-#            - name: RewritePath
-#              args:
-#                 regex: /payment-service/(?<path>.*)
-#                 replacement: /${path}
             - name: CircuitBreaker
               args:
                 name: paymentServiceCircuitBreaker
@@ -33,7 +29,6 @@ spring:
             - Path=/passenger-service/**
           filters:
             - Retry=6
-            - RewritePath=/passenger-service/(?<path>.*), /${path}
             - name: CircuitBreaker
               args:
                 name: passengerServiceCircuitBreaker
