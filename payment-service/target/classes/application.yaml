@@ -19,11 +19,15 @@ eureka:
   session:
     store-type: redis
 
-#//springdoc:
-#  swagger-ui:
-#    path: /swagger-ui
-#    url: /payment-service/v3/api-docs
-#    configUrl: /payment-service/v3/api-docs/swagger-config
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    export:
+      prometheus:
+        enabled: true
 
 server:
   port: 8082
