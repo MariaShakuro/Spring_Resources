@@ -9,7 +9,11 @@ spring:
     driver-class-name: org.postgresql.Driver
   liquibase:
     enabled: false
-
+  zipkin:
+    base-url: http://zipkin:9411/
+  sleuth:
+    sampler:
+      probability: 1.0
 
   jpa:
     show-sql: true

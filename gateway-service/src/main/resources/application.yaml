@@ -3,7 +3,11 @@ spring:
     name: gateway-service
   main:
     web-application-type: reactive
-
+  zipkin:
+    base-url: http://zipkin:9411/
+  sleuth:
+    sampler:
+      probability: 1.0
   cloud:
     gateway:
       httpclient:

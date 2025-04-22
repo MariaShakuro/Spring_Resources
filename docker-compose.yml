@@ -235,36 +235,51 @@ services:
       - spring_resources_app-network
 
   elasticsearch:
-    image: elasticsearch:8.0.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.3.3
     container_name: elasticsearch
     environment:
       - discovery.type=single-node
+      - bootstrap.memory_lock=true
     ports:
       - "9200:9200"
     volumes:
-       - esdata:/usr/share/elasticsearch/data
+       - elasticsearch_data:/usr/share/elasticsearch/data
 
   logstash:
-    image: logstash:8.0.0
+    image: docker.elastic.co/logstash/logstash:8.3.3
     container_name: logstash
     ports:
       - "5044:5044"
+      - "5000:5000/tcp"
+      - "5000:5000/udp"
+      - "9600:9600"
     volumes:
-      - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+      - ./logstash/pipeline:/usr/logstash/pipeline:ro
 
   kibana:
-    image: kibana:8.0.0
+    image: docker.elastic.co/kibana/kibana:8.3.3
     container_name: kibana
     ports:
       - "5601:5601"
     environment:
       - ELASTICSEARCH_URL=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
 
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - "9411:9411"
+    networks:
+      - spring_resources_app-network
+        
 volumes:
   postgres_data:
   mongodb_data:
   redis-data:
-  esdata:
+  elasticsearch_data:
 
 networks:
   spring_resources_app-network:
