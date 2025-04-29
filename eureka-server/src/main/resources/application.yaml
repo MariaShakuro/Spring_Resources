@@ -16,10 +16,3 @@ springdoc:
 server:
   port: 8761
   forward-headers-strategy: framework
-
-spring:
-  zipkin:
-    base-url: http://zipkin:9411/
-  sleuth:
-    sampler:
-      probability: 1.0
