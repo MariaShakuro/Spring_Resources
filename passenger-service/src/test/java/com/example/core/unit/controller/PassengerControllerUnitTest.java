@@ -58,7 +58,7 @@ public class PassengerControllerUnitTest {
         when(passengerService.registerPassenger(testPassengerDto)).thenReturn(registeredPassengerDto);
 
         ResponseEntity<PassengerDto> response = passengerController.registerAndSendPassengerEvent(testPassengerDto);
-        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertEquals(registeredPassengerDto, response.getBody());
 
         verify(passengerService).registerPassenger(testPassengerDto);

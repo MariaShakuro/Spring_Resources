@@ -68,7 +68,7 @@ public class DriverProfileContractTest {
     private static final String DRIVER_NAME="John Doe";
     private static final String LICENSE="LICENSE123";
     private static final int RATING =5;
-    private static final String BASE_URL = "/driver-service/drivers";
+    private static final String BASE_URL = "/driver-service/api/v1/drivers";
 
     @BeforeAll
     public static void initRestAssured(){

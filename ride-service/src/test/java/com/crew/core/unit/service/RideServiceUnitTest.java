@@ -50,7 +50,7 @@ public class RideServiceUnitTest {
 
     @Test
     public void testStartRide() {
-        String passengerId = "1";
+        Long passengerId = 1L;
         Ride ride = new Ride();
         RideDto rideDto = new RideDto();
 
@@ -58,7 +58,7 @@ public class RideServiceUnitTest {
         when(rideRepository.save(ride)).thenReturn(ride);
         when(rideMapper.toDto(ride)).thenReturn(rideDto);
 
-        RideDto result = rideService.startRide(Long.valueOf(passengerId));
+        RideDto result = rideService.startRide(passengerId);
 
         assertEquals(rideDto, result);
         verify(rideRepository).findFirstByPassengerIdOrderByTimestampDesc(passengerId);
@@ -67,7 +67,7 @@ public class RideServiceUnitTest {
 
     @Test
     public void testEndRide() {
-        String passengerId = "1";
+        Long passengerId = 1L;
         Ride ride = new Ride();
         RideDto rideDto = new RideDto();
 
@@ -75,7 +75,7 @@ public class RideServiceUnitTest {
         when(rideRepository.save(ride)).thenReturn(ride);
         when(rideMapper.toDto(ride)).thenReturn(rideDto);
 
-        RideDto result = rideService.endRide(Long.valueOf(passengerId));
+        RideDto result = rideService.endRide(passengerId);
 
         assertEquals(rideDto, result);
         verify(rideRepository).findFirstByPassengerIdOrderByTimestampDesc(passengerId);

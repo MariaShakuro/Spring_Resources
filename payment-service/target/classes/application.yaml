@@ -1,11 +1,32 @@
 spring:
   application:
          name: payment-service
-  zipkin:
-    base-url: http://zipkin:9411/
-  sleuth:
-    sampler:
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  tracing:
+    enabled: true
+    sampling:
       probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans
+  metrics:
+    export:
+      elastic:
+        host: http://elasticsearch:9200
+        index: metrics-payment
+        enabled: true
+      prometheus:
+        enabled: true
+logging:
+  level:
+    io.micrometer: TRACE
+
 eureka:
   instance:
     hostname: PAYMENT-SERVICE
@@ -24,26 +45,6 @@ eureka:
   session:
     store-type: redis
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info,prometheus
-  tracing:
-    enabled: true
-    sampling:
-      probability: 1.0
-    zipkin:
-      tracing:
-        endpoint: http://zipkin:9411/api/v2/spans
-  metrics:
-    export:
-      elastic:
-        host: http://elasticsearch:9200
-        index: metrics-payment
-        enabled: true
-      prometheus:
-        enabled: true
 
 server:
   port: 8082

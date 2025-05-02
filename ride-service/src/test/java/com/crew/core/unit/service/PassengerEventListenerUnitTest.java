@@ -29,9 +29,9 @@ public class PassengerEventListenerUnitTest {
 
     @Test
     public void testListenPassengerEvents() {
-        String passengerId = "passenger123";
+        Long passengerId =  123L;
 
-        passengerEventListener.listenPassengerEvents(passengerId);
+        passengerEventListener.setPassengerId(passengerId);
         verify(rideService, times(1)).setCurrentPassengerId(passengerId);
     }
 }

@@ -90,7 +90,7 @@ public class DriverControllerComponentTest {
     @InjectMocks
     private DriverService driverService;
 
-    private static final String BASE_URL = "/drivers";
+    private static final String BASE_URL = "/api/v1/drivers";
 
     private Driver existingDriver;
 
@@ -113,8 +113,8 @@ public class DriverControllerComponentTest {
         DriverDto testDriver = new DriverDto(null, "Alice", "1234567890", 5);
         mockMvc.perform(MockMvcRequestBuilders.post(BASE_URL + "/register-and-send-event")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(testDriver))) // Исправлено
-                .andExpect(status().isOk());
+                        .content(objectMapper.writeValueAsString(testDriver)))
+                .andExpect(status().isCreated());
     }
 
 }

@@ -10,11 +10,11 @@ import lombok.*;
 @Schema(description = "Entity of a ride")
 public class RideDto {
     @Schema(description = "Ride id")
-    private String id;
+    private Long id;
     @Schema(description = "Ride passenger id")
-    private String passengerId;
+    private Long passengerId;
     @Schema(description = "Ride driver id")
-    private String driverId;
+    private Long driverId;
     @Schema(description = "Ride start location")
     private String startLocation;
     @Schema(description = "Ride end location")

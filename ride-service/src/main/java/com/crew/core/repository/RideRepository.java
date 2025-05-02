@@ -10,10 +10,10 @@ import java.util.Optional;
 
 @Repository
 public interface RideRepository extends MongoRepository<Ride, String> {
-    List<Ride> findByPassengerId(String passengerId);
+    List<Ride> findByPassengerId(Long passengerId);
 
-    List<Ride> findByDriverId(String driverId);
+    List<Ride> findByDriverId(Long driverId);
 
-    Optional<Ride> findFirstByPassengerIdOrderByTimestampDesc(String passengerId);
+    Optional<Ride> findFirstByPassengerIdOrderByTimestampDesc(Long passengerId);
 
 }

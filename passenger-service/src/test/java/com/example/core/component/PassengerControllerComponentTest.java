@@ -74,7 +74,7 @@ public class PassengerControllerComponentTest {
     private PassengerRepository passengerRepository;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
-    private static final String BASE_URL = "/api/passenger";
+    private static final String BASE_URL = "/api/v1/passenger";
 
     @BeforeEach
     void setUp() {
@@ -88,7 +88,7 @@ public class PassengerControllerComponentTest {
         mockMvc.perform(MockMvcRequestBuilders.post(BASE_URL + "/register-and-send-event")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(testPassenger)))
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
     }
 
   /*  @Test

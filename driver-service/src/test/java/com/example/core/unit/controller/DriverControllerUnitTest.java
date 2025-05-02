@@ -33,7 +33,7 @@ public class DriverControllerUnitTest {
     public void init(){
         MockitoAnnotations.openMocks(this);
     }
-    private static final Long DRIVER_ID=1L;
+    private static final Long DRIVER_ID= (Long) 1L;
     private static final int RATING=5;
 
     @Test

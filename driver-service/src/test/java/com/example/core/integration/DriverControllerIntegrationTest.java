@@ -70,7 +70,7 @@ public class DriverControllerIntegrationTest {
     private static final String LICENSE = "LICENSE123";
     private static final int RATING = 5;
     private static final Long DRIVER_ID=1L;
-    private static final String BASE_URL="/driver-service/drivers";
+    private static final String BASE_URL="/driver-service/api/v1/drivers";
     @BeforeAll
     public static void initRestAssured(){
         RestAssured.baseURI="http://localhost";
@@ -93,7 +93,7 @@ public class DriverControllerIntegrationTest {
                 .when()
                 .post(BASE_URL+"/register-and-send-event")
                 .then()
-                .statusCode(HttpStatus.OK.value())
+                .statusCode(HttpStatus.CREATED.value())
                 .body("name", equalTo(DRIVER_NAME))
                 .body("license_number", equalTo(LICENSE));
     }
