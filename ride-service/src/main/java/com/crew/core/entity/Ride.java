@@ -3,6 +3,7 @@ package com.crew.core.entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import lombok.*;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -13,8 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "rides")
 public class Ride {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private ObjectId id;
     private Long passengerId;
     private Long driverId;
     private String startLocation;

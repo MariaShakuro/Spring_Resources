@@ -2,6 +2,7 @@ package com.crew.core.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
+import org.bson.types.ObjectId;
 
 @Getter
 @Setter
@@ -10,7 +11,7 @@ import lombok.*;
 @Schema(description = "Entity of a ride")
 public class RideDto {
     @Schema(description = "Ride id")
-    private Long id;
+    private ObjectId id;
     @Schema(description = "Ride passenger id")
     private Long passengerId;
     @Schema(description = "Ride driver id")

@@ -4,6 +4,7 @@ import com.crew.core.dto.RideDto;
 import com.crew.core.entity.Ride;
 import com.crew.core.repository.RideRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.bson.types.ObjectId;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-/*
+
 @Testcontainers
 @SpringBootTest(properties = {
         "eureka.client.enabled=false",
@@ -70,7 +71,7 @@ public class RideControllerComponentTest {
     void setup() {
 
         testRide = new RideDto(null, 1L, 2L,"Minsk","Moscow","COMPLETED", 100.0,1L,"PROMOCODE123");
-        Ride ride = new Ride(1L, 23L, 43L,
+        Ride ride = new Ride(new ObjectId(), 23L, 43L,
                 "Start Point", "End Point",
                 "RESERVED", 50.0,
                 System.currentTimeMillis(),
@@ -82,22 +83,22 @@ public class RideControllerComponentTest {
     @Test
     void shouldGetRideHistoryForPassenger() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get(BASE_URL + "/history")
-                        .queryParam("passengerId", "1L"))
+                        .queryParam("passengerId", "1"))
                 .andExpect(status().isOk());
     }
 
     @Test
     void shouldGetRideHistoryForDriver() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get(BASE_URL + "/history")
-                        .queryParam("driverId", "2L"))
+                        .queryParam("driverId", "2"))
                 .andExpect(status().isOk());
     }
 
     @Test
     void shouldApplyPromoCode() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post(BASE_URL + "/applyPromoCode")
-                        .queryParam("passengerId", "1L")
+                        .queryParam("passengerId", "1")
                         .queryParam("promoCode", "DISCOUNT10"))
                 .andExpect(status().isOk());
     }
-}*/
+}

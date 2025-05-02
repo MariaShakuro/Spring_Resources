@@ -2,6 +2,7 @@ package com.crew.core.unit.repository;
 
 import com.crew.core.entity.Ride;
 import com.crew.core.repository.RideRepository;
+import org.bson.types.ObjectId;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-/*
+
 @DataMongoTest
 @Testcontainers
 @ActiveProfiles("test")
@@ -57,7 +58,7 @@ public class RideRepositoryUnitTest {
 
     @Test
     public void testFindByPassengerId() {
-        Ride ride = new Ride(null, 23L, 43L, "Start Point", "End Point", "COMPLETED", 100.50, System.currentTimeMillis(), "PROMO10");
+        Ride ride = new Ride(new ObjectId(), 23L, 43L, "Start Point", "End Point", "COMPLETED", 100.50, System.currentTimeMillis(), "PROMO10");
         rideRepository.save(ride);
 
         List<Ride> results = rideRepository.findByPassengerId(23L);
@@ -69,7 +70,7 @@ public class RideRepositoryUnitTest {
 
     @Test
     public void testFindByDriverId() {
-        Ride ride = new Ride(null, 78L, 12L, "Start Point", "End Point", "IN_PROGRESS", 75.00, System.currentTimeMillis(), "PROMO15");
+        Ride ride = new Ride(new ObjectId(), 78L, 12L, "Start Point", "End Point", "IN_PROGRESS", 75.00, System.currentTimeMillis(), "PROMO15");
         rideRepository.save(ride);
 
         List<Ride> results = rideRepository.findByDriverId(12L);
@@ -100,4 +101,3 @@ public class RideRepositoryUnitTest {
         assertTrue(results.isEmpty());
     }
 }
-*/

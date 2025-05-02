@@ -2,9 +2,6 @@ spring:
  application:
    name: passenger-service
 
- sleuth:
-   enabled: true
-
 eureka:
   instance:
     hostname: PASSENGER-SERVICE
@@ -19,6 +16,7 @@ eureka:
   session:
     store-type: redis
 
+
 management:
   endpoints:
     web:
@@ -30,7 +28,7 @@ management:
       probability: 1.0
     zipkin:
       tracing:
-        endpoint: http://zipkin:9411/api/v2/spans
+        endpoint: http://localhost:9411/api/v2/spans
   metrics:
     export:
       elastic:

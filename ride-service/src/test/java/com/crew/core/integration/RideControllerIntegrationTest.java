@@ -4,6 +4,7 @@ import com.crew.core.dto.RideDto;
 import com.crew.core.entity.Ride;
 import com.crew.core.repository.RideRepository;
 import io.restassured.RestAssured;
+import org.bson.types.ObjectId;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,7 @@ import org.testcontainers.utility.DockerImageName;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
-/*
+
 @Testcontainers
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = {
         "eureka.client.enabled=false",
@@ -60,7 +61,7 @@ public class RideControllerIntegrationTest {
         RestAssured.port = port;
 
         rideRepository.save(new Ride(
-                null, 23L, 43L,
+                new ObjectId(), 23L, 43L,
                 "Start Point", "End Point",
                 "RESERVED", 50.0,
                 System.currentTimeMillis(),
@@ -71,7 +72,7 @@ public class RideControllerIntegrationTest {
     @Test
     public void testApplyPromoCode() {
         given()
-                .queryParam("passengerId", "23L")
+                .queryParam("passengerId", "23")
                 .queryParam("promoCode", "PROMO20")
                 .when()
                 .post(BASE_URL + "/applyPromoCode")
@@ -80,4 +81,3 @@ public class RideControllerIntegrationTest {
     }
 }
 
-*/

@@ -325,14 +325,8 @@ services:
           cpus: 0.50
 
   zipkin:
-    image: openzipkin/zipkin
+    image: openzipkin/zipkin:latest
     container_name: zipkin
-    environment:
-      - STORAGE_TYPE=elasticsearch
-      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
-      - ELASTICSEARCH_INDEX=zipkin-traces
-    depends_on:
-      - elasticsearch
     ports:
       - "9411:9411"
     networks:
