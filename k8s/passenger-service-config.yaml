@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: passenger-service
-          image: passenger-service:latest
+          image: shakuro895/spring_resources:passenger-service
           ports:
             - containerPort: 8083
           env:

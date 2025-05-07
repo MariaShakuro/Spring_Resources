@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: payment-service
-          image: payment-service:latest
+          image: shakuro895/spring_resources:payment-service
           ports:
             - containerPort: 8082
           env:

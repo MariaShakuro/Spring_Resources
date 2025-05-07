@@ -5,18 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b210d6ef-08e2-484c-bb3c-4eccc0c91b29" name="Changes" comment="refactoring_1">
-      <change afterPath="$PROJECT_DIR$/k8s/details/database-secret.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/details/persistent_volume_claims.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/driver-service-config.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/eureka-server-config.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/gateway-service-config.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/general-config.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/passenger-service-config.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/payment-service-config.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/k8s/ride-service-config.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prometheus.yml" beforeDir="false" afterPath="$PROJECT_DIR$/prometheus/prometheus.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/k8s/driver-service-config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s/driver-service-config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/k8s/eureka-server-config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s/eureka-server-config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/k8s/gateway-service-config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s/gateway-service-config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/k8s/general-config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s/general-config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/k8s/passenger-service-config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s/passenger-service-config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/k8s/payment-service-config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s/payment-service-config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/k8s/ride-service-config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s/ride-service-config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prometheus/prometheus.yml" beforeDir="false" afterPath="$PROJECT_DIR$/prometheus.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,55 +57,55 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.DriverApplication.executor": "Run",
-    "Application.EurekaApplication.executor": "Run",
-    "Application.GatewayApplication.executor": "Run",
-    "Application.PaymentApplication.executor": "Run",
-    "Cucumber Java.All Features in: test.executor": "Run",
-    "JUnit.All in passenger-service.executor": "Run",
-    "JUnit.CucumberTestRunner.executor": "Run",
-    "JUnit.DriverControllerComponentTest.executor": "Run",
-    "JUnit.DriverControllerIntegrationTest.executor": "Run",
-    "JUnit.DriverControllerTest.executor": "Run",
-    "JUnit.DriverEventContractTest.testSendDriverEvent.executor": "Run",
-    "JUnit.DriverEventProducerTest.executor": "Run",
-    "JUnit.DriverServiceTest.executor": "Run",
-    "JUnit.core in driver-service.executor": "Run",
-    "JUnit.core in passenger-service.executor": "Run",
-    "JUnit.cucumber in driver-service.executor": "Run",
-    "JUnit.integration in driver-service.executor": "Run",
-    "JUnit.java in driver-service.executor": "Run",
-    "JUnit.java in passenger-service.executor": "Run",
-    "JUnit.java in payment-service.executor": "Run",
-    "JUnit.java in ride-service.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "minikube",
-    "ignore.virus.scanning.warn.message": "true",
-    "jdk.selected.JAVA_MODULE": "openjdk-23",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "C:/Modsen/Spring_Resources/Spring_Resources/Spring_Resources/driver-service/src/test/java/com/example/core/service",
-    "last_opened_file_path": "C:/Users/shuma/OneDrive/Рабочий стол/Modsen/Spring_Resources/Spring_Resources/Spring_Resources",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "configurable.group.language"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.DriverApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.EurekaApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.GatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.PaymentApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Cucumber Java.All Features in: test.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.All in passenger-service.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CucumberTestRunner.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DriverControllerComponentTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DriverControllerIntegrationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DriverControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DriverEventContractTest.testSendDriverEvent.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DriverEventProducerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DriverServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.core in driver-service.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.core in passenger-service.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.cucumber in driver-service.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.integration in driver-service.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.java in driver-service.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.java in passenger-service.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.java in payment-service.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.java in ride-service.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#28 on minikube&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-23&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Modsen/Spring_Resources/Spring_Resources/Spring_Resources/driver-service/src/test/java/com/example/core/service&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/shuma/OneDrive/Рабочий стол/Modsen/Spring_Resources/Spring_Resources/Spring_Resources&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.language&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\shuma\OneDrive\Рабочий стол\Modsen\Spring_Resources\Spring_Resources\Spring_Resources" />
       <recent name="C:\Users\shuma\OneDrive\Рабочий стол\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\k8s\details" />
       <recent name="C:\Users\shuma\OneDrive\Рабочий стол\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\prometheus" />
       <recent name="C:\Users\shuma\OneDrive\Рабочий стол\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\logstash\pipeline" />
       <recent name="C:\Users\shuma\OneDrive\Рабочий стол\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\logstash\logstash.conf" />
-      <recent name="C:\Modsen\Spring_Resources\Spring_Resources\Spring_Resources\passenger-service\src\test\resources" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.example.core" />

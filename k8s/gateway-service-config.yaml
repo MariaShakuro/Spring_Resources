@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: gateway-service
-          image: gateway-service:latest
+          image: shakuro895/spring_resources:apigateway
           ports:
             - containerPort: 8086
           env:

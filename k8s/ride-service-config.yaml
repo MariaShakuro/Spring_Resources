@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: ride-service
-          image: ride-service:latest
+          image: shakuro895/spring_resources:ride-service
           ports:
             - containerPort: 8084
           env:
