@@ -4,6 +4,21 @@ spring:
   main:
     web-application-type: reactive
 
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          keycloak:
+#            client-id: spring-app
+#            client-secret: GFr6740iTqzHfFcB0YeQBEHyoRSKIXnJ
+#            authorization-grant-type: client_credentials
+#            scope: openid
+#        provider:
+#          keycloak:
+#            issuer-uri: http://localhost:8080/auth/realms/spring_resources
+
+
+
   sleuth:
     sampler:
       probability: 1.0

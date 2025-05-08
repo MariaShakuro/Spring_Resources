@@ -60,6 +60,9 @@ public class DriverControllerComponentTest {
     static final KafkaContainer kafkaContainer = new KafkaContainer(
             DockerImageName.parse("confluentinc/cp-kafka:latest")
     ).withExposedPorts(9093);
+    @Container
+    static final GenericContainer<?> redisContainer = new GenericContainer<>("redis:latest")
+            .withExposedPorts(6379);
 
     @DynamicPropertySource
     static void configureProperties(DynamicPropertyRegistry registry) {
@@ -70,12 +73,15 @@ public class DriverControllerComponentTest {
         registry.add("spring.jpa.hibernate.ddl-auto", () -> "create-drop");
         registry.add("spring.kafka.bootstrap-servers", () -> String.format("%s:%d",
                 kafkaContainer.getHost(), kafkaContainer.getMappedPort(KafkaContainer.KAFKA_PORT)));
+        registry.add("spring.redis.host", redisContainer::getHost);
+        registry.add("spring.redis.port", () -> redisContainer.getMappedPort(6379));
     }
 
     @AfterAll
     static void tearDown() {
         kafkaContainer.stop();
         postgresContainer.stop();
+        redisContainer.stop();
     }
 
     @Autowired
