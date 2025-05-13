@@ -5,16 +5,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b210d6ef-08e2-484c-bb3c-4eccc0c91b29" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/logstash.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/logback.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/payment-service/src/main/resources/logback.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/logs/application-2025-03-23.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/logs/application-2025-03-25.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/driver-service/logs/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/logs/application.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/src/main/resources/application-dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/main/resources/application-dev.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver-service/src/main/resources/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/driver-service/src/main/resources/logback.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka-server/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logstash/config/logstash.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logstash/pipeline/logstash.conf" beforeDir="false" afterPath="$PROJECT_DIR$/logstash/pipeline/logstash.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/logs/application-2025-03-23.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/logs/application-2025-03-25.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/passenger-service/logs/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/logs/application.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/src/main/resources/application-dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/src/main/resources/application-dev.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passenger-service/src/main/resources/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/passenger-service/src/main/resources/logback.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/src/main/resources/application.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/payment-service/target/classes/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/target/classes/application.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/payment-service/target/payment-service-0.0.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/target/payment-service-0.0.1.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/payment-service/target/payment-service-0.0.1.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/target/payment-service-0.0.1.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ride-service/logs/application-2025-03-23.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ride-service/logs/application-2025-03-25.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ride-service/logs/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/logs/application.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ride-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ride-service/src/main/resources/application-dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/main/resources/application-dev.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ride-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ride-service/src/main/resources/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ride-service/src/main/resources/logback.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,42 +83,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.DriverApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.EurekaApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.GatewayApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.PaymentApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Cucumber Java.All Features in: test.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.All in passenger-service.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CucumberTestRunner.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DriverControllerComponentTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DriverControllerIntegrationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DriverControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DriverEventContractTest.testSendDriverEvent.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DriverEventProducerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DriverServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.core in driver-service.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.core in passenger-service.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.cucumber in driver-service.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.integration in driver-service.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.java in driver-service.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.java in passenger-service.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.java in payment-service.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.java in ride-service.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;elk__stack&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Modsen/Spring_Resources/Spring_Resources/Spring_Resources/driver-service/src/test/java/com/example/core/service&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Modsen/LibrarySpring&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DriverApplication.executor": "Run",
+    "Application.EurekaApplication.executor": "Run",
+    "Application.GatewayApplication.executor": "Run",
+    "Application.PaymentApplication.executor": "Run",
+    "Cucumber Java.All Features in: test.executor": "Run",
+    "JUnit.All in passenger-service.executor": "Run",
+    "JUnit.CucumberTestRunner.executor": "Run",
+    "JUnit.DriverControllerComponentTest.executor": "Run",
+    "JUnit.DriverControllerIntegrationTest.executor": "Run",
+    "JUnit.DriverControllerTest.executor": "Run",
+    "JUnit.DriverEventContractTest.testSendDriverEvent.executor": "Run",
+    "JUnit.DriverEventProducerTest.executor": "Run",
+    "JUnit.DriverServiceTest.executor": "Run",
+    "JUnit.core in driver-service.executor": "Run",
+    "JUnit.core in passenger-service.executor": "Run",
+    "JUnit.cucumber in driver-service.executor": "Run",
+    "JUnit.integration in driver-service.executor": "Run",
+    "JUnit.java in driver-service.executor": "Run",
+    "JUnit.java in passenger-service.executor": "Run",
+    "JUnit.java in payment-service.executor": "Run",
+    "JUnit.java in ride-service.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "new__features",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "openjdk-23",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "C:/Modsen/Spring_Resources/Spring_Resources/Spring_Resources/driver-service/src/test/java/com/example/core/service",
+    "last_opened_file_path": "C:/Users/shuma/OneDrive/Рабочий стол/Modsen/Spring_Resources/Spring_Resources/Spring_Resources",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "configurable.group.language"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />

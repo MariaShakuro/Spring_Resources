@@ -10,21 +10,34 @@ eureka:
       defaultZone: http://eureka-server:8761/eureka/
 
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
+    zipkin:
+      tracing:
+        endpoint: http://zipkin:9411/api/v2/spans
+  metrics:
+    export:
+      elastic:
+        host: http://elasticsearch:9200
+        index: metrics-ride
+        enabled: true
+      prometheus:
+        enabled: true
+
+
   redis:
     host: redis
     port: 6379
   session:
     store-type: redis
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  metrics:
-    export:
-      prometheus:
-        enabled: true
 
 server:
   port: 8084

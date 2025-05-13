@@ -1,6 +1,11 @@
 spring:
   application:
          name: payment-service
+  zipkin:
+    base-url: http://zipkin:9411/
+  sleuth:
+    sampler:
+      probability: 1.0
 eureka:
   instance:
     hostname: PAYMENT-SERVICE
@@ -23,9 +28,20 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: health,info,prometheus
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
+    zipkin:
+      tracing:
+        endpoint: http://zipkin:9411/api/v2/spans
   metrics:
     export:
+      elastic:
+        host: http://elasticsearch:9200
+        index: metrics-payment
+        enabled: true
       prometheus:
         enabled: true
 

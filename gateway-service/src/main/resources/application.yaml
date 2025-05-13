@@ -4,6 +4,9 @@ spring:
   main:
     web-application-type: reactive
 
+  sleuth:
+    sampler:
+      probability: 1.0
   cloud:
     gateway:
       httpclient:
@@ -63,7 +66,14 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: health,info,prometheus
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans
   metrics:
     export:
       prometheus:
