@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gateway-service
+  template:
+    metadata:
+      labels:
+        app: gateway-service
+    spec:
+      containers:
+        - name: gateway-service
+          image: shakuro895/spring_resources:apigateway
+          ports:
+            - containerPort: 8086
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: git
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway-service-svc
+spec:
+  selector:
+    app: gateway-service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8086
+  type: NodePort

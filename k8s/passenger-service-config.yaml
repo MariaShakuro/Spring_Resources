@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: passenger-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: passenger-service
+  template:
+    metadata:
+      labels:
+        app: passenger-service
+    spec:
+      containers:
+        - name: passenger-service
+          image: shakuro895/spring_resources:passenger-service
+          ports:
+            - containerPort: 8083
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: git
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: passenger-service-svc
+spec:
+  selector:
+    app: passenger-service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8083
+  type: NodePort

@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: driver-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: driver-service
+  template:
+    metadata:
+      labels:
+        app: driver-service
+    spec:
+      containers:
+        - name: driver-service
+          image: shakuro895/spring_resources:driver-service
+          ports:
+            - containerPort: 8081
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: git
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: driver-service
+spec:
+  selector:
+    app: driver-service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8081
+  type: NodePort

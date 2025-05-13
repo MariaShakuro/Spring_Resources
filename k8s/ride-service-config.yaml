@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ride-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ride-service
+  template:
+    metadata:
+      labels:
+        app: ride-service
+    spec:
+      containers:
+        - name: ride-service
+          image: shakuro895/spring_resources:ride-service
+          ports:
+            - containerPort: 8084
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: git
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ride-service-svc
+spec:
+  selector:
+    app: ride-service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8084
+  type: NodePort
