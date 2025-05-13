@@ -1,12 +1,43 @@
 spring:
   application:
          name: payment-service
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans
+  metrics:
+    export:
+      elastic:
+        host: http://elasticsearch:9200
+        index: metrics-payment
+        enabled: true
+      prometheus:
+        enabled: true
+logging:
+  level:
+    io.micrometer: TRACE
+
 eureka:
+  instance:
+    hostname: PAYMENT-SERVICE
+    prefer-ip-address: false
+    instance-id: ${spring.application.name}:${server.port}
   client:
+    register-with-eureka: true
+    fetch-registry: true
     service-url:
       defaultZone: http://eureka-server:8761/eureka/
-  instance:
-    prefer-ip-address: true
+
 
   redis:
     host: redis
@@ -14,9 +45,9 @@ eureka:
   session:
     store-type: redis
 
-springdoc:
-  swagger-ui:
-    path: /swagger-ui
 
 server:
   port: 8082
+  forward-headers-strategy: framework
+  servlet:
+    context-path: /payment-service

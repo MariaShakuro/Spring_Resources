@@ -42,29 +42,29 @@ public class RideControllerUnitTest {
 
     @Test
     public void testStartRide() {
-        String passengerId = "1";
+        Long passengerId = (Long) 1L;
         RideDto rideDto = new RideDto();
 
-        when(rideService.startRide(Long.valueOf(passengerId))).thenReturn(rideDto);
+        when(rideService.startRide(passengerId)).thenReturn(rideDto);
 
         ResponseEntity<RideDto> response = rideController.startRide(passengerId);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(rideDto, response.getBody());
-        verify(rideService).startRide(Long.valueOf(passengerId));
+        verify(rideService).startRide(passengerId);
     }
 
     @Test
     public void testEndRide() {
-        String passengerId = "1";
+        Long passengerId = (Long) 1L;
         RideDto rideDto = new RideDto();
 
-        when(rideService.endRide(Long.valueOf(passengerId))).thenReturn(rideDto);
+        when(rideService.endRide(passengerId)).thenReturn(rideDto);
 
         ResponseEntity<RideDto> response = rideController.endRide(passengerId);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(rideDto, response.getBody());
-        verify(rideService).endRide(Long.valueOf(passengerId));
+        verify(rideService).endRide(passengerId);
     }
 }

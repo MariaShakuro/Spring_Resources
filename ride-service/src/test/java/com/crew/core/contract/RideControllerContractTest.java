@@ -4,6 +4,7 @@ import com.crew.core.dto.RideDto;
 import com.crew.core.entity.Ride;
 import com.crew.core.repository.RideRepository;
 import io.restassured.RestAssured;
+import org.bson.types.ObjectId;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -53,12 +54,12 @@ public class RideControllerContractTest {
 
     @Autowired
     private RideRepository rideRepository;
-    private static final String BASE_URL="/api/rides";
+    private static final String BASE_URL="/ride-service/api/v1/rides";
     @BeforeEach
     public void setup() {
         RestAssured.baseURI = "http://localhost";
         RestAssured.port = port;
-        Ride ride = new Ride(null, "passenger123", "driver123", "Start Point", "End Point", "RESERVED", 0.0,System.currentTimeMillis() ,"PROMO123" );
+        Ride ride = new Ride(new ObjectId(), 23L, 43L, "Start Point", "End Point", "RESERVED", 0.0,System.currentTimeMillis() ,"PROMO123" );
         rideRepository.save(ride);
     }
 
@@ -67,7 +68,7 @@ public class RideControllerContractTest {
     @Test
     public void testApplyPromoCode() {
         given()
-                .queryParam("passengerId", "passenger123")
+                .queryParam("passengerId", "23")
                 .queryParam("promoCode", "PROMO20")
                 .when()
                 .post(BASE_URL+"/applyPromoCode")

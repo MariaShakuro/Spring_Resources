@@ -35,7 +35,6 @@ import org.testcontainers.utility.DockerImageName;
 )
 @TestPropertySource("classpath:application-test.yaml")
 @AutoConfigureMessageVerifier
-@Import(MockConfig.class)
 @ActiveProfiles("test")
 public class DriverEventContractTest {
     @Container

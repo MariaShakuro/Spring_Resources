@@ -29,7 +29,7 @@ public class DriverEventListenerUnitTest {
 
     @Test
     public void testListenDriverEvents() {
-        String driverId = "driver123";
+        Long driverId = 23L;
         driverEventListener.listenDriverEvents(driverId);
         verify(rideService, times(1)).setCurrentDriverId(driverId);
     }

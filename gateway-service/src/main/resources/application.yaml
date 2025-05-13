@@ -4,47 +4,80 @@ spring:
   main:
     web-application-type: reactive
 
+  sleuth:
+    sampler:
+      probability: 1.0
   cloud:
     gateway:
+      httpclient:
+        response-timeout: 1500ms
+      discovery:
+        locator:
+          enabled: false
+          lower-case-service-id: true
       routes:
         - id: payment-service
-          uri: http://payment-service:8082
+          uri: lb://PAYMENT-SERVICE
           predicates:
-            - Path=/**
+            - Path=/payment-service/**
           filters:
-             - Retry=3
-             - RewritePath=/swagger-ui/(?<segment>.*), /swagger-ui/${segment}
-        - id: driver-service
-          uri: http://driver-service:8081
-          predicates:
-            - Path=/**
-          filters:
-            - Retry=3
-            - RewritePath=/swagger-ui/(?<segment>.*), /swagger-ui/${segment}
+            - Retry=6
+            - name: CircuitBreaker
+              args:
+                name: paymentServiceCircuitBreaker
+                fallbackUri: forward:/fallback
         - id: passenger-service
-          uri: http://passenger-service:8083
+          uri: lb://PASSENGER-SERVICE
           predicates:
-            - Path=/**
+            - Path=/passenger-service/**
           filters:
-            - Retry=3
-            - RewritePath=/swagger-ui/(?<segment>.*), /swagger-ui/${segment}
+            - Retry=6
+            - name: CircuitBreaker
+              args:
+                name: passengerServiceCircuitBreaker
+                fallbackUri: forward:/fallback
+        - id: driver-service
+          uri: lb://DRIVER-SERVICE
+          predicates:
+            - Path=/driver-service/**
+          filters:
+            - Retry=6
+            - name: CircuitBreaker
+              args:
+                name: driverServiceCircuitBreaker
+                fallbackUri: forward:/fallback
         - id: ride-service
-          uri: http://ride-service:8084
+          uri: lb://RIDE-SERVICE
           predicates:
-            - Path=/**
+            - Path=/ride-service/**
           filters:
-            - Retry=3
-            - RewritePath=/swagger-ui/(?<segment>.*), /swagger-ui/${segment}
-
-
-
+            - Retry=6
+            - name: CircuitBreaker
+              args:
+                name: rideServiceCircuitBreaker
+                fallbackUri: forward:/fallback
 
 eureka:
   client:
     service-url:
       defaultZone: http://eureka-server:8761/eureka/
-  instance:
-    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans
+  metrics:
+    export:
+      prometheus:
+        enabled: true
 
   session:
     store-type: redis
@@ -58,16 +91,43 @@ logging:
   level:
     org.springframework.cloud.gateway: DEBUG
     org.springframework.cloud.circuitbreaker: DEBUG
+    org.springframework.cloud.loadbalancer: DEBUG
 
 server:
-  port: 8086
   forward-headers-strategy: framework
+  port: 8086
+
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      timeoutDuration: 3000ms
+      registerHealthIndicator: true
+      slidingWindowSize: 10
+      minimumNumberOfCalls: 5
+      permittedNumberOfCallsInHalfOpenState: 3
+      automaticTransitionFromOpenToHalfOpenEnabled: true
+      waitDurationInOpenState: 5s
+      failureRateThreshold: 10
+      eventConsumerBufferSize: 10
+      slowCallDurationThreshold: 200ms
+      slowCallRateThreshold: 30
+      recordExceptions:
+        - java.util.concurrent.TimeoutException
+        - org.springframework.cloud.gateway.support.NotFoundException
+  instances:
+    passengerCircuitBreaker:
+      baseConfig: default
+    driverCircuitBreaker:
+      baseConfig: default
+    rideCircuitBreaker:
+      baseConfig: default
+    paymentCircuitBreaker:
+      baseConfig: default
+
 
 springdoc:
-  swagger-ui:
-    enabled: false
   api-docs:
     enabled: false
-
-
-
+  swagger-ui:
+    enabled: false

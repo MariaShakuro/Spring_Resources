@@ -2,6 +2,7 @@ package com.crew.core.unit.repository;
 
 import com.crew.core.entity.Ride;
 import com.crew.core.repository.RideRepository;
+import org.bson.types.ObjectId;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -57,10 +58,10 @@ public class RideRepositoryUnitTest {
 
     @Test
     public void testFindByPassengerId() {
-        Ride ride = new Ride(null, "passenger123", "driver456", "Start Point", "End Point", "COMPLETED", 100.50, System.currentTimeMillis(), "PROMO10");
+        Ride ride = new Ride(new ObjectId(), 23L, 43L, "Start Point", "End Point", "COMPLETED", 100.50, System.currentTimeMillis(), "PROMO10");
         rideRepository.save(ride);
 
-        List<Ride> results = rideRepository.findByPassengerId("passenger123");
+        List<Ride> results = rideRepository.findByPassengerId(23L);
 
         assertFalse(results.isEmpty());
         assertEquals(1, results.size());
@@ -69,10 +70,10 @@ public class RideRepositoryUnitTest {
 
     @Test
     public void testFindByDriverId() {
-        Ride ride = new Ride(null, "passenger789", "driver123", "Start Point", "End Point", "IN_PROGRESS", 75.00, System.currentTimeMillis(), "PROMO15");
+        Ride ride = new Ride(new ObjectId(), 78L, 12L, "Start Point", "End Point", "IN_PROGRESS", 75.00, System.currentTimeMillis(), "PROMO15");
         rideRepository.save(ride);
 
-        List<Ride> results = rideRepository.findByDriverId("driver123");
+        List<Ride> results = rideRepository.findByDriverId(12L);
 
         assertFalse(results.isEmpty());
         assertEquals(1, results.size());
@@ -81,13 +82,13 @@ public class RideRepositoryUnitTest {
 
     @Test
     public void testFindFirstByPassengerIdOrderByTimestampDesc() {
-        Ride olderRide = new Ride(null, "passenger123", "driver123", "Start Point A", "End Point A", "COMPLETED", 50.00, System.currentTimeMillis() - 10000, "PROMO5");
-        Ride newerRide = new Ride(null, "passenger123", "driver123", "Start Point B", "End Point B", "COMPLETED", 70.00, System.currentTimeMillis(), "PROMO10");
+        Ride olderRide = new Ride(null, 23L, 12L, "Start Point A", "End Point A", "COMPLETED", 50.00, System.currentTimeMillis() - 10000, "PROMO5");
+        Ride newerRide = new Ride(null, 23L, 12L, "Start Point B", "End Point B", "COMPLETED", 70.00, System.currentTimeMillis(), "PROMO10");
 
         rideRepository.save(olderRide);
         rideRepository.save(newerRide);
 
-        Optional<Ride> result = rideRepository.findFirstByPassengerIdOrderByTimestampDesc("passenger123");
+        Optional<Ride> result = rideRepository.findFirstByPassengerIdOrderByTimestampDesc(23L);
 
         assertTrue(result.isPresent());
         assertEquals(newerRide.getTimestamp(), result.get().getTimestamp());
@@ -95,7 +96,7 @@ public class RideRepositoryUnitTest {
 
     @Test
     public void testFindByPassengerId_NotFound() {
-        List<Ride> results = rideRepository.findByPassengerId("nonexistentPassenger");
+        List<Ride> results = rideRepository.findByPassengerId(null);
 
         assertTrue(results.isEmpty());
     }

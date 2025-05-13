@@ -8,9 +8,13 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,69 +22,48 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/api/passenger")
+@RequestMapping("/api/v1/passenger")
+@RequiredArgsConstructor
 @Tag(name = "Passenger Management", description = "Operations related to passenger")
 public class PassengerController {
     private static final Logger log = LoggerFactory.getLogger(PassengerController.class);
 
+    //@Autowired
     private final PassengerService passengerService;
     private final PassengerEventProducer passengerEventProducer;
-    @Autowired
+   /* @Autowired
     public PassengerController(PassengerService passengerService, PassengerEventProducer passengerEventProducer) {
         this.passengerService = passengerService;
         this.passengerEventProducer = passengerEventProducer;
-    }
+    }*/
 
 
-
-        @Operation(summary = "Register and Send Passenger Event", description = "Registers a new passenger and sends an event")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Passenger registered successfully"),
-            @ApiResponse(responseCode = "400", description = "Invalid input data"),
-            @ApiResponse(responseCode = "500", description = "Internal server error")
-    })
+    @Operation(summary = "Register and Send Passenger Event", description = "Registers a new passenger and sends an event")
     @PostMapping("/register-and-send-event")
-    public ResponseEntity<PassengerDto> registerAndSendPassengerEvent(@RequestBody PassengerDto passengerDto) {
+    public ResponseEntity<PassengerDto> registerAndSendPassengerEvent(@Valid @RequestBody PassengerDto passengerDto) {
 
         log.info("Received passenger DTO: {}", passengerDto);
         PassengerDto registeredPassenger = passengerService.registerPassenger(passengerDto);
-
         passengerEventProducer.sendPassengerEvent(registeredPassenger.getId().toString());
-
-
-        return ResponseEntity.ok(registeredPassenger);
+        return ResponseEntity.status(HttpStatus.CREATED).body(registeredPassenger);
 
     }
 
-    @Operation(summary = "Get Passenger By Email", description = "Gets an existing passenger by email")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Passenger retrieved successfully"),
-            @ApiResponse(responseCode = "404", description = "Passenger not found"),
-            @ApiResponse(responseCode = "500", description = "Internal server error")
-    })
+   /* @Operation(summary = "Get Passenger By Email", description = "Gets an existing passenger by email")
     @GetMapping("/{email}")
     public ResponseEntity<PassengerDto> getPassengerByEmail(@PathVariable String email) {
         log.info("Received request to get passenger by email: {}", email);
-
         Optional<PassengerDto> passengerDto = passengerService.findPassengerByEmail(email);
-
         if (passengerDto.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-
         return ResponseEntity.ok(passengerDto.get());
-    }
+    }*/
 
 
     @Operation(summary = "Update Passenger", description = "Updates an existing passenger")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Passenger updated successfully"),
-            @ApiResponse(responseCode = "404", description = "Passenger not found"),
-            @ApiResponse(responseCode = "400", description = "Invalid input data"),
-            @ApiResponse(responseCode = "500", description = "Internal server error")
-    })
     @PutMapping("/update/{id}")
-    public ResponseEntity<PassengerDto> updatePassenger(@PathVariable Long id, @RequestBody PassengerDto passengerDto) {
+    public ResponseEntity<PassengerDto> updatePassenger(@PathVariable("id") Long id, @Valid @RequestBody PassengerDto passengerDto) {
         passengerDto.setId(id);
         log.info("Received request to update passenger: {}", passengerDto);
         PassengerDto updatedPassenger = passengerService.updatePassenger(passengerDto);
@@ -88,18 +71,12 @@ public class PassengerController {
     }
 
     @Operation(summary = "Delete Passenger", description = "Deletes an existing passenger")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "Passenger deleted successfully"),
-            @ApiResponse(responseCode = "404", description = "Passenger not found"),
-            @ApiResponse(responseCode = "500", description = "Internal server error")
-    })
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deletePassenger(@PathVariable Long id) {
+    public ResponseEntity<Void> deletePassenger(@PathVariable("id") Long id) {
         log.info("Received request to delete passenger with id: {}", id);
         passengerService.deletePassenger(id);
         return ResponseEntity.noContent().build();
     }
-
 
 
 }

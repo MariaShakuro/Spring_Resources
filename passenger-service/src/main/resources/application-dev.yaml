@@ -27,3 +27,9 @@ spring:
     port: 6379
   session:
     store-type: redis
+
+server:
+  port: 8083
+  forward-headers-strategy: framework
+  servlet:
+    context-path: /passenger-service

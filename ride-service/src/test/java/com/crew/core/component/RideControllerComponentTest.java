@@ -4,6 +4,7 @@ import com.crew.core.dto.RideDto;
 import com.crew.core.entity.Ride;
 import com.crew.core.repository.RideRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.bson.types.ObjectId;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -63,14 +64,14 @@ public class RideControllerComponentTest {
     @Autowired
     private RideRepository rideRepository;
 
-    private static final String BASE_URL = "/api/rides";
+    private static final String BASE_URL = "/api/v1/rides";
     private RideDto testRide;
 
     @BeforeEach
     void setup() {
 
-        testRide = new RideDto(null, "1", "2","Minsk","Moscow","COMPLETED", 100.0,1L,"PROMOCODE123");
-        Ride ride = new Ride("1", "passenger123", "driver123",
+        testRide = new RideDto(null, 1L, 2L,"Minsk","Moscow","COMPLETED", 100.0,1L,"PROMOCODE123");
+        Ride ride = new Ride(new ObjectId(), 23L, 43L,
                 "Start Point", "End Point",
                 "RESERVED", 50.0,
                 System.currentTimeMillis(),

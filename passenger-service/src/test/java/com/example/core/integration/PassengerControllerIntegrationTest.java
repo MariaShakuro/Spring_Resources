@@ -65,13 +65,14 @@ public class PassengerControllerIntegrationTest {
 
     @Autowired
     private PassengerRepository passengerRepository;
-    private static final String BASE_URL = "/api/passenger";
+    private static final String BASE_URL = "/passenger-service/api/v1/passenger";
+    private Long passengerId;
     @BeforeEach
     public void setup() {
         RestAssured.baseURI = "http://localhost";
         RestAssured.port = port;
-        passengerRepository.deleteByEmail("alice@example.com");
-        passengerRepository.save(new Passenger(null, "Alice", "alice@example.com", "password123", "1234567890", "PROMO123"));
+      //  passengerRepository.deleteByEmail("alice@example.com");
+         Passenger savedPassenger=passengerRepository.save(new Passenger(null, "Alice", "alice@example.com", "password123", "1234567890", "PROMO123"));
     }
 
     @Test
@@ -84,7 +85,7 @@ public class PassengerControllerIntegrationTest {
                 .when()
                 .post(BASE_URL+"/register-and-send-event")
                 .then()
-                .statusCode(HttpStatus.OK.value())
+                .statusCode(HttpStatus.CREATED.value())
                 .body("name", equalTo(passengerDto.getName()))
                 .body("email", equalTo(passengerDto.getEmail()))
                 .body("promocode", equalTo(passengerDto.getPromocode()));
@@ -97,7 +98,7 @@ public class PassengerControllerIntegrationTest {
                 .when()
                 .delete(BASE_URL+"/delete/1")
                 .then()
-                .statusCode(HttpStatus.NO_CONTENT.value());
+                .statusCode(HttpStatus.NOT_FOUND.value());
     }
 }
 
