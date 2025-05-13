@@ -4,6 +4,7 @@ import com.example.core.DriverApplication;
 import com.example.core.entity.Driver;
 import com.example.core.repository.DriverRepository;
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
+import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.KafkaContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
@@ -44,6 +46,27 @@ public class DriverProfileContractTest {
     static final KafkaContainer kafkaContainer = new KafkaContainer(
             DockerImageName.parse("confluentinc/cp-kafka:latest")
     );
+    @Container
+    static final GenericContainer<?> redisContainer = new GenericContainer<>("redis:latest")
+            .withExposedPorts(6379);
+    @Container
+    static final PostgreSQLContainer<?> postgresContainerForKeycloak = new PostgreSQLContainer<>("postgres:latest")
+            .withDatabaseName("keycloak_db")
+            .withUsername("keycloak")
+            .withPassword("keycloak_password");
+
+    @Container
+    static final GenericContainer<?> keycloakContainer = new GenericContainer<>("quay.io/keycloak/keycloak:latest")
+            .withExposedPorts(8080)
+            .withEnv("DB_VENDOR", "postgres")
+            .withEnv("DB_ADDR", postgresContainerForKeycloak.getHost())
+            .withEnv("DB_DATABASE", "keycloak_db")
+            .withEnv("DB_USERNAME", "keycloak")
+            .withEnv("DB_PASSWORD", "keycloak_password")
+            .withEnv("KEYCLOAK_USER", "admin")
+            .withEnv("KEYCLOAK_PASSWORD", "admin")
+            .withCommand("start-dev");
+
 
     @DynamicPropertySource
     static void configureProperties(DynamicPropertyRegistry registry) {
@@ -53,12 +76,14 @@ public class DriverProfileContractTest {
         registry.add("spring.jpa.hibernate.dialect", () -> "org.hibernate.dialect.PostgreSQLDialect");
 
         registry.add("spring.kafka.bootstrap-servers", kafkaContainer::getBootstrapServers);
+
     }
 
     @AfterAll
     static void tearDown() {
         kafkaContainer.stop();
         postgresContainer.stop();
+
     }
     @LocalServerPort
     private int port;
@@ -80,6 +105,9 @@ public class DriverProfileContractTest {
         Driver driver = new Driver(null, DRIVER_NAME, LICENSE, RATING);
         driverRepository.save(driver);
     }
+
+
+
     @Test
     public void testGetDriverProfile() {
         given()

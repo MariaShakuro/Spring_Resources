@@ -98,26 +98,27 @@ services:
     networks:
       - spring_resources_app-network
 
-#  keycloak:
-#    image: quay.io/keycloak/keycloak:latest
-#    container_name: keycloak
-#    environment:
-#      DB_VENDOR: postgres
-#      DB_ADDR: postgres
-#      DB_DATABASE: keycloak_db
-#      DB_USERNAME: ${SPRING_DATASOURCE_USERNAME}
-#      DB_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
-#      KEYCLOAK_USER: ${KEYCLOAK_USER}
-#      KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD}
-#    command: >
-#      start-dev --http-relative-path /auth
-#    ports:
-#      - "8080:8080"
-#    depends_on:
-#      - postgres
-#    networks:
-#      - spring_resources_app-network
-
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.2.3
+    container_name: keycloak
+    environment:
+      DB_VENDOR: postgres
+      DB_ADDR: postgres
+      DB_DATABASE: keycloak_db
+      DB_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      DB_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    command: >
+      start-dev --http-relative-path /auth
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    volumes:
+      - keycloak_data:/opt/keycloak/data
+    networks:
+      - spring_resources_app-network
 
   gateway-service:
     image: apigateway:latest
@@ -248,7 +249,7 @@ services:
     image: prom/prometheus:latest
     container_name: prometheus
     volumes:
-      -./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
     networks:
@@ -343,6 +344,7 @@ volumes:
   redis-data:
   elasticsearch_data:
   grafana-data:
+  keycloak_data:
 
 networks:
   spring_resources_app-network:

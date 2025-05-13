@@ -2,6 +2,12 @@ spring:
   config:
     activate:
       on-profile: test
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt: null
+
   datasource:
       url: jdbc:postgresql://localhost:5432/testdb
       username: ${SPRING_DATASOURCE_USERNAME}

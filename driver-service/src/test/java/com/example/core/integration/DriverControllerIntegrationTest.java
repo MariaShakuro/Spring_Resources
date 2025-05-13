@@ -5,6 +5,7 @@ import com.example.core.dto.DriverDto;
 import com.example.core.entity.Driver;
 import com.example.core.repository.DriverRepository;
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
